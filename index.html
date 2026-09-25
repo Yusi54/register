@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Register HFWI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16212B; --soft:#56646F; --bg:#F2F4F1; --card:#FFFFFF; --line:#DCE1DC;
+  --s1:#12565C; --s1t:#E3F0EF;
+  --s2:#6B2D5C; --s2t:#F3E6EF;
+  --s3:#8A5A0F; --s3t:#F6EEDD;
+  --acc:#12565C; --ok:#2F6B3A;
+  --r:14px; --rs:9px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#E8ECE8; --soft:#9CA8AA; --bg:#0F1416; --card:#182022; --line:#2A3437;
+    --s1:#6CC0C4; --s1t:#15302F; --s2:#D69CC4; --s2t:#2E1C29; --s3:#E0B35F; --s3t:#2E2513;
+    --acc:#6CC0C4; --ok:#86C592;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#E8ECE8; --soft:#9CA8AA; --bg:#0F1416; --card:#182022; --line:#2A3437;
+  --s1:#6CC0C4; --s1t:#15302F; --s2:#D69CC4; --s2t:#2E1C29; --s3:#E0B35F; --s3t:#2E2513;
+  --acc:#6CC0C4; --ok:#86C592;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px); -webkit-text-size-adjust:100%}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:Archivo,'Segoe UI',system-ui,sans-serif; font-size:15.5px; line-height:1.5}
+h1,h2,h3,h4{margin:0; line-height:1.15; letter-spacing:-0.015em}
+p{margin:0 0 .6em}
+button{font:inherit; color:inherit}
+
+/* Kopf */
+.top{position:sticky; top:0; z-index:30; background:var(--bg); border-bottom:1px solid var(--line); padding-top:env(safe-area-inset-top,0px)}
+.topin{max-width:1060px; margin:0 auto; padding:12px 22px; display:flex; align-items:center; gap:18px}
+.logo{font-weight:800; font-size:18px; letter-spacing:-0.03em; white-space:nowrap; background:none; border:0; cursor:pointer; padding:0}
+.logo span{color:var(--acc)}
+.tabs{display:flex; gap:4px; flex:1}
+.tabs button{background:none; border:0; padding:8px 13px; border-radius:99px; cursor:pointer; color:var(--soft); font-weight:500; white-space:nowrap}
+.tabs button:hover{color:var(--ink); background:var(--card)}
+.tabs button[aria-current="true"]{background:var(--ink); color:var(--bg)}
+.tools-r{display:flex; gap:8px; align-items:center}
+.srch{background:var(--card); border:1px solid var(--line); border-radius:99px; padding:7px 14px; font:inherit; color:var(--ink); width:200px}
+.top .srch{width:200px; padding:7px 14px; border-radius:99px; background:var(--card)}
+.icon{background:var(--card); border:1px solid var(--line); border-radius:99px; width:36px; height:36px; cursor:pointer; font-size:15px}
+.wrap{max-width:1060px; margin:0 auto; padding:30px 22px 60px}
+
+/* Kopftext der Seiten */
+.hero{margin-bottom:26px}
+.hero h1{font-size:clamp(28px,4vw,40px); font-weight:800}
+.hero p{color:var(--soft); margin-top:8px; max-width:56ch; font-size:16px}
+
+/* Studienweg */
+.weg{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:30px}
+.sem{border-radius:var(--r); padding:18px 16px 16px; background:var(--card); border:1px solid var(--line); position:relative; overflow:hidden}
+.sem::before{content:""; position:absolute; left:0; top:0; right:0; height:5px; background:var(--c)}
+.sem h2{font-size:15px; font-weight:700; color:var(--c); margin-bottom:2px}
+.sem .jahr{font-size:13px; color:var(--soft); margin-bottom:12px}
+.mod{display:flex; align-items:center; gap:10px; width:100%; text-align:left; border:0; background:var(--t); border-radius:var(--rs); padding:10px 12px; margin-bottom:7px; cursor:pointer}
+.mod:hover{outline:2px solid var(--c)}
+.mod b{font-weight:600; font-size:14.5px; flex:1}
+.mod i{font-style:normal; font-size:12px; color:var(--soft); white-space:nowrap}
+
+.row2{display:grid; grid-template-columns:1.3fr 1fr; gap:14px}
+.box{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:20px}
+.box h3{font-size:16px; font-weight:700; margin-bottom:12px}
+.nums{display:flex; gap:26px; flex-wrap:wrap; margin-bottom:28px}
+.nums div b{display:block; font-size:30px; font-weight:800; line-height:1}
+.nums div span{font-size:13px; color:var(--soft)}
+
+/* Listen */
+.item{display:flex; align-items:center; gap:12px; width:100%; text-align:left; background:none; border:0; border-top:1px solid var(--line); padding:12px 2px; cursor:pointer}
+.item:first-child{border-top:0}
+.item:hover b{color:var(--acc)}
+.item b{font-weight:600; flex:1}
+.item small{color:var(--soft); font-size:12.5px; display:block; font-weight:400}
+.dot{width:9px; height:9px; border-radius:50%; background:var(--c,var(--soft)); flex:none}
+.pill{font-size:12px; padding:3px 10px; border-radius:99px; background:var(--bg); color:var(--soft); white-space:nowrap}
+.pill.Laufend{background:var(--s1t); color:var(--s1)} .pill.Fertig{color:var(--ok)} .pill.Idee{background:var(--s2t); color:var(--s2)} .pill.Offen{background:var(--s3t); color:var(--s3)}
+
+/* Chips */
+.chips{display:flex; flex-wrap:wrap; gap:7px}
+.chip{background:var(--card); border:1px solid var(--line); border-radius:99px; padding:6px 13px; font-size:13.5px; cursor:pointer; color:var(--ink)}
+.chip:hover{border-color:var(--acc)}
+.chip[aria-pressed="true"]{background:var(--ink); border-color:var(--ink); color:var(--bg)}
+.chip.x::after{content:"  ✕"; opacity:.6}
+
+/* Methoden */
+.mgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:12px; margin-top:18px}
+.mcard{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:16px 16px 14px; text-align:left; cursor:pointer; display:flex; flex-direction:column; gap:6px}
+.mcard:hover{border-color:var(--c,var(--acc)); transform:translateY(-1px)}
+.mcard h4{font-size:16px; font-weight:700}
+.mcard p{font-size:13.5px; color:var(--soft); margin:0; flex:1}
+.mcard .ft{display:flex; justify-content:space-between; align-items:center; font-size:12px; color:var(--soft); margin-top:6px}
+.mcard .rk{color:var(--acc); font-weight:600}
+.bar{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+
+/* Detail */
+.back{background:none; border:0; color:var(--soft); cursor:pointer; padding:0; margin-bottom:16px; font-size:14px}
+.back:hover{color:var(--ink)}
+.det{display:grid; grid-template-columns:1fr 300px; gap:16px; align-items:start}
+.serif{font-family:'Source Serif 4',Georgia,serif; font-size:16.5px; line-height:1.62}
+.steps{list-style:none; margin:0; padding:0; counter-reset:s}
+.steps li{counter-increment:s; display:flex; gap:12px; padding:10px 0; border-top:1px solid var(--line)}
+.steps li:first-child{border-top:0}
+.steps li::before{content:counter(s); flex:none; width:24px; height:24px; border-radius:50%; background:var(--bg); color:var(--soft); font-size:12px; font-weight:700; display:grid; place-items:center; font-family:Archivo,sans-serif}
+.side .box{margin-bottom:14px}
+.side h3{font-size:13.5px; color:var(--soft); font-weight:600; margin-bottom:9px}
+
+/* Formular */
+label{display:block; font-size:13px; color:var(--soft); margin:14px 0 5px; font-weight:500}
+input[type=text],input[type=number],select,textarea,input[type=search]{
+  width:100%; background:var(--bg); border:1px solid var(--line); border-radius:var(--rs); padding:9px 12px; font:inherit; color:var(--ink)}
+textarea{min-height:80px; resize:vertical; font-family:'Source Serif 4',Georgia,serif; font-size:15.5px}
+.f3{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+.btn{background:var(--ink); color:var(--bg); border:0; border-radius:99px; padding:10px 20px; cursor:pointer; font-weight:600}
+.btn:hover{opacity:.88}
+.btn.l{background:none; color:var(--soft); border:1px solid var(--line)}
+.btn.l:hover{color:var(--ink); opacity:1}
+.btn.d{background:none; color:var(--s2); border:1px solid var(--line)}
+.acts{display:flex; gap:10px; flex-wrap:wrap; margin-top:20px}
+.picked{min-height:32px; margin-bottom:10px}
+.plist{max-height:230px; overflow-y:auto; border:1px solid var(--line); border-radius:var(--rs); padding:8px}
+.plist .chip{margin:3px}
+
+table{width:100%; border-collapse:collapse; font-size:14px}
+th,td{text-align:left; padding:7px 4px; border-bottom:1px solid var(--line)}
+th{font-weight:500; color:var(--soft)}
+td.n{text-align:right; font-variant-numeric:tabular-nums}
+.ovf{overflow-x:auto}
+
+/* Karteikarten */
+.flash{background:var(--card); border:1px solid var(--line); border-radius:20px; min-height:260px; padding:34px 28px; cursor:pointer; display:flex; flex-direction:column; justify-content:center; text-align:center; position:relative; overflow:hidden}
+.flash::before{content:""; position:absolute; left:0; top:0; bottom:0; width:6px; background:var(--c,var(--acc))}
+.flash .q{font-size:22px; font-weight:700; max-width:34ch; margin:0 auto}
+.flash .a{font-family:'Source Serif 4',Georgia,serif; font-size:16px; line-height:1.65; text-align:left; max-width:54ch; margin:18px auto 0; padding-top:18px; border-top:1px solid var(--line)}
+.flash .h{font-size:13px; color:var(--soft); margin-top:16px}
+.prog{height:6px; background:var(--line); border-radius:99px; overflow:hidden; margin:16px 0 8px}
+.prog i{display:block; height:100%; background:var(--acc); border-radius:99px}
+
+.empty{border:1.5px dashed var(--line); border-radius:var(--r); padding:30px; text-align:center; color:var(--soft)}
+.meta{font-size:13px; color:var(--soft)}
+:focus-visible{outline:2px solid var(--acc); outline-offset:2px}
+
+@media (max-width:860px){
+  .weg{grid-template-columns:1fr}
+  .row2,.det{grid-template-columns:1fr}
+  .top .srch{width:160px}
+}
+@media (max-width:640px){
+  .topin{flex-wrap:wrap; gap:10px; padding:10px 16px}
+  .tabs{order:3; flex:0 0 100%; overflow-x:auto; scrollbar-width:none}
+  .tabs button{padding:7px 11px}
+  .logo{flex:1; text-align:left}
+  .tools-r{margin-left:auto}
+  .top .srch{width:130px}
+  .wrap{padding:22px 16px 50px}
+  .f3{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.mcard{transition:transform .12s, border-color .12s}
+.grid{display:grid; gap:12px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.row{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:14px}
+.btn.sec{background:none; color:var(--soft); border:1px solid var(--line)}
+
+/* Wissensnetz */
+.seg{display:inline-flex; background:var(--card); border:1px solid var(--line); border-radius:99px; padding:3px; gap:2px; flex-wrap:wrap}
+.seg button{background:none; border:0; border-radius:99px; padding:7px 14px; cursor:pointer; color:var(--soft); font-weight:500}
+.seg button[aria-selected="true"]{background:var(--ink); color:var(--bg)}
+.netzwrap{display:grid; grid-template-columns:1fr 310px; gap:14px; margin-top:16px; align-items:start}
+.netz{background:var(--card); border:1px solid var(--line); border-radius:var(--r); height:min(84vh,900px); min-height:460px; overflow:hidden; touch-action:none}
+.nzpanel{position:sticky; top:84px; max-height:min(84vh,900px); overflow-y:auto}
+.wrap.wide{max-width:1440px}
+.netz .web circle{fill:none; stroke:var(--line); stroke-width:1}
+.netz .web line{stroke:var(--line); stroke-width:1; stroke-dasharray:2 4}
+.netz .lk{stroke:var(--soft); stroke-opacity:.35; stroke-width:1.2}
+.netz .lk.quer{stroke-dasharray:4 4; stroke-opacity:.45}
+.netz .lk.on{stroke:var(--ink); stroke-opacity:.9; stroke-width:2}
+.netz .lk.dim{stroke-opacity:.06}
+.netz .nd text.lb{font:500 13px Archivo,sans-serif; fill:var(--ink); paint-order:stroke; stroke:var(--card); stroke-width:3.5px; stroke-linejoin:round; pointer-events:none}
+.netz .nd.bereich text.lb{font-weight:700; font-size:14px}
+.netz .nd.root text.lb{font-weight:800; font-size:18px}
+.netz .nd.root text.lbr{font-size:10px; text-anchor:middle; pointer-events:none}
+.netz .nd{transition:opacity .15s}
+.netz .nd.dim{opacity:.18}
+.netz .nd.on circle,.netz .nd.hit circle{stroke:var(--ink); stroke-width:3}
+.netz .nd:focus{outline:none}
+.netz .nd:focus-visible circle{stroke:var(--acc); stroke-width:3.5}
+@media (max-width:860px){
+  .seg{flex-wrap:nowrap; overflow-x:auto; max-width:100%}
+  .seg button{padding:7px 11px; white-space:nowrap}
+  #nzq{width:100% !important}
+  .netzwrap{grid-template-columns:1fr}
+  .nzpanel{position:static; max-height:none}
+  .netz{height:62vh; min-height:400px}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="topin">
+  <button class="logo" type="button" data-go="uebersicht">Register<span>.</span></button>
+  <nav class="tabs" id="nav"></nav>
+  <div class="tools-r">
+    <input type="search" class="srch" id="q" placeholder="Suchen" autocomplete="off" aria-label="Suchen">
+    <button class="icon" id="themeBtn" type="button" aria-label="Hell oder dunkel">◐</button>
+  </div>
+</div></header>
+<main class="wrap" id="view"></main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+/* ====================== INHALTE ====================== */
+const MODULE = [
+{c:"HFWI-2528-1-FINMNG",k:"FINMNG",s:1,n:"Finanzmanagement",
+ pruef:"Aufgaben und Lösungen pro Kurstag, Semesterprüfung",
+ t:[
+  {h:"Grundlagen der kaufmännischen Buchhaltung",p:["Buchungsregeln und Aufbau der Erfolgsrechnung","Erfolgswirksam, erfolgsunwirksam, liquiditätswirksam","MWST-konforme Rechnung nach ESTV","Pflichten der Rechtsformen gemäss OR"]},
+  {h:"Buchungen beim Jahresabschluss",p:["Abschreibungen direkt und indirekt","Transitorische Aktiven und Passiven","Rückstellungen und Delkredere","Mehrstufige Erfolgsrechnung nach KMU-Standard"]},
+  {h:"Gewinnverteilung",p:["Einzelunternehmung","AG mit gesetzlicher Reserve und Dividende","Verbindung mit der mehrstufigen ER"]},
+  {h:"Stille Reserven",p:["Bildung und Auflösung","Interne und externe Bilanz","Wirkung auf den ausgewiesenen Gewinn"]},
+  {h:"Analyse des Jahresabschlusses",p:["Liquiditätsgrade 1 bis 3","Anlagedeckungsgrad und Finanzierungsgrad","Rentabilität von Eigen- und Gesamtkapital","Intensitäts- und Umschlagskennzahlen"]},
+  {h:"Geldflussrechnung und Finanzierung",p:["Fonds Geld und Nettoumlaufvermögen","Direkte und indirekte Methode","Cashflow aus Betrieb, Investition, Finanzierung"]},
+  {h:"Investitionsrechnung",p:["Kostenvergleich und Gewinnvergleich","Rentabilitätsrechnung","Amortisationsdauer (Payback)","Kapitalwert (Net Present Value)"]},
+  {h:"Kalkulation im Handel",p:["Vom Einkaufspreis zum Bruttoverkaufspreis","Bezugskosten, Rabatt, Skonto","Bruttogewinnzuschlag und Reingewinn"]},
+  {h:"Kalkulation in der Produktion",p:["Einzel- und Gemeinkosten","Zuschlagskalkulation","Herstellkosten und Selbstkosten"]}
+ ],tl:["kalk-handel","kalk-prod","invest","kennz","geldfluss","stille-res","gewinnvert"]},
+
+{c:"HFWI-2528-1-MATHMONU",k:"MATHMONU",s:1,n:"Mathematische Modelle nutzen",
+ pruef:"Schriftliche Prüfung, 90 Minuten, 50 Punkte, 1 A4 beidseitig plus Taschenrechner",
+ t:[
+  {h:"Kurvendiskussion",p:["Erste und zweite Ableitung","Extrempunkte über f'(x)=0 und Vorzeichen von f''(x)","Wendepunkte über f''(x)=0","Graph skizzieren im gegebenen Intervall"]},
+  {h:"Quadratische Funktionen",p:["Schnittpunkte durch Gleichsetzen","Scheitelpunkt und Öffnung über das Vorzeichen von a","Mitternachtsformel"]},
+  {h:"Exponentialfunktionen",p:["Wachstum mit K = K0 · (1+p)^n","Zinssatz aus Anfangs- und Endkapital","Umformen über Logarithmus"]},
+  {h:"Kosten, Erlös, Gewinn im Polypol",p:["G(x) = E(x) − K(x)","Gewinnmaximum über G'(x)=0","Kostenfunktion dritten Grades"]},
+  {h:"Preis-Absatz-Funktion im Monopol",p:["E(x) = p(x) · x","Erlösmaximum über E'(x)=0","Cournot-Punkt"]}
+ ],tl:["kurvendisk","gewinnmax","zinseszins"]},
+
+{c:"HFWI-2528-1-RK",k:"RK",s:1,n:"Recht",
+ pruef:"Onlinetest pro Block",
+ t:[
+  {h:"Block 1 Aufbau der Rechtsordnung",p:["Öffentliches und privates Recht","Normenhierarchie","Rechtsquellen der Schweiz"]},
+  {h:"Block 2 Obligationenrecht",p:["Entstehung von Obligationen","Vertragsabschluss und Willensmängel","Erfüllung und Nichterfüllung"]},
+  {h:"Block 3 Kaufvertrag und Verträge auf Arbeitsleistung",p:["Kaufvertrag und Gewährleistung","Werkvertrag","Auftrag","Arbeitsvertrag"]},
+  {h:"Weitere Themen",p:["Noch offen, Inhalte nachtragen"]}
+ ],tl:[],lit:"ICT-Rechtskonformität (XWI 016)"},
+
+{c:"HFWI-2528-1-SLBMNG",k:"SLBMNG",s:1,n:"Selbstmanagement",
+ pruef:"Transferaufgabe",
+ t:[
+  {h:"Zeitmanagement",p:["Analyse des eigenen Arbeitsverhaltens","Lebensbereiche einordnen","Zeitplanung und Arbeitstechnik","Prioritäten setzen","Ziele setzen"]},
+  {h:"Problemmanagement",p:["Strukturierter Problemlösungsprozess","Nutzwertanalyse","Kreativität hemmende und fördernde Umstände","Kreativitätsmethoden anwenden"]},
+  {h:"Lernmanagement",p:["Lernen und Behalten","Lernerfolg an Prüfungen","Lerntransfer sichern"]}
+ ],tl:["eisenhower","alpen","smart","pareto","nutzwert","mindmap"]},
+
+{c:"HFWI-2528-1-UNFÜ",k:"UNFÜ",s:1,n:"Unternehmensführung",
+ pruef:"Onlinetests 20 %, schriftliche Prüfung 20 %, Transferarbeit Businessplan 60 %",
+ t:[
+  {h:"Wirtschaft und Märkte",p:["Bedürfnisse als Motor der Wirtschaft","Produktionsfaktoren","Ökonomisches Prinzip","Drei Wirtschaftssektoren","Angebot und Nachfrage, Marktkenngrössen"]},
+  {h:"Das Unternehmen",p:["Fünf Umweltsphären","Anspruchsgruppen und ihre Ansprüche","Unternehmen als System","Formal- und Sachziele, Zielkonflikte"]},
+  {h:"Unternehmensführung",p:["Drei Managementebenen","Unternehmenskultur und Leitbild","Neues St. Galler Management-Modell","Unternehmenstypologie und Unternehmensverbindungen"]},
+  {h:"Gründung eines Unternehmens",p:["Von der Idee zum Unternehmen","Aufbau eines Businessplans","Standortwahl und Standortfaktoren","Rechtsform und Organisationsform","Nutzwertanalyse als Entscheidungshilfe"]},
+  {h:"Ausgewählte Managementprobleme",p:["Marketingstrategie und Innovation","Change Management","Projektcontrolling, Soll-Ist-Vergleich, Balanced Scorecard","Risikomanagement","Total Quality Management","Wissensmanagement und Ökologiemanagement","Arbeitstechnik und Investitionsplanung"]}
+ ],tl:["swot","porter","bmc","stgaller","umweltsph","stakeholder","nutzwert","bsc","risikomatrix","tqm","starfish"],
+ lit:"Compendio BWL für Technische Kaufleute"},
+
+{c:"HFWI-2528-2-GEWAAU",k:"GEWAAU",s:2,n:"Gewandter Ausdruck",
+ pruef:"Onlinetests 20 %, Gruppentransferarbeit als Praxisarbeit nach Wegleitung, max. 5 Seiten, 80 %",
+ t:[
+  {h:"Grundlagen der Kommunikation",p:["Kommunikationsprozess und Grundsätze","Vier-Ohren-Modell nach Schulz von Thun","Verbale und nonverbale Kommunikation"]},
+  {h:"Schriftliche Kommunikation",p:["Eisbergmodell nach Freud","Ich- und Du-Botschaften","Gewaltfreie Kommunikation nach Rosenberg","E-Mail und Brief, internes und externes Schreiben","Attraktives schriftliches Angebot","Schriftliches Feedback und Feedback-Modelle"]},
+  {h:"Praxisarbeiten erstellen",p:["Zusammenfassen ohne Hilfsmittel","Arbeitsplanung und Vorgehen","Informationsbeschaffung und Aufbereitung","Struktur der Arbeit nach Wegleitung Diplomarbeit","Präsentation vorbereiten"]},
+  {h:"Schreibstrategien und Kreativität",p:["Eigene Schreibstrategie finden","Kreativitätstechniken","Fragetechniken"]}
+ ],tl:["schulz","eisberg","gfk","mindmap"],
+ lit:"Compendio Kommunikation TK 2019, Hanser Kreativitätstechniken, Wegleitung Diplomarbeit BZBS"},
+
+{c:"HFWI-2528-2-INFSYGE",k:"INFSYGE",s:2,n:"Informationssysteme gestalten",
+ pruef:"Praxisaufgabe über zwei Wochen, alle Hilfsmittel erlaubt, 30 Punkte",
+ t:[
+  {h:"Fallstudie Intranet",p:["Alpina Services AG, 180 Mitarbeitende, mehrere Standorte","Probleme: verstreute Ablage, Vorlagen nicht auffindbar, Reglemente schwer zugänglich","Ziel: SharePoint Online als zentrale Einstiegsplattform"]},
+  {h:"Pflichtbestandteile der Lösung",p:["Startseite mit News und Schnellzugriffen","Mindestens drei Abteilungs- oder Themenbereiche","Dokumentbibliothek mit Struktur","Eine Liste, zum Beispiel FAQ, Kontakte oder Links","Sinnvolle Hauptnavigation"]},
+  {h:"Bewertungsraster, je 4 Punkte",p:["Struktur des Intranets","Startseite","Navigation und Auffindbarkeit","Einsatz der SharePoint-Funktionen","Inhalte und Praxisbezug","Benutzerfreundlichkeit und Gestaltung"]},
+  {h:"Datenmodellierung",p:["ERM und Beziehungen","Normalisierung","Informationssystem im Unternehmenskontext"]}
+ ],tl:["erm","sharepoint"]},
+
+{c:"HFWI-2528-2-NETWOENG",k:"NETWOENG",s:2,n:"Network System Engineering",
+ pruef:"Quiz pro Teilmodul, Stufen BASIC, MEDIUM, HF",
+ t:[
+  {h:"M1 Grundverständnis",p:["IT-Strategie und Governance, ITIL und COBIT","Netzwerktypen LAN, WAN, GAN","Topologien Stern, Ring, Mesh","Hub, Switch und Router im Vergleich","Kabeltypen und strukturierte Verkabelung","PoE und WLAN-Standards"]},
+  {h:"M2 Netzwerktechnologien",p:["OSI-Modell und TCP/IP","IPv4-Adressierung und Subnetting","IPv6 Grundlagen","Portnummern und Dienste","Firewall-Typen, Paketfilter bis NGFW","DMZ, NAT und PAT","VPN mit IPsec, WireGuard, OpenVPN","VLAN und Trunking nach 802.1Q","DHCP und DNS, DORA-Ablauf","Routing-Protokolle OSPF, BGP, RIP","Quality of Service","Monitoring und Troubleshooting"]},
+  {h:"M3 Servertechnologien",p:["Virtualisierung und Hypervisor-Typen","VM-Management, Snapshots und Templates","RAID 0, 1, 5, 6, 10","Storage DAS, NAS, SAN","Backup-Strategien voll, inkrementell, differenziell","Disaster Recovery mit RTO und RPO","HA-Clustering und Load Balancing","Cloud Computing IaaS, PaaS, SaaS"]},
+  {h:"M4 Berechtigungsverwaltung",p:["Active Directory, Domain und Forest","FSMO-Rollen","Kerberos mit KDC und TGT","AGDLP-Prinzip","Group Policy und RSOP","NTFS-Berechtigungen und Freigaben","Identity Lifecycle Management","Zero Trust, MFA, RBAC und ABAC"]}
+ ],tl:["subnetting","osi","agdlp","raid","backup","rtorpo","zerotrust"]},
+
+{c:"HFWI-2528-2-PRJMNG",k:"PRJMNG",s:2,n:"Projektmanagement",
+ pruef:"Semesterprüfung",
+ t:[
+  {h:"Grundlagen",p:["Projektbegriff und Abgrenzung","Begriffe im Projektmanagement","Magisches Dreieck aus Zeit, Kosten, Qualität"]},
+  {h:"Phasen und Stakeholder",p:["Phasenmodelle und Meilensteine","Stakeholder-Analyse","Projektauftrag"]},
+  {h:"Rollen und Projektstrukturplan",p:["Auftraggeber, Projektleitung, Projektteam","PSP objekt-, funktions- oder phasenorientiert","Arbeitspakete definieren"]},
+  {h:"Controlling und Risiko",p:["Soll-Ist-Vergleich","Earned Value Management mit PV, AC, EV","Risikoanalyse und Risikomatrix","Massnahmen vermeiden, vermindern, übertragen, tragen"]},
+  {h:"Scrum",p:["Rollen Product Owner, Scrum Master, Team","Artefakte Backlog, Sprint Backlog, Increment","Events Planning, Daily, Review, Retrospektive"]},
+  {h:"Führung und Dokumentation",p:["Projektdokumentation","IPMA im Vergleich zu HERMES","Getting Things Done als persönliche Methode"]}
+ ],tl:["psp","gantt","evm","risikomatrix","stakeholder","hermes","scrum","magdreieck","smart","gtd"]},
+
+{c:"HFWI-2528-2-STRUPROZ",k:"STRUPROZ",s:2,n:"Struktur- und Prozessmanagement",
+ pruef:"Onlinetests M1 bis M9 20 %, Semesterprüfung 80 %, 60 Minuten, 1 A4 beidseitig. Standortbestimmung an M7 ohne Wertung",
+ t:[
+  {h:"Teil A Organisation",p:["Ein Unternehmen ist, hat und wird organisiert","Elemente, Dimensionen, Beziehungen","Aufgabenanalyse und Aufgabensynthese","Funktions- gegen prozessorientierte Organisation","Stellenbildung und Komponenten einer Stelle","Funktionendiagramm und Stellenbeschreibung","Leitungssystem und Organigramm","Organisationsformen und Spezialformen","Systemdenken und Erhebungstechniken"]},
+  {h:"Teil B Prozessmanagement",p:["Merkmale und Elemente eines Prozesses","Magisches Dreieck Zeit, Kosten, Qualität","Unternehmensmodellierung mit Strategie, Prozess, IT","Ist-Modellierung und Soll-Modellierung","Prozesslandkarte und Kontextdiagramm","Prozesshierarchiediagramm","Flussdiagramm und Swimlane","Turtle-Diagramm","EPK und erweiterte EPK, ARIS","Spaghetti-Diagramm","Prozesse einführen und testen"]},
+  {h:"Teil C Prozesse führen und optimieren",p:["Kennzahlen als Grundlage der Steuerung","Kritische Erfolgsfaktoren und Messgrössen","Prozesscontrolling","Kaizen und KVP","Lean Management und Verschwendung","Total Cycle Time","Six Sigma und DMAIC","PDCA-Zyklus","Ishikawa-Diagramm"]},
+  {h:"Teil D Veränderung und IT",p:["Formen des Wandels, interne und externe Impulse","Drei-Phasen-Modell nach Lewin","Voraussetzungen für Change Management","Veränderungsbereitschaft und -fähigkeit","Lernende Organisation","Prozessautomatisierung und RPA","ERP-Prozesstransformation"]}
+ ],tl:["organigramm","stellenb","aufgabenanalyse","raci","prozesslandkarte","swimlane","epk","turtle","flussdiag","spaghetti","magdreieck","pdca","ishikawa","kaizen","lean","sixsigma","prozesskenn","lewin"],
+ lit:"Compendio Prozessmanagement für Führungsfachleute, Schneider 2019"},
+
+{c:"HFWI-2528-3-AUFTR",k:"AUFTR",s:3,n:"Auftrittskompetenz",
+ pruef:"Pitch und Präsentation vor der Klasse",
+ t:[
+  {h:"Bedeutung und Ziele",p:["Mehrabian-Regel 7/38/55 und ihre Grenzen","Shannon und Weaver als Sendemodell","Der Pitch als Format"]},
+  {h:"Rhetorik und Selbstvertrauen",p:["Stimme, Atem- und Sprechtechnik","Sprechtempo und Pausen","Körpersprache und Präsenz","Wortwahl und rhetorische Stilmittel","Emotionale Intelligenz und Authentizität"]},
+  {h:"Kommunikationsmodelle",p:["Fünf Axiome nach Watzlawick","Feedback geben und annehmen","Aktives Zuhören"]},
+  {h:"Präsentationstechniken",p:["Einsatz visueller Hilfsmittel","Storytelling mit dem DAS-Modell","Elevator Pitch mit PREP","Pyramid Principle, Kernbotschaft zuerst","KISS, eine Botschaft pro Folie"]},
+  {h:"Moderationstechniken",p:["Fragetechniken","Brainstorming, Mindmapping, Clustern","Agenda, Protokoll, Zeitmanagement"]}
+ ],tl:["watzlawick","prep","pyramid","dasmodell","mehrabian","zuhoeren","mindmap"]},
+
+{c:"HFWI-2528-3-BUSI",k:"BUSI",s:3,n:"Business und ICT-Development",
+ pruef:"Noch nachzutragen, optionale Zertifizierung möglich",
+ t:[
+  {h:"Requirements Engineering",p:["Anforderungen erheben, dokumentieren, prüfen, verwalten","Funktionale und nichtfunktionale Anforderungen","Qualitätskriterien guter Anforderungen"]},
+  {h:"Techniken",p:["Interview, Workshop, Beobachtung","User Story mit Akzeptanzkriterien","Use Case und Akteure","Priorisierung mit MoSCoW","Kano-Modell"]},
+  {h:"Weitere Inhalte",p:["Noch nachzutragen"]}
+ ],tl:["re","userstory","usecase","moscow","kano","stakeholder"]},
+
+{c:"HFWI-2528-3-CM",k:"CM",s:3,n:"Change Management",
+ pruef:"Prüfung zu Kotter und Veränderungsmodellen",
+ t:[
+  {h:"Kotter, Leading Change",p:["Acht Stufen von der Dringlichkeit bis zur Verankerung","Führungskoalition aufbauen","Vision und Strategie entwickeln und kommunizieren","Hindernisse aus dem Weg räumen","Kurzfristige Erfolge sichtbar machen","Veränderung in der Kultur verankern"]},
+  {h:"Weitere Modelle",p:["Drei Phasen nach Lewin","Reaktionsmuster und Widerstand","Veränderungsbereitschaft und -fähigkeit"]},
+  {h:"Umsetzung",p:["Betroffenenanalyse","Kommunikationsplan","Weitere Inhalte nachzutragen"]}
+ ],tl:["kotter","lewin","stakeholder"]},
+
+{c:"HFWI-2528-3-DSR",k:"DSR",s:3,n:"Datenschutzrecht",
+ pruef:"Noch nachzutragen",
+ t:[
+  {h:"Grundlagen",p:["revDSG der Schweiz","DSGVO der EU und Anwendbarkeit","Personendaten und besonders schützenswerte Daten"]},
+  {h:"Grundsätze",p:["Rechtmässigkeit, Treu und Glauben, Verhältnismässigkeit","Zweckbindung und Datenminimierung","Transparenz und Richtigkeit","Datensicherheit"]},
+  {h:"Pflichten",p:["Bearbeitungsverzeichnis","Datenschutz-Folgenabschätzung","Meldepflicht bei Verletzungen","Auftragsbearbeitung","Weitere Inhalte nachzutragen"]}
+ ],tl:[]},
+
+{c:"HFWI-2528-3-INFW",k:"INFW",s:3,n:"Informations- und Wissensmanagement",
+ pruef:"Theorieprüfung am achten Kurstag",
+ t:[
+  {h:"Mensch, Wissen und Lernen",p:["Vom Zeichen zum Wissen, Daten, Information, Wissen","Methoden des persönlichen Wissensmanagements","Lerntheorien, Denken und Erinnern","Eigenes Kompetenzportfolio"]},
+  {h:"Modelle",p:["TOM aus Technology, Organisation, Methods","Wissenswürfel","Wissenstreppe nach North","SECI-Modell","Wissensbausteine nach Probst","Open Innovation und Crowdsourcing"]},
+  {h:"Wissensinstrumente und Kommunikation",p:["Beziehung und Kommunikation","Strukturen und Bestände","Prozesse","Kommunikationsmodelle und Sprache"]},
+  {h:"Lernende Organisation",p:["Prozesse und Dokumentation","KVP und Verschwendung","VUCA"]},
+  {h:"Wissensmanagement in Unternehmen",p:["Instrumente, Konzepte, Strukturen","Innovationsmanagement","Prozesse mit KPI, BSC, GHC","Wissenscommunities und Communities of Practice"]},
+  {h:"Technik und Daten",p:["Schnittstelle Mensch und Technik, WM-Software","Umfangreiche und unstrukturierte Datenbestände","Datenmodelle und Data Mining","Qualitätssicherung und Standards"]},
+  {h:"Informationssicherheit und Schutzrechte",p:["Schutz geistigen Eigentums","Datenschutz Schweiz und EU","Weitere relevante Gesetze"]}
+ ],tl:["wissenstreppe","seci","wissensbau","tom","vuca","bsc","pdca"],
+ lit:"Wirtschaftsinformatik, eine Einführung"},
+
+{c:"HFWI-2528-3-LEAD",k:"LEAD",s:3,n:"Leadership",
+ pruef:"Noch nachzutragen",
+ t:[
+  {h:"Führungsgrundlagen",p:["Führungsstile","Situatives Führen","Führen und Managen im Vergleich"]},
+  {h:"Motivation",p:["Motivationstheorien","Intrinsisch und extrinsisch","Mitarbeitergespräch"]},
+  {h:"Weitere Inhalte",p:["Noch nachzutragen"]}
+ ],tl:[]}
+];
+
+const WERKZEUGE = [
+{id:"swot",n:"SWOT-Analyse",kat:"Strategie",kurz:"Stärken, Schwächen, Chancen und Gefahren in vier Feldern.",
+ wf:"Standortbestimmung vor einer Strategie oder einem grösseren Vorhaben.",
+ s:["Intern: Stärken und Schwächen des eigenen Bereichs sammeln","Extern: Chancen und Gefahren aus dem Umfeld sammeln","Pro Feld nur wenige, konkrete Punkte","Kombinieren: Stärke nutzen für Chance, Schwäche schützen vor Gefahr"],m:["UNFÜ"]},
+{id:"porter",n:"Porters fünf Kräfte",kat:"Strategie",kurz:"Wettbewerbsintensität einer Branche über fünf Kräfte einschätzen.",
+ wf:"Bevor man in einen Markt eintritt oder eine Preisstrategie festlegt.",
+ s:["Rivalität unter bestehenden Anbietern","Bedrohung durch neue Anbieter","Bedrohung durch Ersatzprodukte","Verhandlungsmacht der Lieferanten","Verhandlungsmacht der Abnehmer"],m:["UNFÜ"]},
+{id:"bmc",n:"Business Model Canvas",kat:"Strategie",kurz:"Geschäftsmodell auf neun Feldern auf einer Seite.",
+ wf:"Geschäftsidee schärfen, Vorstufe zum Businessplan.",
+ s:["Kundensegmente und Wertangebot","Kanäle und Kundenbeziehungen","Einnahmequellen","Schlüsselressourcen, -aktivitäten, -partner","Kostenstruktur"],m:["UNFÜ"]},
+{id:"stgaller",n:"St. Galler Management-Modell",kat:"Strategie",kurz:"Unternehmen als offenes System in seinem Umfeld.",
+ wf:"Zusammenhänge verstehen statt Einzelteile betrachten.",
+ s:["Umweltsphären als Kontext","Anspruchsgruppen mit ihren Interessen","Interaktionsthemen","Ordnungsmomente: Strategie, Struktur, Kultur","Prozesse: Management-, Geschäfts-, Unterstützungsprozesse","Entwicklungsmodi: Erneuerung und Optimierung"],m:["UNFÜ"]},
+{id:"umweltsph",n:"Fünf Umweltsphären",kat:"Strategie",kurz:"Gesellschaft, Natur, Technologie, Wirtschaft, Recht als Umfeld.",
+ wf:"Externe Einflüsse systematisch abklopfen, ähnlich wie PESTEL.",
+ s:["Je Sphäre fragen: was verändert sich gerade?","Chancen und Gefahren ableiten","Mit der SWOT verbinden"],m:["UNFÜ"]},
+{id:"stakeholder",n:"Stakeholder-Analyse",kat:"Projekt",kurz:"Betroffene erfassen, nach Einfluss und Interesse einordnen, Umgang festlegen.",
+ wf:"Projektstart, Anforderungserhebung und jede Veränderung.",
+ s:["Alle Betroffenen und Beteiligten auflisten","Einfluss und Interesse je hoch oder tief bewerten","Vier Felder: eng führen, zufriedenstellen, informieren, beobachten","Massnahme und Kommunikationsrhythmus je Gruppe festlegen"],m:["UNFÜ","PRJMNG","BUSI","CM"]},
+{id:"nutzwert",n:"Nutzwertanalyse",kat:"Entscheidung",kurz:"Varianten über gewichtete Kriterien vergleichbar machen.",
+ wf:"Standortwahl, Produktentscheid, Lieferantenauswahl.",
+ s:["Kriterien festlegen und gewichten, Summe 100 %","Varianten je Kriterium bewerten, zum Beispiel 1 bis 5","Punkte mit Gewicht multiplizieren","Summen vergleichen und den Entscheid begründen"],m:["UNFÜ","SLBMNG"],calc:"nutzwert"},
+{id:"bsc",n:"Balanced Scorecard",kat:"Steuerung",kurz:"Strategie über vier Perspektiven in Kennzahlen übersetzen.",
+ wf:"Wenn Finanzzahlen allein die Steuerung nicht abdecken.",
+ s:["Finanzen","Kunden","Interne Prozesse","Lernen und Entwicklung","Je Perspektive Ziel, Kennzahl, Vorgabe, Massnahme"],m:["UNFÜ","INFW"]},
+{id:"risikomatrix",n:"Risikomatrix",kat:"Projekt",kurz:"Risiken über Eintrittswahrscheinlichkeit mal Schadensausmass bewerten.",
+ wf:"Projektstart und laufend im Projektcontrolling.",
+ s:["Risiken sammeln und beschreiben","Wahrscheinlichkeit und Auswirkung je 1 bis 5 bewerten","Produkt ergibt den Risikowert","Strategie wählen: vermeiden, vermindern, übertragen, selber tragen","Verantwortlichen und Termin festhalten"],m:["PRJMNG","UNFÜ"]},
+{id:"psp",n:"Projektstrukturplan",kat:"Projekt",kurz:"Projekt in Teilprojekte und Arbeitspakete zerlegen.",
+ wf:"Nach dem Projektauftrag, als Basis für Termin- und Kostenplanung.",
+ s:["Gliederung wählen: objekt-, funktions- oder phasenorientiert","Ebenen bilden bis zum Arbeitspaket","Arbeitspaket bekommt Ergebnis, Aufwand, Verantwortlichen","100-Prozent-Regel: alles ist enthalten, nichts doppelt"],m:["PRJMNG"]},
+{id:"gantt",n:"Balkenplan (Gantt)",kat:"Projekt",kurz:"Arbeitspakete über die Zeit mit Abhängigkeiten darstellen.",
+ wf:"Terminplanung und Fortschrittskontrolle.",
+ s:["Arbeitspakete aus dem PSP übernehmen","Dauer und Reihenfolge schätzen","Abhängigkeiten setzen","Meilensteine markieren","Kritischen Pfad erkennen"],m:["PRJMNG"]},
+{id:"evm",n:"Earned Value Management",kat:"Projekt",kurz:"Termin und Kosten gemeinsam über den Fertigstellungswert beurteilen.",
+ wf:"Projektcontrolling, wenn reine Kostenvergleiche täuschen.",
+ s:["PV Planwert: was sollte bis heute geleistet sein","AC Ist-Kosten: was wurde ausgegeben","EV Fertigstellungswert: was wurde tatsächlich geleistet","Kostenabweichung CV = EV − AC","Terminabweichung SV = EV − PV","Indizes CPI = EV / AC und SPI = EV / PV, unter 1 ist kritisch"],m:["PRJMNG"]},
+{id:"hermes",n:"HERMES und IPMA",kat:"Projekt",kurz:"HERMES ist eine Methode mit Phasen und Ergebnissen, IPMA ist ein Kompetenzmodell für Personen.",
+ wf:"Einordnen, welcher Standard was regelt.",
+ s:["HERMES: Phasen Initialisierung, Konzept, Realisierung, Einführung","HERMES definiert Module, Rollen und Ergebnisse","HERMES-Meilensteine sind Freigabepunkte","IPMA zertifiziert Personen in Kompetenzstufen D bis A","IPMA beschreibt Können, nicht den Projektablauf"],m:["PRJMNG"]},
+{id:"scrum",n:"Scrum",kat:"Projekt",kurz:"Agiles Rahmenwerk mit festen Rollen, Artefakten und Events.",
+ wf:"Wenn Anforderungen unklar sind und laufend dazulernen sinnvoll ist.",
+ s:["Rollen: Product Owner, Scrum Master, Entwicklungsteam","Artefakte: Product Backlog, Sprint Backlog, Increment","Events: Planning, Daily, Review, Retrospektive","Sprint mit fester Länge, Ergebnis ist nutzbar","Definition of Done festlegen"],m:["PRJMNG"]},
+{id:"magdreieck",n:"Magisches Dreieck",kat:"Projekt",kurz:"Zeit, Kosten und Qualität hängen zusammen, eines lässt sich nicht ohne Wirkung ändern.",
+ wf:"Erwartungen klären, wenn jemand alles gleichzeitig will.",
+ s:["Zeit, Kosten, Qualität als Ecken","Leistungsumfang steht in der Mitte","Ändert sich eine Ecke, muss eine andere nachgeben","Frühzeitig festlegen, welche Ecke fix ist"],m:["PRJMNG","STRUPROZ"]},
+{id:"smart",n:"SMART-Ziele",kat:"Persönlich",kurz:"Ziele spezifisch, messbar, attraktiv, realistisch und terminiert formulieren.",
+ wf:"Jedes Ziel in Projekt, Arbeit oder Studium.",
+ s:["Spezifisch: was genau","Messbar: woran erkennt man Erfolg","Attraktiv: warum lohnt es sich","Realistisch: mit den vorhandenen Mitteln machbar","Terminiert: bis wann"],m:["SLBMNG","PRJMNG"]},
+{id:"gtd",n:"Getting Things Done",kat:"Persönlich",kurz:"Alles Offene aus dem Kopf in ein System bringen und regelmässig durchgehen.",
+ wf:"Wenn viele kleine Aufgaben parallel laufen, etwa im Support.",
+ s:["Erfassen: alles in einen Eingang","Durchgehen: ist es umsetzbar?","Organisieren: Nächste Aktion, Projekt, Warten auf, Irgendwann","Zwei-Minuten-Regel: sofort erledigen","Wöchentlicher Durchgang"],m:["PRJMNG"]},
+{id:"eisenhower",n:"Eisenhower-Matrix",kat:"Persönlich",kurz:"Aufgaben nach wichtig und dringend in vier Felder einteilen.",
+ wf:"Tagesplanung, wenn zu viel gleichzeitig ansteht.",
+ s:["Wichtig und dringend: sofort selber erledigen","Wichtig, nicht dringend: terminieren, hier entsteht der Fortschritt","Dringend, nicht wichtig: delegieren","Weder noch: streichen"],m:["SLBMNG"]},
+{id:"alpen",n:"ALPEN-Methode",kat:"Persönlich",kurz:"Tagesplanung in fünf Schritten mit bewusster Pufferzeit.",
+ wf:"Morgens oder am Vorabend, für einen realistischen Tag.",
+ s:["Aufgaben notieren","Länge schätzen","Pufferzeit einplanen, nur etwa 60 Prozent verplanen","Entscheidungen über Prioritäten treffen","Nachkontrolle am Abend"],m:["SLBMNG"]},
+{id:"pareto",n:"Pareto-Prinzip",kat:"Persönlich",kurz:"Etwa 20 Prozent des Aufwands bringen 80 Prozent des Ergebnisses.",
+ wf:"Wenn Perfektion zu teuer wird, etwa bei Dokumentation.",
+ s:["Fragen: welche 20 Prozent bringen den Hauptnutzen?","Diese zuerst erledigen","Bewusst entscheiden, wo 80 Prozent genügen"],m:["SLBMNG"]},
+{id:"mindmap",n:"Mindmapping und Clustern",kat:"Kreativität",kurz:"Gedanken von einem Kern aus verzweigen statt linear listen.",
+ wf:"Themensammlung, Prüfungsvorbereitung, Struktur einer Arbeit.",
+ s:["Kernthema in die Mitte","Hauptäste als Oberbegriffe","Nur Schlüsselwörter, keine Sätze","Verbindungen zwischen Ästen ziehen","Clustern: verwandte Karten gruppieren und benennen"],m:["SLBMNG","GEWAAU","AUFTR"]},
+{id:"starfish",n:"Starfish-Methode",kat:"Team",kurz:"Retrospektive in fünf Richtungen für den Veränderungsbedarf im Team.",
+ wf:"Nach einem Meilenstein oder einer Teamphase.",
+ s:["Beibehalten","Mehr davon","Weniger davon","Damit aufhören","Damit anfangen"],m:["UNFÜ"]},
+
+{id:"organigramm",n:"Organigramm",kat:"Organisation",kurz:"Primärstruktur mit Stellen, Instanzen und Weisungswegen.",
+ wf:"Aufbauorganisation darstellen und Zuständigkeiten klären.",
+ s:["Stellen und Instanzen bilden","Leitungssystem wählen: Linie, Stab-Linie, Matrix","Leitungsspanne und Leitungstiefe beachten","Stabsstellen ohne Weisungsrecht kennzeichnen"],m:["STRUPROZ"]},
+{id:"stellenb",n:"Stellenbeschreibung",kat:"Organisation",kurz:"Aufgaben, Kompetenzen und Verantwortung einer Stelle schriftlich festhalten.",
+ wf:"Neue Stelle, Funktionswechsel oder unklare Zuständigkeit.",
+ s:["Stellenbezeichnung und Einordnung","Ziel der Stelle","Hauptaufgaben","Kompetenzen und Entscheidungsbefugnisse","Verantwortung","Stellvertretung und Anforderungen","Kongruenzprinzip: Aufgabe, Kompetenz und Verantwortung decken sich"],m:["STRUPROZ"]},
+{id:"aufgabenanalyse",n:"Aufgabenanalyse und -synthese",kat:"Organisation",kurz:"Gesamtaufgabe zerlegen und anschliessend zu Stellen bündeln.",
+ wf:"Bevor man eine Organisation neu aufbaut oder umbaut.",
+ s:["Zerlegen nach Verrichtung, Objekt, Rang, Phase, Zweckbeziehung","Teilaufgaben beschreiben","Synthese: Teilaufgaben zu Stellen zusammenfassen","Ergebnis als Aufgabengliederung dokumentieren"],m:["STRUPROZ"]},
+{id:"raci",n:"RACI-Matrix",kat:"Organisation",kurz:"Pro Aufgabe festhalten, wer ausführt, verantwortet, konsultiert und informiert wird.",
+ wf:"Wenn Zuständigkeiten in Projekten oder Prozessen unklar sind.",
+ s:["Aufgaben in Zeilen, Beteiligte in Spalten","R Responsible: führt aus","A Accountable: trägt die Verantwortung, genau einer pro Zeile","C Consulted: wird vorher gefragt","I Informed: wird nachher informiert"],m:["STRUPROZ","PRJMNG"]},
+{id:"prozesslandkarte",n:"Prozesslandkarte",kat:"Prozess",kurz:"Alle Prozesse eines Unternehmens auf einer Übersicht.",
+ wf:"Einstieg in das Prozessmanagement, Orientierung schaffen.",
+ s:["Managementprozesse oben","Kernprozesse in der Mitte, entlang der Wertschöpfung","Unterstützungsprozesse unten","Kunde am Anfang und am Ende","Keine Details, nur Prozessnamen"],m:["STRUPROZ"]},
+{id:"swimlane",n:"Swimlane-Diagramm",kat:"Prozess",kurz:"Prozessablauf mit einer Bahn pro Rolle oder Abteilung.",
+ wf:"Wenn mehrere Stellen beteiligt sind und Übergaben sichtbar werden sollen.",
+ s:["Eine Bahn pro Rolle oder Stelle","Ablauf von links nach rechts","Übergaben zwischen Bahnen sind die kritischen Punkte","Entscheidungen als Raute mit klaren Ja-Nein-Ausgängen"],m:["STRUPROZ"]},
+{id:"epk",n:"Ereignisgesteuerte Prozesskette",kat:"Prozess",kurz:"Ereignisse und Funktionen wechseln sich ab, verbunden über Konnektoren.",
+ wf:"Detaillierte Prozessmodellierung, Teil von ARIS.",
+ s:["Start ist immer ein Ereignis","Ereignis und Funktion wechseln sich ab","Konnektoren: UND, ODER, XOR","Verzweigung und Zusammenführung mit demselben Konnektor","eEPK ergänzt Rollen, Daten und Systeme"],m:["STRUPROZ"]},
+{id:"turtle",n:"Turtle-Diagramm",kat:"Prozess",kurz:"Prozess über sechs Fragen rund um den Kern beschreiben.",
+ wf:"Prozesssteckbrief, oft im Qualitätsmanagement.",
+ s:["Input: was kommt herein","Output: was kommt heraus","Womit: Mittel und Systeme","Mit wem: Rollen und Kompetenzen","Wie: Methoden und Vorgaben","Kennzahlen: woran wird gemessen"],m:["STRUPROZ"]},
+{id:"flussdiag",n:"Flussdiagramm",kat:"Prozess",kurz:"Ablauf mit Start, Tätigkeiten, Entscheidungen und Ende.",
+ wf:"Einfache Abläufe verständlich festhalten, etwa eine Supportanleitung.",
+ s:["Start und Ende als abgerundete Form","Tätigkeit als Rechteck","Entscheidung als Raute mit Ja und Nein","Nur ein Start, Ablauf von oben nach unten","Keine losen Enden"],m:["STRUPROZ"]},
+{id:"spaghetti",n:"Spaghetti-Diagramm",kat:"Prozess",kurz:"Tatsächliche Wege von Personen oder Material im Grundriss einzeichnen.",
+ wf:"Verschwendung durch Laufwege und Transport sichtbar machen.",
+ s:["Grundriss zeichnen","Über eine Zeitspanne jeden Weg als Linie nachzeichnen","Knäuel zeigen die Problemstellen","Anordnung verändern und erneut messen"],m:["STRUPROZ"]},
+{id:"pdca",n:"PDCA-Zyklus",kat:"Qualität",kurz:"Plan, Do, Check, Act als Kreislauf der stetigen Verbesserung.",
+ wf:"Jede Verbesserung, die überprüfbar bleiben soll.",
+ s:["Plan: Problem analysieren, Ziel und Massnahme festlegen","Do: im kleinen Rahmen umsetzen","Check: Wirkung an Kennzahlen prüfen","Act: bei Erfolg als Standard festschreiben, sonst neu planen"],m:["STRUPROZ","INFW"]},
+{id:"ishikawa",n:"Ishikawa-Diagramm",kat:"Qualität",kurz:"Ursachen eines Problems entlang von Hauptkategorien als Fischgräte.",
+ wf:"Ursachensuche, bevor man eine Massnahme beschliesst.",
+ s:["Problem als Kopf rechts notieren","Hauptgräten nach den 6M: Mensch, Maschine, Material, Methode, Milieu, Messung","Je Gräte Ursachen sammeln","Mit fünfmal Warum vertiefen","Hauptursachen markieren und bewerten"],m:["STRUPROZ"]},
+{id:"kaizen",n:"Kaizen und KVP",kat:"Qualität",kurz:"Viele kleine Verbesserungen durch die Mitarbeitenden statt weniger grosser Sprünge.",
+ wf:"Laufender Betrieb, bei dem Abläufe stetig besser werden sollen.",
+ s:["Verbesserung ist Aufgabe aller","Kleine Schritte, sofort umsetzbar","Standardisieren, was funktioniert","Fehler sind Anlass zur Analyse, nicht zur Schuldzuweisung"],m:["STRUPROZ","INFW"]},
+{id:"lean",n:"Lean Management",kat:"Qualität",kurz:"Wert aus Kundensicht schaffen und Verschwendung beseitigen.",
+ wf:"Abläufe verschlanken, auch in der Administration.",
+ s:["Wert aus Kundensicht bestimmen","Wertstrom abbilden","Fluss ohne Unterbrechung herstellen","Pull statt Push","Sieben Arten der Verschwendung prüfen: Überproduktion, Bestände, Transport, Bewegung, Wartezeit, Überbearbeitung, Fehler"],m:["STRUPROZ"]},
+{id:"sixsigma",n:"Six Sigma und DMAIC",kat:"Qualität",kurz:"Streuung im Prozess mit Daten reduzieren.",
+ wf:"Wiederkehrende Fehler mit messbarer Ursache.",
+ s:["Define: Problem und Ziel festlegen","Measure: Ist-Leistung messen","Analyze: Ursachen mit Daten belegen","Improve: Lösung umsetzen","Control: Wirkung dauerhaft überwachen"],m:["STRUPROZ"]},
+{id:"prozesskenn",n:"Prozesskennzahlen",kat:"Steuerung",kurz:"Messgrössen, die den Zustand eines Prozesses zeigen.",
+ wf:"Prozesscontrolling und Vereinbarungen mit Kunden.",
+ s:["Aus kritischen Erfolgsfaktoren ableiten","Zeit: Durchlaufzeit, Reaktionszeit","Kosten: Kosten pro Vorgang","Qualität: Fehlerquote, Erstlösungsquote","Zielwert, Messpunkt und Verantwortlichen festlegen"],m:["STRUPROZ","INFW"]},
+{id:"tqm",n:"Total Quality Management",kat:"Qualität",kurz:"Qualität als Aufgabe des ganzen Unternehmens, nicht einer Abteilung.",
+ wf:"Wenn Qualität dauerhaft und über alle Bereiche verankert werden soll.",
+ s:["Kundenorientierung als Ausgangspunkt","Einbezug aller Mitarbeitenden","Prozessorientierung","Stetige Verbesserung","Entscheide auf Fakten stützen"],m:["UNFÜ"]},
+
+{id:"kotter",n:"Kotter, acht Stufen",kat:"Veränderung",kurz:"Veränderungsprozess in acht aufeinander aufbauenden Stufen.",
+ wf:"Grössere Veränderung mit vielen Betroffenen.",
+ s:["Gefühl der Dringlichkeit erzeugen","Führungskoalition aufbauen","Vision und Strategie entwickeln","Vision kommunizieren","Hindernisse aus dem Weg räumen","Kurzfristige Erfolge planen und sichtbar machen","Erfolge konsolidieren und weitere Veränderung anstossen","Neues in der Kultur verankern"],m:["CM","UNFÜ"]},
+{id:"lewin",n:"Drei-Phasen-Modell nach Lewin",kat:"Veränderung",kurz:"Auftauen, verändern, wieder einfrieren.",
+ wf:"Grundverständnis, warum Veränderung Vorbereitung und Stabilisierung braucht.",
+ s:["Unfreeze: Bereitschaft schaffen, Gründe erklären","Change: neue Abläufe einführen, Leistung sinkt vorübergehend","Refreeze: Neues stabilisieren und zum Standard machen","Kraftfeldanalyse: treibende und hemmende Kräfte"],m:["CM","STRUPROZ"]},
+
+{id:"re",n:"Requirements Engineering",kat:"Anforderungen",kurz:"Anforderungen systematisch erheben, dokumentieren, prüfen und verwalten.",
+ wf:"Vor jeder Beschaffung oder Entwicklung einer Lösung.",
+ s:["Erheben über Interview, Workshop, Beobachtung, Dokumentenanalyse","Dokumentieren in natürlicher Sprache oder als Modell","Prüfen und abstimmen mit den Stakeholdern","Verwalten mit Version, Status und Priorität","Gute Anforderung: eindeutig, vollständig, prüfbar, widerspruchsfrei, notwendig"],m:["BUSI"]},
+{id:"userstory",n:"User Story",kat:"Anforderungen",kurz:"Anforderung aus Sicht des Nutzers in einem Satz plus Akzeptanzkriterien.",
+ wf:"Agile Entwicklung und Abstimmung mit Fachbereichen.",
+ s:["Als <Rolle> möchte ich <Ziel>, damit <Nutzen>","Akzeptanzkriterien ergänzen, prüfbar formuliert","INVEST: unabhängig, verhandelbar, wertvoll, schätzbar, klein, testbar","Keine Lösung vorgeben, nur den Bedarf"],m:["BUSI"]},
+{id:"usecase",n:"Use Case",kat:"Anforderungen",kurz:"Ablauf einer Interaktion zwischen Akteur und System.",
+ wf:"Wenn der Ablauf mit Sonderfällen wichtig ist.",
+ s:["Akteur und Ziel benennen","Vorbedingung und Nachbedingung","Standardablauf Schritt für Schritt","Alternativ- und Fehlerabläufe","Use-Case-Diagramm für die Übersicht"],m:["BUSI"]},
+{id:"moscow",n:"MoSCoW-Priorisierung",kat:"Anforderungen",kurz:"Anforderungen in vier Prioritätsstufen einteilen.",
+ wf:"Wenn Zeit oder Budget nicht für alles reichen.",
+ s:["Must have: ohne das scheitert die Lösung","Should have: wichtig, aber verschiebbar","Could have: wenn Zeit bleibt","Won't have: bewusst nicht in diesem Umfang","Must-Anteil tief halten, sonst ist nichts priorisiert"],m:["BUSI"]},
+{id:"kano",n:"Kano-Modell",kat:"Anforderungen",kurz:"Merkmale nach ihrer Wirkung auf die Zufriedenheit unterscheiden.",
+ wf:"Entscheiden, wo Investition wirklich Wirkung zeigt.",
+ s:["Basismerkmale: fehlen sie, gibt es Ärger, vorhanden fallen sie nicht auf","Leistungsmerkmale: je mehr, desto zufriedener","Begeisterungsmerkmale: unerwartet, schaffen Bindung","Begeisterung wird mit der Zeit zum Basismerkmal"],m:["BUSI"]},
+{id:"erm",n:"Entity-Relationship-Modell",kat:"Daten",kurz:"Datenstruktur über Entitäten, Attribute und Beziehungen.",
+ wf:"Bevor eine Datenbank oder Liste aufgebaut wird.",
+ s:["Entitäten als Substantive erkennen","Attribute und Schlüssel festlegen","Beziehungen mit Kardinalität 1:1, 1:n, n:m","n:m über eine Zwischentabelle auflösen","Normalisieren bis zur dritten Normalform"],m:["INFSYGE"]},
+{id:"sharepoint",n:"SharePoint-Bausteine",kat:"Daten",kurz:"Bibliothek, Liste, Seite, Navigation und Berechtigung als Grundelemente.",
+ wf:"Intranet oder Ablage aufbauen statt Ordner auf einem Laufwerk.",
+ s:["Dokumentbibliothek für Dateien, mit Metadaten statt tiefer Ordner","Liste für strukturierte Einträge wie FAQ, Kontakte, Links","Seite für Information und Einstieg","Navigation flach halten, Wichtiges in zwei Klicks","Berechtigung über Gruppen, nicht über Einzelpersonen"],m:["INFSYGE"]},
+
+{id:"schulz",n:"Vier-Ohren-Modell",kat:"Kommunikation",kurz:"Jede Nachricht hat vier Seiten und wird auf vier Ohren gehört.",
+ wf:"Missverständnisse in Gesprächen und E-Mails auflösen.",
+ s:["Sachinhalt: worüber informiert wird","Selbstoffenbarung: was ich von mir preisgebe","Beziehung: was ich vom Gegenüber halte","Appell: wozu ich veranlassen will","Konflikte entstehen, wenn Sender und Empfänger verschiedene Seiten betonen"],m:["GEWAAU"]},
+{id:"eisberg",n:"Eisbergmodell",kat:"Kommunikation",kurz:"Ein kleiner Teil der Botschaft ist sachlich, der grosse Teil liegt unter der Oberfläche.",
+ wf:"Wenn eine Diskussion sachlich wirkt, aber trotzdem stockt.",
+ s:["Über Wasser: Zahlen, Daten, Fakten, etwa 20 Prozent","Unter Wasser: Gefühle, Werte, Erfahrungen, Beziehungen","Störungen kommen meist von unten","Die Beziehungsebene zuerst klären"],m:["GEWAAU"]},
+{id:"gfk",n:"Gewaltfreie Kommunikation",kat:"Kommunikation",kurz:"Vier Schritte nach Rosenberg, um ohne Vorwurf zu sprechen.",
+ wf:"Kritik äussern, ohne dass das Gegenüber dichtmacht.",
+ s:["Beobachtung ohne Bewertung schildern","Gefühl benennen","Bedürfnis dahinter ausdrücken","Konkrete, erfüllbare Bitte formulieren","Ich-Botschaft statt Du-Botschaft"],m:["GEWAAU"]},
+{id:"watzlawick",n:"Fünf Axiome nach Watzlawick",kat:"Kommunikation",kurz:"Grundannahmen darüber, wie Kommunikation immer funktioniert.",
+ wf:"Verstehen, warum Schweigen oder Tonfall bereits Wirkung haben.",
+ s:["Man kann nicht nicht kommunizieren","Jede Kommunikation hat einen Inhalts- und einen Beziehungsaspekt","Der Ablauf wird unterschiedlich interpunktiert","Kommunikation ist digital und analog","Beziehungen sind symmetrisch oder komplementär"],m:["AUFTR"]},
+{id:"prep",n:"PREP für den Elevator Pitch",kat:"Kommunikation",kurz:"Kurze Aussage in vier Schritten aufbauen.",
+ wf:"Spontane Stellungnahme oder Pitch in unter zwei Minuten.",
+ s:["Point: die Kernaussage zuerst","Reason: die Begründung","Example: ein konkretes Beispiel","Point: die Kernaussage wiederholen"],m:["AUFTR"]},
+{id:"pyramid",n:"Pyramid Principle",kat:"Kommunikation",kurz:"Zuerst die Kernbotschaft, dann Argumente, dann Details.",
+ wf:"Management-Präsentation, Antrag, Bericht.",
+ s:["Antwort oder Empfehlung an den Anfang","Darunter drei tragende Argumente","Darunter die Belege","Gruppen müssen sich gegenseitig ausschliessen und zusammen vollständig sein"],m:["AUFTR"]},
+{id:"dasmodell",n:"DAS-Modell für Storytelling",kat:"Kommunikation",kurz:"Wunsch, Handlung und Ergebnis als Spannungsbogen.",
+ wf:"Vortrag, der mehr als eine Faktenliste sein soll.",
+ s:["Desire: was wollte jemand erreichen","Action: was wurde getan, welche Hürde kam","Satisfaction: welches Ergebnis entstand","An eine konkrete Person oder Situation binden"],m:["AUFTR"]},
+{id:"mehrabian",n:"Mehrabian-Regel",kat:"Kommunikation",kurz:"7 Prozent Wort, 38 Prozent Stimme, 55 Prozent Mimik, allerdings mit engem Gültigkeitsbereich.",
+ wf:"Bewusst machen, dass Stimme und Körper mitwirken.",
+ s:["Die Zahlen stammen aus Versuchen zu widersprüchlichen Gefühlsbotschaften","Der Inhalt bleibt das Wichtigste","Wirkung leidet, wenn Wort, Stimme und Körper nicht übereinstimmen","Als Hinweis auf Stimmigkeit nutzen, nicht als Gesetz"],m:["AUFTR"]},
+{id:"zuhoeren",n:"Aktives Zuhören",kat:"Kommunikation",kurz:"Zuhören, spiegeln und nachfragen statt gedanklich schon antworten.",
+ wf:"Anforderungsgespräche, Konflikte, Kundengespräche.",
+ s:["Ausreden lassen und Pausen aushalten","Mit eigenen Worten zusammenfassen","Offene Fragen stellen","Gefühle ansprechen, wenn sie mitschwingen","Verstandenes bestätigen lassen"],m:["AUFTR"]},
+
+{id:"wissenstreppe",n:"Wissenstreppe nach North",kat:"Wissen",kurz:"Von Zeichen über Daten bis zur Wettbewerbsfähigkeit.",
+ wf:"Erklären, warum Daten allein noch keinen Nutzen bringen.",
+ s:["Zeichen plus Syntax ergibt Daten","Daten plus Bedeutung ergibt Information","Information plus Vernetzung ergibt Wissen","Wissen plus Anwendung ergibt Können","Können plus Wollen ergibt Handeln, daraus Kompetenz und Wettbewerbsfähigkeit"],m:["INFW"]},
+{id:"seci",n:"SECI-Modell",kat:"Wissen",kurz:"Wissen wandelt sich zwischen implizit und explizit in vier Schritten.",
+ wf:"Erfahrungswissen im Team weitergeben.",
+ s:["Sozialisation: implizit zu implizit, mitlaufen und beobachten","Externalisierung: implizit zu explizit, dokumentieren","Kombination: explizit zu explizit, Dokumente verbinden","Internalisierung: explizit zu implizit, durch Anwenden verinnerlichen"],m:["INFW"]},
+{id:"wissensbau",n:"Wissensbausteine nach Probst",kat:"Wissen",kurz:"Acht Bausteine als Kreislauf des Wissensmanagements.",
+ wf:"Wissensmanagement im Unternehmen strukturieren.",
+ s:["Wissensziele und Wissensbewertung als äusserer Kreis","Wissensidentifikation","Wissenserwerb","Wissensentwicklung","Wissensverteilung","Wissensnutzung","Wissensbewahrung"],m:["INFW"]},
+{id:"tom",n:"TOM-Modell",kat:"Wissen",kurz:"Technik, Organisation und Mensch müssen zusammenpassen.",
+ wf:"Prüfen, warum eine eingeführte Lösung nicht genutzt wird.",
+ s:["Technology: Werkzeuge und Systeme","Organisation: Prozesse, Rollen, Regeln","Methods oder Mensch: Vorgehen, Kultur, Fähigkeiten","Eine Seite allein löst das Problem nie"],m:["INFW"]},
+{id:"vuca",n:"VUCA",kat:"Wissen",kurz:"Volatil, unsicher, komplex, mehrdeutig als Beschreibung des Umfelds.",
+ wf:"Begründen, warum starre Langfristpläne schwierig geworden sind.",
+ s:["Volatility: schnelle Veränderung","Uncertainty: unsichere Vorhersagen","Complexity: viele Wechselwirkungen","Ambiguity: mehrdeutige Informationen","Antwort: Vision, Verständnis, Klarheit, Anpassungsfähigkeit"],m:["INFW"]},
+
+{id:"kalk-handel",n:"Handelskalkulation",kat:"Finanzen",kurz:"Vom Einkaufspreis zum Verkaufspreis und wieder zurück.",
+ wf:"Preis festlegen oder prüfen, ob eine Marge reicht.",
+ s:["Nettoeinkaufspreis nach Rabatt und Skonto","Plus Bezugskosten ergibt Einstandspreis","Plus Bruttogewinnzuschlag ergibt Nettoverkaufspreis","Plus Skonto und Rabatt ergibt Bruttoverkaufspreis","Rückwärts rechnen: vom Verkaufspreis auf den zulässigen Einkaufspreis"],m:["FINMNG"],calc:"handel"},
+{id:"kalk-prod",n:"Zuschlagskalkulation",kat:"Finanzen",kurz:"Einzelkosten direkt zurechnen, Gemeinkosten über Zuschlagssätze verteilen.",
+ wf:"Selbstkosten eines Produkts oder Auftrags ermitteln.",
+ s:["Materialeinzelkosten plus Materialgemeinkosten","Fertigungseinzelkosten plus Fertigungsgemeinkosten","Ergibt die Herstellkosten","Plus Verwaltungs- und Vertriebsgemeinkosten","Ergibt die Selbstkosten, plus Gewinn ergibt den Angebotspreis"],m:["FINMNG"]},
+{id:"invest",n:"Investitionsrechnung",kat:"Finanzen",kurz:"Kapitalwert, Amortisationsdauer und Rentabilität einer Investition.",
+ wf:"Beschaffungsentscheid mit mehrjähriger Wirkung.",
+ s:["Anschaffungswert und jährlichen Rückfluss schätzen","Amortisation: Anschaffung geteilt durch jährlichen Rückfluss","Kapitalwert: Rückflüsse abzinsen und die Anschaffung abziehen","Kapitalwert über null bedeutet, die Investition lohnt sich","Rentabilität: Gewinn im Verhältnis zum Kapitaleinsatz"],m:["FINMNG"],calc:"invest"},
+{id:"kennz",n:"Bilanzkennzahlen",kat:"Finanzen",kurz:"Liquidität, Anlagedeckung und Rentabilität aus dem Abschluss.",
+ wf:"Jahresabschluss beurteilen oder einen Kunden einschätzen.",
+ s:["Liquiditätsgrad 1: flüssige Mittel zu kurzfristigem Fremdkapital","Liquiditätsgrad 2: plus Forderungen, Richtwert 100 Prozent","Liquiditätsgrad 3: plus Vorräte, Richtwert 150 bis 200 Prozent","Eigenfinanzierungsgrad: Eigenkapital zu Gesamtkapital","Anlagedeckungsgrad 2: Eigenkapital plus langfristiges Fremdkapital zum Anlagevermögen, über 100 Prozent","Eigenkapitalrendite: Reingewinn zu Eigenkapital"],m:["FINMNG"]},
+{id:"geldfluss",n:"Geldflussrechnung",kat:"Finanzen",kurz:"Woher das Geld kam und wohin es ging, in drei Bereichen.",
+ wf:"Erklären, warum Gewinn und Liquidität auseinanderlaufen.",
+ s:["Cashflow aus Betriebstätigkeit","Cashflow aus Investitionstätigkeit","Cashflow aus Finanzierungstätigkeit","Indirekte Methode: Reingewinn plus nicht liquiditätswirksame Aufwände minus Erträge","Summe ergibt die Veränderung des Fonds"],m:["FINMNG"]},
+{id:"stille-res",n:"Stille Reserven",kat:"Finanzen",kurz:"Differenz zwischen internem und externem Wert von Aktiven oder Passiven.",
+ wf:"Den wahren Erfolg hinter der veröffentlichten Bilanz erkennen.",
+ s:["Entstehen durch Unterbewertung von Aktiven oder Überbewertung von Passiven","Bildung verringert den ausgewiesenen Gewinn","Auflösung erhöht den ausgewiesenen Gewinn","Interne Bilanz zeigt den tatsächlichen Wert","Veränderung der stillen Reserven korrigiert den Erfolg"],m:["FINMNG"]},
+{id:"gewinnvert",n:"Gewinnverteilung AG",kat:"Finanzen",kurz:"Reihenfolge der Verwendung des Bilanzgewinns.",
+ wf:"Abschluss einer Aktiengesellschaft.",
+ s:["Gewinnvortrag plus Jahresgewinn ergibt den Bilanzgewinn","Zuweisung an die gesetzliche Gewinnreserve","Dividende an die Aktionäre","Allfällige Tantieme","Zuweisung an freiwillige Reserven","Rest ist der Gewinnvortrag ins neue Jahr"],m:["FINMNG"]},
+{id:"kurvendisk",n:"Kurvendiskussion",kat:"Mathematik",kurz:"Extrem- und Wendepunkte einer Funktion bestimmen.",
+ wf:"Prüfungsaufgabe und Grundlage für Gewinnmaximierung.",
+ s:["f'(x) bilden und null setzen, ergibt mögliche Extremstellen","f''(x) an dieser Stelle prüfen: positiv ist Tiefpunkt, negativ ist Hochpunkt","f''(x) null setzen ergibt mögliche Wendestellen","y-Werte über f(x) berechnen","Graph im geforderten Intervall skizzieren"],m:["MATHMONU"]},
+{id:"gewinnmax",n:"Gewinn- und Erlösmaximum",kat:"Mathematik",kurz:"Optimale Menge über die Ableitung der Gewinn- oder Erlösfunktion.",
+ wf:"Polypol und Monopol in der Prüfung.",
+ s:["Polypol: G(x) = E(x) − K(x) mit E(x) = Preis mal x","G'(x) = 0 lösen ergibt die gewinnmaximale Menge","Menge in G(x) einsetzen ergibt den maximalen Gewinn","Monopol: E(x) = p(x) · x mit der Preis-Absatz-Funktion","E'(x) = 0 ergibt die erlösmaximale Menge"],m:["MATHMONU"]},
+{id:"zinseszins",n:"Zinseszins und Wachstum",kat:"Mathematik",kurz:"Exponentielles Wachstum über K = K0 · (1+p)^n.",
+ wf:"Zinssatz, Laufzeit oder Endkapital berechnen.",
+ s:["Endkapital: K = K0 · (1+p)^n","Zinssatz: p = (K/K0)^(1/n) − 1","Laufzeit über den Logarithmus: n = log(K/K0) / log(1+p)","Prozentsatz als Dezimalzahl einsetzen"],m:["MATHMONU"],calc:"zins"},
+
+{id:"subnetting",n:"Subnetting",kat:"Netzwerk",kurz:"Netz in Teilnetze aufteilen und Bereiche berechnen.",
+ wf:"Netzplanung, VLAN-Aufbau und Fehlersuche.",
+ s:["Präfix bestimmt die Anzahl Netzbits","Hosts pro Netz: 2^(32−Präfix) − 2","Netzadresse ist die erste, Broadcast die letzte Adresse","Blockgrösse im letzten relevanten Oktett: 256 minus Maskenwert","Nutzbarer Bereich liegt dazwischen"],m:["NETWOENG"],calc:"subnet"},
+{id:"osi",n:"OSI-Modell",kat:"Netzwerk",kurz:"Sieben Schichten von der Leitung bis zur Anwendung.",
+ wf:"Fehler eingrenzen, indem man Schicht für Schicht prüft.",
+ s:["1 Bitübertragung: Kabel, Stecker, Signal","2 Sicherung: MAC, Switch, VLAN","3 Vermittlung: IP, Router","4 Transport: TCP und UDP, Ports","5 Sitzung","6 Darstellung: Verschlüsselung, Kodierung","7 Anwendung: HTTP, DNS, SMTP"],m:["NETWOENG"]},
+{id:"agdlp",n:"AGDLP-Prinzip",kat:"Netzwerk",kurz:"Berechtigungen im Active Directory sauber über Gruppen vergeben.",
+ wf:"Ordnerstruktur und Berechtigungsmatrix aufbauen.",
+ s:["Account in eine Globale Gruppe","Globale Gruppe in eine Domänenlokale Gruppe","Domänenlokale Gruppe erhält die Permission","Nie einen Benutzer direkt berechtigen","Gruppennamen nach Ressource und Recht benennen"],m:["NETWOENG"]},
+{id:"raid",n:"RAID-Level",kat:"Netzwerk",kurz:"Festplatten verbinden für Tempo, Sicherheit oder beides.",
+ wf:"Serverbeschaffung und Speicherplanung.",
+ s:["RAID 0: Striping, schnell, keine Sicherheit","RAID 1: Spiegelung, Hälfte der Kapazität nutzbar","RAID 5: Striping mit Parität, eine Platte darf ausfallen","RAID 6: doppelte Parität, zwei Platten dürfen ausfallen","RAID 10: Spiegelung plus Striping, schnell und sicher","RAID ersetzt kein Backup"],m:["NETWOENG"]},
+{id:"backup",n:"Backup-Strategie 3-2-1",kat:"Netzwerk",kurz:"Drei Kopien, zwei Medien, eine ausser Haus.",
+ wf:"Datensicherung planen und prüfen.",
+ s:["Drei Kopien der Daten","Zwei verschiedene Medien","Eine Kopie ausser Haus oder offline","Vollbackup, inkrementell und differenziell unterscheiden","Wiederherstellung regelmässig testen, sonst ist es kein Backup"],m:["NETWOENG"]},
+{id:"rtorpo",n:"RTO und RPO",kat:"Netzwerk",kurz:"Wie lange darf es dauern und wie viel darf verloren gehen.",
+ wf:"Notfallkonzept und Absprache mit dem Kunden.",
+ s:["RTO Recovery Time Objective: erlaubte Ausfallzeit bis zur Wiederherstellung","RPO Recovery Point Objective: erlaubter Datenverlust, bestimmt den Backup-Rhythmus","Beide Werte mit dem Kunden festlegen, nicht technisch herleiten","Kosten steigen stark, je kleiner die Werte werden"],m:["NETWOENG"]},
+{id:"zerotrust",n:"Zero Trust",kat:"Netzwerk",kurz:"Kein Vertrauen aufgrund des Standorts im Netz, jede Anfrage wird geprüft.",
+ wf:"Moderne Sicherheitsarchitektur statt reiner Perimeterschutz.",
+ s:["Niemals vertrauen, immer prüfen","Identität als neue Grenze, MFA als Basis","Least Privilege, nur das Nötigste berechtigen","Segmentierung statt flaches Netz","Laufende Überwachung und Protokollierung"],m:["NETWOENG"]}
+];
+
+/* ====================== WISSENSNETZ DATEN ====================== */
+/* Themen: [Name, Methoden-ID oder "", Kurzbeschrieb falls keine Methode] */
+const NETZE = {
+wi:{n:"Wirtschaftsinformatik", d:"Verbindet Betriebswirtschaft und Informatik. Ziel ist, IT so einzusetzen, dass Geschäftsprozesse, Entscheide und Zusammenarbeit besser werden.",
+ b:[
+  {n:"Strategie und Governance", d:"Wie IT die Ziele des Unternehmens unterstützt und gesteuert wird.", t:[
+    ["IT-Strategie","","Leitet aus der Unternehmensstrategie ab, welche IT gebraucht wird und wo investiert wird."],
+    ["ITIL und COBIT","","ITIL beschreibt gute Praxis für IT-Services, COBIT regelt Steuerung und Kontrolle der IT."],
+    ["St. Galler Modell","stgaller"],["SWOT-Analyse","swot"],["Balanced Scorecard","bsc"],["Business Model Canvas","bmc"]]},
+  {n:"Geschäftsprozesse", d:"Abläufe erheben, darstellen, messen und verbessern.", t:[
+    ["Prozesslandkarte","prozesslandkarte"],["Swimlane","swimlane"],["EPK und ARIS","epk"],["Turtle-Diagramm","turtle"],
+    ["Flussdiagramm","flussdiag"],["Prozesskennzahlen","prozesskenn"],
+    ["Prozessautomatisierung und RPA","","Wiederkehrende, regelbasierte Schritte von Software ausführen lassen."],
+    ["ERP-Systeme","","Integrierte Software, die Finanzen, Einkauf, Lager und Verkauf auf einer Datenbasis verbindet."]]},
+  {n:"Organisation", d:"Wer macht was mit welcher Kompetenz.", t:[
+    ["Organigramm","organigramm"],["Stellenbeschreibung","stellenb"],["RACI-Matrix","raci"],["Aufgabenanalyse","aufgabenanalyse"]]},
+  {n:"Projektmanagement", d:"Vorhaben planen, steuern und abschliessen.", t:[
+    ["Projektstrukturplan","psp"],["Balkenplan","gantt"],["Earned Value","evm"],["Risikomatrix","risikomatrix"],
+    ["HERMES und IPMA","hermes"],["Scrum","scrum"],["Magisches Dreieck","magdreieck"],["Stakeholder-Analyse","stakeholder"]]},
+  {n:"Anforderungen", d:"Herausfinden, was eine Lösung wirklich können muss.", t:[
+    ["Requirements Engineering","re"],["User Story","userstory"],["Use Case","usecase"],["MoSCoW","moscow"],["Kano-Modell","kano"]]},
+  {n:"Veränderung", d:"Menschen durch Veränderung führen.", t:[
+    ["Kotter","kotter"],["Lewin","lewin"],
+    ["Lernende Organisation","","Organisation, die aus Erfahrung systematisch lernt und sich selber anpasst."],
+    ["Widerstand","","Normale Reaktion auf Veränderung, meist Ausdruck von Unsicherheit oder Verlustangst."]]},
+  {n:"Qualität und Verbesserung", d:"Stetig besser werden, mit Daten statt Bauchgefühl.", t:[
+    ["PDCA","pdca"],["Kaizen und KVP","kaizen"],["Lean","lean"],["Six Sigma","sixsigma"],["Ishikawa","ishikawa"],["TQM","tqm"]]},
+  {n:"Daten und Wissen", d:"Aus Daten Information und Wissen machen und es nutzbar halten.", t:[
+    ["Wissenstreppe","wissenstreppe"],["SECI","seci"],["Wissensbausteine","wissensbau"],["TOM-Modell","tom"],
+    ["ERM","erm"],["Data Mining","","Muster und Zusammenhänge in grossen Datenbeständen automatisch finden."],
+    ["Intranet und SharePoint","sharepoint"]]},
+  {n:"IT-Infrastruktur", d:"Die technische Basis, auf der alles läuft.", t:[
+    ["OSI-Modell","osi"],["Backup 3-2-1","backup"],["AGDLP","agdlp"],["Zero Trust","zerotrust"],["RTO und RPO","rtorpo"]]},
+  {n:"Recht und Datenschutz", d:"Was erlaubt ist und was geschützt werden muss.", t:[
+    ["revDSG und DSGVO","","Datenschutzgesetze der Schweiz und der EU, regeln den Umgang mit Personendaten."],
+    ["Geistiges Eigentum","","Urheberrecht, Marken und Patente schützen Software, Inhalte und Erfindungen."],
+    ["Verträge nach OR","","Kauf-, Werk-, Auftrags- und Arbeitsvertrag als Grundlage von IT-Beschaffungen und Dienstleistungen."]]},
+  {n:"Wirtschaftlichkeit", d:"Lohnt es sich, und welche Variante ist die beste.", t:[
+    ["Nutzwertanalyse","nutzwert"],["Investitionsrechnung","invest"],["Bilanzkennzahlen","kennz"]]},
+  {n:"Kommunikation", d:"Verstanden werden, im Gespräch, in Texten, vor Publikum.", t:[
+    ["Vier-Ohren-Modell","schulz"],["Pyramid Principle","pyramid"],["PREP","prep"],["Aktives Zuhören","zuhoeren"]]}
+ ],
+ x:[["Stakeholder-Analyse","Requirements Engineering"],["Stakeholder-Analyse","Kotter"],["Balanced Scorecard","Prozesskennzahlen"],
+    ["PDCA","Kaizen und KVP"],["RACI-Matrix","Projektstrukturplan"],["Swimlane","EPK und ARIS"],["Intranet und SharePoint","Wissensbausteine"],
+    ["ERM","Data Mining"],["Kotter","Lewin"],["Nutzwertanalyse","Investitionsrechnung"],["Intranet und SharePoint","revDSG und DSGVO"],
+    ["TOM-Modell","Intranet und SharePoint"],["Lean","Prozesskennzahlen"],["Magisches Dreieck","Earned Value"],["Scrum","User Story"],
+    ["MoSCoW","Kano-Modell"],["ITIL und COBIT","Prozesslandkarte"],["AGDLP","RACI-Matrix"],["Aktives Zuhören","Requirements Engineering"],
+    ["Lernende Organisation","SECI"],["Widerstand","Vier-Ohren-Modell"],["Risikomatrix","RTO und RPO"],["IT-Strategie","Balanced Scorecard"],
+    ["Prozessautomatisierung und RPA","ERP-Systeme"],["Zero Trust","revDSG und DSGVO"],["Organigramm","Stellenbeschreibung"]]
+},
+
+inf:{n:"Informatik", d:"Die technische Seite: Netzwerke, Server, Sicherheit, Daten und Software.",
+ b:[
+  {n:"Netzwerke", d:"Wie Geräte miteinander sprechen.", t:[
+    ["OSI-Modell","osi"],["TCP/IP","","Das praktisch eingesetzte Schichtenmodell des Internets mit vier Schichten."],
+    ["Subnetting","subnetting"],["IPv6","","128-Bit-Adressen, automatische Konfiguration über SLAAC, kein NAT nötig."],
+    ["VLAN und Trunking","","Ein physisches Netz logisch trennen, über 802.1Q-Tags auf Trunk-Ports transportiert."],
+    ["DHCP und DNS","","DHCP vergibt Adressen im DORA-Ablauf, DNS übersetzt Namen in IP-Adressen."],
+    ["Routing","","Pakete zwischen Netzen weiterleiten, statisch oder mit OSPF, BGP, RIP."],
+    ["WLAN und PoE","","Funkstandards 802.11 und Strom über das Netzwerkkabel für Access Points und Telefone."],
+    ["Topologien","","Stern, Ring, Bus, Mesh als Grundformen der Vernetzung."],
+    ["Monitoring","","Zustand überwachen mit SNMP, Syslog und Paketanalyse mit Wireshark."],
+    ["QoS","","Wichtigen Datenverkehr wie Telefonie bevorzugen, etwa über DSCP-Markierung."]]},
+  {n:"Sicherheit", d:"Angriffe verhindern und Schaden begrenzen.", t:[
+    ["Firewall","","Filtert Verkehr nach Regeln, vom einfachen Paketfilter bis zur Next Generation Firewall."],
+    ["DMZ und NAT","","DMZ trennt öffentlich erreichbare Server ab, NAT übersetzt private in öffentliche Adressen."],
+    ["VPN","","Verschlüsselter Tunnel über unsichere Netze, mit IPsec, WireGuard oder OpenVPN."],
+    ["Zero Trust","zerotrust"],["MFA","","Anmeldung mit mindestens zwei Faktoren aus Wissen, Besitz und Eigenschaft."]]},
+  {n:"Identität und Berechtigung", d:"Wer darf was.", t:[
+    ["Active Directory","","Verzeichnisdienst für Benutzer, Computer und Gruppen in einer Windows-Domäne."],
+    ["AGDLP","agdlp"],["Kerberos","","Ticketbasiertes Anmeldeverfahren im AD mit KDC und Ticket Granting Ticket."],
+    ["Group Policy","","Einstellungen zentral auf Benutzer und Computer verteilen, prüfbar mit RSOP."],
+    ["NTFS und Freigaben","","Dateisystemrechte und Freigaberechte, es gilt jeweils das restriktivere."],
+    ["FSMO-Rollen","","Fünf Sonderrollen im AD, etwa Schema Master, RID Master und PDC-Emulator."],
+    ["Identity Lifecycle","","Konten sauber anlegen, ändern und entfernen, wenn Personen eintreten, wechseln oder austreten."]]},
+  {n:"Server und Speicher", d:"Wo Daten und Dienste laufen und wie sie überleben.", t:[
+    ["Virtualisierung","","Mehrere virtuelle Maschinen auf einem Host über einen Hypervisor wie ESXi oder Hyper-V."],
+    ["RAID","raid"],["DAS, NAS, SAN","","Direkt angeschlossener, netzwerkbasierter und blockbasierter Speicher im eigenen Netz."],
+    ["Backup 3-2-1","backup"],["RTO und RPO","rtorpo"],
+    ["Hochverfügbarkeit","","Cluster und Load Balancer, damit ein Ausfall nicht zum Unterbruch führt."]]},
+  {n:"Cloud", d:"IT als Dienst beziehen statt selber betreiben.", t:[
+    ["IaaS, PaaS, SaaS","","Infrastruktur, Plattform oder fertige Software als Dienst, je mehr aaS, desto weniger eigener Betrieb."],
+    ["Microsoft 365 und SharePoint","sharepoint"]]},
+  {n:"Daten", d:"Daten strukturieren, speichern und auswerten.", t:[
+    ["ERM","erm"],["Normalisierung","","Redundanz in Tabellen schrittweise entfernen, meist bis zur dritten Normalform."],
+    ["SQL","","Abfragesprache für relationale Datenbanken mit SELECT, JOIN, WHERE, GROUP BY."],
+    ["Data Mining","","Muster und Zusammenhänge in grossen Datenbeständen automatisch finden."]]},
+  {n:"Softwareentwicklung", d:"Anforderungen in funktionierende Software übersetzen.", t:[
+    ["Requirements Engineering","re"],["User Story","userstory"],["Use Case","usecase"],["Scrum","scrum"]]},
+  {n:"IT-Management", d:"IT als Dienstleistung organisieren.", t:[
+    ["ITIL","","Sammlung guter Praxis für IT-Services, etwa Incident, Problem und Change Management."],
+    ["COBIT","","Rahmenwerk für Governance und Kontrolle der IT."],
+    ["Servicekennzahlen","prozesskenn"]]}
+ ],
+ x:[["OSI-Modell","TCP/IP"],["Subnetting","VLAN und Trunking"],["VLAN und Trunking","Routing"],["DHCP und DNS","Subnetting"],
+    ["Firewall","DMZ und NAT"],["VPN","Firewall"],["Active Directory","Kerberos"],["Active Directory","Group Policy"],["AGDLP","NTFS und Freigaben"],
+    ["Zero Trust","MFA"],["MFA","Active Directory"],["Virtualisierung","Hochverfügbarkeit"],["RAID","Backup 3-2-1"],["Backup 3-2-1","RTO und RPO"],
+    ["IaaS, PaaS, SaaS","Virtualisierung"],["ERM","Normalisierung"],["SQL","ERM"],["DHCP und DNS","Active Directory"],["Monitoring","QoS"],
+    ["Identity Lifecycle","Active Directory"],["Microsoft 365 und SharePoint","MFA"],["ITIL","Servicekennzahlen"],["Routing","Firewall"],
+    ["Microsoft 365 und SharePoint","NTFS und Freigaben"],["Scrum","User Story"]]
+},
+
+wirt:{n:"Wirtschaft", d:"Wie Märkte, Unternehmen und Geld zusammenspielen.",
+ b:[
+  {n:"Märkte", d:"Grundlagen des Wirtschaftens.", t:[
+    ["Bedürfnisse","","Motor der Wirtschaft, von Existenz- bis Luxusbedürfnissen, werden durch Güter befriedigt."],
+    ["Produktionsfaktoren","","Arbeit, Boden, Kapital und Wissen als Einsatz für die Herstellung von Gütern."],
+    ["Angebot und Nachfrage","","Bestimmen gemeinsam den Marktpreis, der Schnittpunkt ist das Gleichgewicht."],
+    ["Wirtschaftssektoren","","Rohstoffgewinnung, Industrie und Dienstleistungen."],
+    ["Ökonomisches Prinzip","","Mit gegebenen Mitteln möglichst viel erreichen oder ein Ziel mit möglichst wenig Mitteln."]]},
+  {n:"Unternehmen", d:"Das Unternehmen in seinem Umfeld.", t:[
+    ["Umweltsphären","umweltsph"],["Anspruchsgruppen","stakeholder"],["St. Galler Modell","stgaller"],
+    ["Unternehmensziele","","Sachziele beschreiben was, Formalziele wie viel, zwischen Zielen gibt es Konflikte."],
+    ["Rechtsformen","","Einzelunternehmung, GmbH, AG und weitere, unterschiedlich in Haftung, Kapital und Pflichten."],
+    ["Standortwahl","","Standortfaktoren wie Arbeitskräfte, Steuern und Erreichbarkeit gegeneinander abwägen."],
+    ["Unternehmensverbindungen","","Kooperation, Joint Venture, Konzern, jeweils mit Vor- und Nachteilen."]]},
+  {n:"Strategie", d:"Wohin das Unternehmen will und wie.", t:[
+    ["SWOT-Analyse","swot"],["Porters fünf Kräfte","porter"],["Business Model Canvas","bmc"],
+    ["Businessplan","","Geschäftsidee, Markt, Organisation und Finanzen in einem Dokument für Kapitalgeber und Planung."],
+    ["Marketingstrategie","","Segmentierung, Positionierung, Differenzierung und Wachstum."],
+    ["Innovation","","Neue Produkte, Prozesse oder Geschäftsmodelle, von der Idee bis zur Markteinführung."]]},
+  {n:"Rechnungswesen", d:"Zahlen festhalten und abschliessen.", t:[
+    ["Buchhaltung","","Geschäftsfälle nach Soll und Haben im Kontenrahmen KMU erfassen."],
+    ["Jahresabschluss","","Bilanz und Erfolgsrechnung mit Abgrenzungen, Abschreibungen und Rückstellungen."],
+    ["Stille Reserven","stille-res"],["Gewinnverteilung","gewinnvert"],
+    ["Mehrwertsteuer","","Steuer auf dem Mehrwert, Rechnung muss die Vorgaben der ESTV erfüllen."]]},
+  {n:"Finanzen", d:"Liquidität, Stabilität und Rendite.", t:[
+    ["Bilanzkennzahlen","kennz"],["Geldflussrechnung","geldfluss"],["Investitionsrechnung","invest"]]},
+  {n:"Kalkulation", d:"Preise und Kosten berechnen.", t:[
+    ["Handelskalkulation","kalk-handel"],["Zuschlagskalkulation","kalk-prod"]]},
+  {n:"Mathematik", d:"Modelle für wirtschaftliche Fragen.", t:[
+    ["Kurvendiskussion","kurvendisk"],["Gewinnmaximum","gewinnmax"],["Zinseszins","zinseszins"]]},
+  {n:"Organisation", d:"Aufbau und Abläufe im Unternehmen.", t:[
+    ["Organigramm","organigramm"],["Stellenbeschreibung","stellenb"],["Aufgabenanalyse","aufgabenanalyse"],["Prozesslandkarte","prozesslandkarte"]]},
+  {n:"Führung", d:"Menschen führen und Wandel gestalten.", t:[
+    ["Managementebenen","","Normativ, strategisch und operativ, vom Leitbild bis zur täglichen Umsetzung."],
+    ["Unternehmenskultur","","Gemeinsame Werte und Normen, die das Verhalten prägen, oft unsichtbar."],
+    ["Führungsstile","","Von autoritär bis delegativ, situatives Führen passt den Stil an die Person an."],
+    ["Motivation","","Warum Menschen handeln, intrinsisch aus sich selber oder extrinsisch durch Anreize."],
+    ["Change Management","kotter"],["Risikomanagement","risikomatrix"],["Qualitätsmanagement","tqm"]]},
+  {n:"Recht", d:"Regeln für Verträge und Geschäfte.", t:[
+    ["Obligationenrecht","","Regelt Verträge und Haftung zwischen Privaten in der Schweiz."],
+    ["Kaufvertrag","","Übertragung einer Sache gegen Geld, mit Gewährleistung bei Mängeln."],
+    ["Arbeitsvertrag","","Arbeitsleistung gegen Lohn, mit Pflichten beider Seiten und Kündigungsschutz."],
+    ["Datenschutz","","Umgang mit Personendaten nach revDSG und DSGVO."]]},
+  {n:"Arbeitstechnik", d:"Sich selber organisieren und entscheiden.", t:[
+    ["Eisenhower","eisenhower"],["SMART-Ziele","smart"],["Nutzwertanalyse","nutzwert"],["ALPEN","alpen"],["Pareto","pareto"]]}
+ ],
+ x:[["Angebot und Nachfrage","Gewinnmaximum"],["Zinseszins","Investitionsrechnung"],["Handelskalkulation","Zuschlagskalkulation"],
+    ["Businessplan","Business Model Canvas"],["Businessplan","Rechtsformen"],["Businessplan","Investitionsrechnung"],["Umweltsphären","SWOT-Analyse"],
+    ["Porters fünf Kräfte","Angebot und Nachfrage"],["Anspruchsgruppen","St. Galler Modell"],["Bilanzkennzahlen","Jahresabschluss"],
+    ["Geldflussrechnung","Jahresabschluss"],["Stille Reserven","Jahresabschluss"],["Gewinnverteilung","Rechtsformen"],
+    ["Arbeitsvertrag","Stellenbeschreibung"],["Rechtsformen","Obligationenrecht"],["Nutzwertanalyse","Standortwahl"],
+    ["Kaufvertrag","Obligationenrecht"],["Unternehmenskultur","Change Management"],["Managementebenen","St. Galler Modell"],
+    ["Buchhaltung","Mehrwertsteuer"],["Kurvendiskussion","Gewinnmaximum"],["Unternehmensziele","SMART-Ziele"],["Innovation","Marketingstrategie"]]
+}
+};
+const NETZFARBEN = ["#2E7D83","#9A3F83","#B07A1E","#3F6FB0","#4F8A3A","#B4503C","#6A5AAE","#2C8C6E","#A5527D","#7C6A2E","#4C7F9E","#8A5A9E"];
+/* ====================== SPEICHER ====================== */
+const LS = "hfwi-register-v1";
+const store = {
+  db:null, mode:"lokal",
+  async init(){
+    try{
+      if(window.claude && claude.use){
+        const d = await claude.use("db");
+        if(d){ this.db = d; this.mode = "synchron"; }
+      }
+    }catch(e){ }
+    const el = null;
+    if(el) el.textContent = this.mode;
+  },
+  local(){ try{ return JSON.parse(localStorage.getItem(LS)||'{"projekte":[],"lern":{}}'); }catch(e){ return {projekte:[],lern:{}}; } },
+  saveLocal(o){ try{ localStorage.setItem(LS, JSON.stringify(o)); }catch(e){} },
+  async projekte(){
+    if(this.db){
+      try{
+        const s = await this.db.collection("projekte").get();
+        return s.docs.map(d => Object.assign({id:d.id}, d.data()));
+      }catch(e){ }
+    }
+    return this.local().projekte;
+  },
+  async saveProjekt(p){
+    if(this.db){
+      try{ await this.db.doc("projekte/"+p.id).set(p); return true; }catch(e){ }
+    }
+    const o = this.local();
+    const i = o.projekte.findIndex(x=>x.id===p.id);
+    if(i>=0) o.projekte[i]=p; else o.projekte.push(p);
+    this.saveLocal(o); return true;
+  },
+  async delProjekt(id){
+    if(this.db){ try{ await this.db.doc("projekte/"+id).delete(); return true; }catch(e){ } }
+    const o = this.local(); o.projekte = o.projekte.filter(x=>x.id!==id); this.saveLocal(o); return true;
+  },
+  async lern(){
+    if(this.db){
+      try{ const s = await this.db.doc("lernen/status").get(); if(s.exists) return s.data().k||{}; }catch(e){ }
+    }
+    return this.local().lern||{};
+  },
+  async saveLern(k){
+    if(this.db){ try{ await this.db.doc("lernen/status").set({k:k}); return; }catch(e){ } }
+    const o = this.local(); o.lern = k; this.saveLocal(o);
+  }
+};
+
+
+/* ====================== RECHNER ====================== */
+const nf = (x,d) => (isFinite(x)? Number(x).toLocaleString("de-CH",{minimumFractionDigits:d==null?2:d, maximumFractionDigits:d==null?2:d}) : "–");
+function num(id){ const v = parseFloat((document.getElementById(id)||{}).value); return isFinite(v)?v:0; }
+
+const CALC = {
+subnet(){
+  return {html:`
+    <div class="grid g3">
+      <div><label for="c-ip">IP-Adresse</label><input type="text" id="c-ip" value="192.168.10.37"></div>
+      <div><label for="c-pre">Präfix</label><input type="number" id="c-pre" value="26" min="1" max="32"></div>
+    </div>
+    <div class="row"><button class="btn" type="button" id="c-go">Berechnen</button></div>
+    <div id="c-out" style="margin-top:14px"></div>`,
+   run(){
+    const ip = (document.getElementById("c-ip").value||"").trim().split(".").map(Number);
+    const pre = Math.min(32, Math.max(1, num("c-pre")));
+    const out = document.getElementById("c-out");
+    if(ip.length!==4 || ip.some(x=>!isFinite(x)||x<0||x>255)){ out.innerHTML = '<p class="meta">Die IP-Adresse braucht vier Zahlen von 0 bis 255.</p>'; return; }
+    const m = pre===0?0:(0xFFFFFFFF << (32-pre))>>>0;
+    const a = ((ip[0]<<24)>>>0)+(ip[1]<<16)+(ip[2]<<8)+ip[3];
+    const net = (a & m)>>>0, bc = (net | (~m>>>0))>>>0;
+    const d = x => [(x>>>24)&255,(x>>>16)&255,(x>>>8)&255,x&255].join(".");
+    const hosts = pre>=31 ? (pre===31?2:1) : Math.pow(2,32-pre)-2;
+    out.innerHTML = `<table>
+      <tr><th>Netzmaske</th><td>${d(m)}</td></tr>
+      <tr><th>Netzadresse</th><td>${d(net)}/${pre}</td></tr>
+      <tr><th>Erste Hostadresse</th><td>${pre<31?d(net+1):"–"}</td></tr>
+      <tr><th>Letzte Hostadresse</th><td>${pre<31?d(bc-1):"–"}</td></tr>
+      <tr><th>Broadcast</th><td>${pre<31?d(bc):"–"}</td></tr>
+      <tr><th>Nutzbare Hosts</th><td>${nf(hosts,0)}</td></tr>
+      <tr><th>Wildcard</th><td>${d((~m)>>>0)}</td></tr></table>`;
+   }};
+},
+invest(){
+  return {html:`
+    <div class="grid g3">
+      <div><label for="c-an">Anschaffungswert (CHF)</label><input type="number" id="c-an" value="120000"></div>
+      <div><label for="c-rf">Rückfluss pro Jahr (CHF)</label><input type="number" id="c-rf" value="32000"></div>
+      <div><label for="c-nd">Nutzungsdauer (Jahre)</label><input type="number" id="c-nd" value="5"></div>
+      <div><label for="c-zs">Kalkulationszins (%)</label><input type="number" id="c-zs" value="6" step="0.1"></div>
+      <div><label for="c-rw">Restwert (CHF)</label><input type="number" id="c-rw" value="10000"></div>
+    </div>
+    <div class="row"><button class="btn" type="button" id="c-go">Berechnen</button></div>
+    <div id="c-out" style="margin-top:14px"></div>`,
+   run(){
+    const an=num("c-an"), rf=num("c-rf"), nd=Math.max(1,Math.round(num("c-nd"))), i=num("c-zs")/100, rw=num("c-rw");
+    let bar=0; for(let t=1;t<=nd;t++) bar += rf/Math.pow(1+i,t);
+    bar += rw/Math.pow(1+i,nd);
+    const kw = bar - an;
+    const amo = rf>0 ? an/rf : Infinity;
+    const abschr = (an-rw)/nd;
+    const gewinn = rf - abschr;
+    const kap = (an+rw)/2;
+    const rend = kap>0 ? gewinn/kap*100 : 0;
+    document.getElementById("c-out").innerHTML = `<table>
+      <tr><th>Barwert aller Rückflüsse</th><td class="n">${nf(bar)}</td></tr>
+      <tr><th>Kapitalwert (NPV)</th><td class="n" style="color:${kw>=0?'var(--ok)':'var(--plum)'}">${nf(kw)}</td></tr>
+      <tr><th>Amortisationsdauer</th><td class="n">${isFinite(amo)?nf(amo,1)+" Jahre":"–"}</td></tr>
+      <tr><th>Kalkulatorische Abschreibung pro Jahr</th><td class="n">${nf(abschr)}</td></tr>
+      <tr><th>Durchschnittlicher Gewinn pro Jahr</th><td class="n">${nf(gewinn)}</td></tr>
+      <tr><th>Rentabilität auf dem Durchschnittskapital</th><td class="n">${nf(rend,1)} %</td></tr></table>
+      <p class="meta" style="margin-top:10px">${kw>=0?"Kapitalwert über null, die Investition erwirtschaftet mehr als den Kalkulationszins.":"Kapitalwert unter null, die geforderte Verzinsung wird nicht erreicht."}</p>`;
+   }};
+},
+handel(){
+  return {html:`
+    <div class="grid g3">
+      <div><label for="h-ek">Bruttoeinkaufspreis (CHF)</label><input type="number" id="h-ek" value="1000"></div>
+      <div><label for="h-rab">Lieferantenrabatt (%)</label><input type="number" id="h-rab" value="10" step="0.1"></div>
+      <div><label for="h-sk">Lieferantenskonto (%)</label><input type="number" id="h-sk" value="2" step="0.1"></div>
+      <div><label for="h-bez">Bezugskosten (CHF)</label><input type="number" id="h-bez" value="60"></div>
+      <div><label for="h-bg">Bruttogewinnzuschlag (%)</label><input type="number" id="h-bg" value="45" step="0.1"></div>
+      <div><label for="h-krab">Kundenrabatt (%)</label><input type="number" id="h-krab" value="5" step="0.1"></div>
+      <div><label for="h-ksk">Kundenskonto (%)</label><input type="number" id="h-ksk" value="2" step="0.1"></div>
+    </div>
+    <div class="row"><button class="btn" type="button" id="c-go">Berechnen</button></div>
+    <div id="c-out" style="margin-top:14px"></div>`,
+   run(){
+    const ekb=num("h-ek"), rab=num("h-rab"), sk=num("h-sk"), bez=num("h-bez"), bg=num("h-bg"), krab=num("h-krab"), ksk=num("h-ksk");
+    const nachRab = ekb*(1-rab/100);
+    const nachSk  = nachRab*(1-sk/100);
+    const einst   = nachSk + bez;
+    const netVk   = einst*(1+bg/100);
+    const vorSk   = ksk<100 ? netVk/(1-ksk/100) : 0;
+    const bruttoVk= krab<100 ? vorSk/(1-krab/100) : 0;
+    document.getElementById("c-out").innerHTML = `<table>
+      <tr><th>Bruttoeinkaufspreis</th><td class="n">${nf(ekb)}</td></tr>
+      <tr><th>abzüglich Rabatt</th><td class="n">${nf(nachRab)}</td></tr>
+      <tr><th>abzüglich Skonto</th><td class="n">${nf(nachSk)}</td></tr>
+      <tr><th>plus Bezugskosten</th><td class="n"><b>Einstandspreis ${nf(einst)}</b></td></tr>
+      <tr><th>plus Bruttogewinn</th><td class="n">Nettoverkaufspreis ${nf(netVk)}</td></tr>
+      <tr><th>plus Kundenskonto</th><td class="n">${nf(vorSk)}</td></tr>
+      <tr><th>plus Kundenrabatt</th><td class="n"><b>Bruttoverkaufspreis ${nf(bruttoVk)}</b></td></tr>
+      <tr><th>Bruttogewinn in Franken</th><td class="n">${nf(netVk-einst)}</td></tr></table>
+      <p class="meta" style="margin-top:10px">Rabatt und Skonto werden beim Verkauf aufgeschlagen, nicht abgezogen, weil sie vom Bruttoverkaufspreis weggerechnet werden.</p>`;
+   }};
+},
+zins(){
+  return {html:`
+    <div class="grid g3">
+      <div><label for="z-k0">Startkapital (CHF)</label><input type="number" id="z-k0" value="73000"></div>
+      <div><label for="z-kn">Endkapital (CHF)</label><input type="number" id="z-kn" value="205860"></div>
+      <div><label for="z-n">Jahre</label><input type="number" id="z-n" value="8"></div>
+      <div><label for="z-p">Zinssatz (%)</label><input type="number" id="z-p" value="" step="0.01" placeholder="leer lassen zum Berechnen"></div>
+    </div>
+    <p class="meta">Lass das Feld leer, das du berechnen willst.</p>
+    <div class="row"><button class="btn" type="button" id="c-go">Berechnen</button></div>
+    <div id="c-out" style="margin-top:14px"></div>`,
+   run(){
+    const g = id => { const e=document.getElementById(id); return e.value===""?null:parseFloat(e.value); };
+    const k0=g("z-k0"), kn=g("z-kn"), n=g("z-n"), p=g("z-p");
+    const out=document.getElementById("c-out"); let h="";
+    if(k0!=null&&n!=null&&p!=null&&kn==null){ h=`<table><tr><th>Endkapital</th><td class="n">${nf(k0*Math.pow(1+p/100,n))}</td></tr></table>`; }
+    else if(k0!=null&&kn!=null&&n!=null&&p==null){
+      const r=(Math.pow(kn/k0,1/n)-1)*100;
+      h=`<table><tr><th>Zinssatz pro Jahr</th><td class="n">${nf(r,2)} %</td></tr></table>
+         <p class="meta" style="margin-top:8px">Lösungsweg: p = (K / K₀)^(1/n) − 1 = (${nf(kn,0)} / ${nf(k0,0)})^(1/${n}) − 1</p>`;
+    }
+    else if(k0!=null&&kn!=null&&p!=null&&n==null){
+      const j=Math.log(kn/k0)/Math.log(1+p/100);
+      h=`<table><tr><th>Laufzeit</th><td class="n">${nf(j,2)} Jahre</td></tr></table>`;
+    }
+    else if(k0!=null&&p!=null&&n!=null){ h=`<table><tr><th>Endkapital</th><td class="n">${nf(k0*Math.pow(1+p/100,n))}</td></tr></table>`; }
+    else h=`<p class="meta">Fülle genau drei der vier Felder aus.</p>`;
+    out.innerHTML=h;
+   }};
+},
+nutzwert(){
+  if(!S.nw) S.nw = {krit:[{n:"Kosten",g:30},{n:"Funktionsumfang",g:40},{n:"Aufwand für den Betrieb",g:30}], var:["Variante A","Variante B"], p:{}};
+  const nw=S.nw;
+  const tbl = `<div class="ovf"><table>
+    <tr><th>Kriterium</th><th class="n">Gewicht %</th>${nw.var.map((v,j)=>`<th class="n">${esc(v)}</th>`).join("")}</tr>
+    ${nw.krit.map((k,i)=>`<tr><td><input type="text" data-nwk="${i}" value="${esc(k.n)}" style="border:0;background:none;padding:2px"></td>
+      <td class="n"><input type="number" data-nwg="${i}" value="${k.g}" style="width:70px;text-align:right"></td>
+      ${nw.var.map((v,j)=>`<td class="n"><input type="number" data-nwp="${i}-${j}" min="0" max="10" value="${(nw.p[i+"-"+j]!=null?nw.p[i+"-"+j]:5)}" style="width:64px;text-align:right"></td>`).join("")}</tr>`).join("")}
+  </table></div>`;
+  return {html:`
+    <p class="meta">Bewerte jede Variante pro Kriterium von 0 bis 10. Die Gewichte sollten zusammen 100 ergeben.</p>
+    ${tbl}
+    <div class="row">
+      <button class="btn" type="button" id="c-go">Auswerten</button>
+      <button class="btn sec" type="button" id="nw-krit">Kriterium hinzufügen</button>
+      <button class="btn sec" type="button" id="nw-var">Variante hinzufügen</button>
+    </div>
+    <div id="c-out" style="margin-top:14px"></div>`,
+   run(){
+    const nw=S.nw;
+    document.querySelectorAll("[data-nwk]").forEach(e=>nw.krit[+e.dataset.nwk].n=e.value);
+    document.querySelectorAll("[data-nwg]").forEach(e=>nw.krit[+e.dataset.nwg].g=parseFloat(e.value)||0);
+    document.querySelectorAll("[data-nwp]").forEach(e=>nw.p[e.dataset.nwp]=parseFloat(e.value)||0);
+    const gs = nw.krit.reduce((a,k)=>a+k.g,0);
+    const res = nw.var.map((v,j)=>({v:v, s: nw.krit.reduce((a,k,i)=>a+(nw.p[i+"-"+j]||0)*k.g,0)/100}));
+    res.sort((a,b)=>b.s-a.s);
+    document.getElementById("c-out").innerHTML = `<table>
+      ${res.map((r,i)=>`<tr><th>${i===0?"<b>"+esc(r.v)+"</b>":esc(r.v)}</th><td class="n">${nf(r.s,2)} Punkte</td></tr>`).join("")}
+      </table>
+      <p class="meta" style="margin-top:10px">${gs!==100?`Achtung, die Gewichte ergeben ${nf(gs,0)} statt 100.`:""} Empfehlung nach Punkten: ${esc(res[0].v)}.</p>`;
+   }};
+}
+};
+
+function mountCalc(key){
+  const host = document.getElementById("calc"); if(!host) return;
+  const c = CALC[key](); host.innerHTML = c.html;
+  const go = document.getElementById("c-go"); if(go) go.onclick = ()=>c.run();
+  const a = document.getElementById("nw-krit"), b = document.getElementById("nw-var");
+  if(a) a.onclick = ()=>{ c.run(); S.nw.krit.push({n:"Neues Kriterium",g:0}); mountCalc(key); };
+  if(b) b.onclick = ()=>{ c.run(); S.nw.var.push("Variante "+String.fromCharCode(65+S.nw.var.length)); mountCalc(key); };
+  try{ c.run(); }catch(e){}
+}
+
+/* ====================== WISSENSNETZ ====================== */
+let NZ = {sim:null, sel:null, map:"wi", nodes:[], links:[], adj:{}};
+
+function baueNetz(key){
+  const def = NETZE[key];
+  const nodes = [], links = [], byName = {};
+  const add = n => { nodes.push(n); byName[n.name]=n; return n; };
+  const root = add({id:"r", name:def.n, typ:"root", d:def.d, g:-1});
+  def.b.forEach((b,gi)=>{
+    const bn = add({id:"b"+gi, name:b.n, typ:"bereich", d:b.d, g:gi});
+    links.push({source:root.id, target:bn.id, typ:"baum"});
+    b.t.forEach((t,ti)=>{
+      const tool = t[1] ? toolById(t[1]) : null;
+      let n = byName[t[0]];
+      if(!n){
+        n = add({id:"t"+gi+"_"+ti, name:t[0], typ:"thema", g:gi, tool:tool?tool.id:null,
+                 d: t[2] || (tool?tool.kurz:""), mods: tool?(tool.m||[]):[]});
+      }
+      links.push({source:bn.id, target:n.id, typ:"baum"});
+    });
+  });
+  (def.x||[]).forEach(([a,b])=>{ if(byName[a]&&byName[b]) links.push({source:byName[a].id, target:byName[b].id, typ:"quer"}); });
+  const adj = {}; nodes.forEach(n=>adj[n.id]=new Set());
+  links.forEach(l=>{ adj[l.source].add(l.target); adj[l.target].add(l.source); });
+  return {nodes, links, adj, def};
+}
+
+function vNetz(){
+  const tabs = [["wi","Wirtschaftsinformatik"],["inf","Informatik"],["wirt","Wirtschaft"]];
+  return `
+  <div class="hero" style="margin-bottom:18px"><h1>Wissensnetz</h1>
+    <p>Alles, was zusammengehört, auf einer Karte. Mitte ist das Fachgebiet, dann die Bereiche, aussen die Themen. Gestrichelte Linien verbinden Themen über Bereiche hinweg.</p></div>
+  <div class="bar" style="justify-content:space-between">
+    <div class="seg" role="tablist">${tabs.map(([k,n])=>`<button type="button" role="tab" data-netz="${k}" aria-selected="${NZ.map===k}">${n}</button>`).join("")}</div>
+    <div style="display:flex;gap:10px;align-items:center"><span class="meta" id="nzhint"></span><input type="search" id="nzq" class="srch" placeholder="Thema im Netz finden" style="width:220px"></div>
+  </div>
+  <div class="netzwrap">
+    <div class="netz" id="netz"><div class="empty" id="nzload" style="border:0">Netz wird aufgebaut</div></div>
+    <aside class="box nzpanel" id="nzpanel"></aside>
+  </div>
+  <p class="meta" style="margin-top:10px">Ziehen zum Verschieben, scrollen oder zwei Finger zum Zoomen, Knoten antippen für Details.</p>`;
+}
+
+function panelHtml(n){
+  if(!n){
+    const d = NETZE[NZ.map];
+    return `<h3 style="color:var(--soft);font-size:13px;font-weight:600">${esc(d.n)}</h3>
+      <p class="serif" style="font-size:15.5px">${esc(d.d)}</p>
+      <div class="chips" style="margin-top:12px">${d.b.map((b,i)=>`<button class="chip" type="button" data-nzsel="b${i}" style="border-color:${NETZFARBEN[i%NETZFARBEN.length]}">${esc(b.n)}</button>`).join("")}</div>`;
+  }
+  const col = n.g>=0 ? NETZFARBEN[n.g%NETZFARBEN.length] : "var(--ink)";
+  const nb = Array.from(NZ.adj[n.id]).map(id=>NZ.nodes.find(x=>x.id===id)).filter(Boolean)
+             .sort((a,b)=>({root:0,bereich:1,thema:2}[a.typ]-({root:0,bereich:1,thema:2}[b.typ])));
+  const typ = {root:"Fachgebiet", bereich:"Bereich", thema: n.tool?"Methode":"Thema"}[n.typ];
+  const mods = (n.mods||[]).map(modByK).filter(Boolean);
+  return `
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="dot" style="background:${col}"></span><span class="meta">${typ}</span></div>
+    <h3 style="font-size:20px;margin-bottom:10px">${esc(n.name)}</h3>
+    ${n.d?`<p class="serif" style="font-size:15.5px">${esc(n.d)}</p>`:""}
+    ${n.tool?`<button class="btn" type="button" data-tool="${n.tool}" style="margin:6px 0 14px">Methode öffnen</button>`:""}
+    ${mods.length?`<div class="meta" style="margin:6px 0 6px">Gelernt in</div><div class="chips">${mods.map(m=>`<button class="chip" type="button" data-mod="${m.k}">${esc(m.n)}</button>`).join("")}</div>`:""}
+    <div class="meta" style="margin:16px 0 6px">Verbunden mit</div>
+    <div class="chips">${nb.map(x=>`<button class="chip" type="button" data-nzsel="${x.id}">${esc(x.name)}</button>`).join("")}</div>
+    <p style="margin-top:16px"><button class="back" type="button" data-nzsel="" style="margin:0">Auswahl aufheben</button></p>`;
+}
+
+function mountNetz(){
+  const host = document.getElementById("netz");
+  document.getElementById("nzpanel").innerHTML = panelHtml(null);
+  if(NZ.sim){ NZ.sim.stop(); NZ.sim=null; }
+  if(!window.d3){
+    host.innerHTML = `<div class="empty" style="border:0">Die Grafik konnte nicht geladen werden. Die Bereiche findest du rechts als Liste.</div>`;
+    return;
+  }
+  const G = baueNetz(NZ.map);
+  NZ.nodes = G.nodes; NZ.links = G.links; NZ.adj = G.adj; NZ.sel = null;
+  const W = host.clientWidth || 800, H = host.clientHeight || 600;
+  const nB = G.def.b.length;
+  const R1 = 160, R2 = 340;
+  // Feste Zielpositionen: Themen gleichmässig auf dem äusseren Ring, Bereiche in der Mitte ihrer Themen
+  const themen = G.nodes.filter(n=>n.typ==="thema");
+  const T = themen.length;
+  themen.forEach((n,i)=>{ n.a = (i+0.5)/T*Math.PI*2 - Math.PI/2; n.tx = Math.cos(n.a)*R2; n.ty = Math.sin(n.a)*R2; });
+  G.nodes.filter(n=>n.typ==="bereich").forEach(b=>{
+    const eig = themen.filter(t=>t.g===b.g);
+    let sx=0, sy=0; eig.forEach(t=>{ sx+=Math.cos(t.a); sy+=Math.sin(t.a); });
+    b.a = Math.atan2(sy, sx); b.tx = Math.cos(b.a)*R1; b.ty = Math.sin(b.a)*R1;
+  });
+  G.nodes.forEach(n=>{
+    if(n.typ==="root"){ n.tx=0; n.ty=0; n.fx=0; n.fy=0; }
+    n.x = n.tx; n.y = n.ty;
+  });
+  const svg = d3.select(host).html("").append("svg")
+    .attr("viewBox",[-W/2,-H/2,W,H]).attr("width","100%").attr("height","100%").attr("role","img").attr("aria-label","Wissensnetz "+G.def.n);
+  const g = svg.append("g");
+  // Netzringe
+  const web = g.append("g").attr("class","web");
+  [R1*0.5,R1,(R1+R2)/2,R2,R2+60].forEach(r=>web.append("circle").attr("r",r));
+  G.nodes.filter(n=>n.typ==="bereich").forEach(b=>web.append("line").attr("x1",0).attr("y1",0).attr("x2",Math.cos(b.a)*(R2+60)).attr("y2",Math.sin(b.a)*(R2+60)));
+
+  const link = g.append("g").selectAll("line").data(G.links).join("line")
+    .attr("class",d=>"lk "+d.typ);
+  const node = g.append("g").selectAll("g").data(G.nodes).join("g")
+    .attr("class",d=>"nd "+d.typ).attr("tabindex",0).style("cursor","pointer");
+  node.append("circle")
+    .attr("r",d=>d.typ==="root"?34:d.typ==="bereich"?14:(d.tool?7.5:6))
+    .attr("fill",d=>d.typ==="root"?"var(--ink)":NETZFARBEN[d.g%NETZFARBEN.length])
+    .attr("stroke","var(--card)").attr("stroke-width",d=>d.typ==="thema"?1.5:2.5)
+    .attr("fill-opacity",d=>d.typ==="thema"&&!d.tool?0.55:1);
+  node.append("text").attr("class","lb")
+    .text(d=>d.name)
+    .attr("dy",d=>d.typ==="root"?56:"0.34em");
+  node.filter(d=>d.typ==="root").append("text").attr("class","lbr").attr("dy","0.34em").text("●").attr("fill","var(--bg)");
+
+  const sim = d3.forceSimulation(G.nodes)
+    .force("x", d3.forceX(d=>d.tx).strength(d=>d.typ==="thema"?0.55:0.7))
+    .force("y", d3.forceY(d=>d.ty).strength(d=>d.typ==="thema"?0.55:0.7))
+    .force("link", d3.forceLink(G.links).id(d=>d.id).strength(0))
+    .force("collide", d3.forceCollide(d=>d.typ==="root"?44:d.typ==="bereich"?18:8))
+    .alpha(0.6).alphaDecay(0.05);
+  NZ.sim = sim;
+
+  function tick(){
+    link.attr("x1",d=>d.source.x).attr("y1",d=>d.source.y).attr("x2",d=>d.target.x).attr("y2",d=>d.target.y);
+    node.attr("transform",d=>`translate(${d.x},${d.y})`);
+    node.select("text.lb").each(function(d){
+      if(d.typ==="root"){ this.setAttribute("text-anchor","middle"); return; }
+      const deg = Math.atan2(d.y, d.x)*180/Math.PI;
+      const links = d.x < 0;
+      const off = d.typ==="bereich" ? 20 : 12;
+      this.setAttribute("transform", "rotate(" + (links ? deg+180 : deg) + ")");
+      this.setAttribute("text-anchor", links ? "end" : "start");
+      this.setAttribute("dx", links ? -off : off);
+    });
+  }
+  sim.on("tick", tick);
+  NZ.node = node; NZ.link = link;
+
+  const zoom = d3.zoom().extent([[-W/2,-H/2],[W/2,H/2]]).scaleExtent([0.3,3.5]).on("zoom", e=>g.attr("transform", e.transform));
+  svg.call(zoom);
+  const k = Math.min(W/2/(R2+175), H/2/(R2+175));
+  svg.call(zoom.transform, d3.zoomIdentity.scale(Math.max(0.3,Math.min(1.2,k))));
+  NZ.zoom = zoom; NZ.svg = svg;
+
+  node.call(d3.drag()
+    .on("start",(e,d)=>{ if(!e.active) sim.alphaTarget(0.2).restart(); d.fx=d.x; d.fy=d.y; })
+    .on("drag",(e,d)=>{ d.fx=e.x; d.fy=e.y; })
+    .on("end",(e,d)=>{ if(!e.active) sim.alphaTarget(0); if(d.typ!=="root"){ d.fx=null; d.fy=null; } }));
+
+  node.on("click",(e,d)=>{ e.stopPropagation(); waehle(d.id, false); })
+      .on("keydown",(e,d)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); waehle(d.id,false); } })
+      .on("mouseenter",(e,d)=>{ if(!NZ.sel) hebeHervor(d.id); })
+      .on("mouseleave",()=>{ if(!NZ.sel) hebeHervor(null); });
+  svg.on("click",()=>waehle(null));
+  NZ.node = node; NZ.link = link;
+}
+
+function hebeHervor(id){
+  if(!NZ.node) return;
+  if(!id){ NZ.node.classed("dim",false).classed("on",false); NZ.link.classed("dim",false).classed("on",false); return; }
+  const nb = NZ.adj[id];
+  NZ.node.classed("dim",d=>d.id!==id && !nb.has(d.id)).classed("on",d=>d.id===id);
+  NZ.link.classed("dim",l=>l.source.id!==id && l.target.id!==id).classed("on",l=>l.source.id===id||l.target.id===id);
+}
+
+function waehle(id, zentrieren){
+  NZ.sel = id || null;
+  const n = id ? NZ.nodes.find(x=>x.id===id) : null;
+  hebeHervor(NZ.sel);
+  const p = document.getElementById("nzpanel"); if(p) p.innerHTML = panelHtml(n);
+  if(n && zentrieren!==false && NZ.svg && NZ.zoom){
+    const t = d3.zoomTransform(NZ.svg.node());
+    const s = Math.max(t.k, 0.9);
+    NZ.svg.transition().duration(450).call(NZ.zoom.transform, d3.zoomIdentity.scale(s).translate(-n.x, -n.y));
+  }
+  if(n && window.innerWidth<860 && p){ p.scrollIntoView({behavior:"smooth", block:"nearest"}); }
+}
+
+function bindNetz(){
+  const q = document.getElementById("nzq");
+  if(q){
+    const treffer = s => {
+      const inName = NZ.nodes.filter(d=>d.name.toLowerCase().includes(s));
+      return inName.length ? inName : NZ.nodes.filter(d=>(d.d||"").toLowerCase().includes(s));
+    };
+    q.addEventListener("input", e=>{
+      const s = e.target.value.trim().toLowerCase();
+      const hint = document.getElementById("nzhint");
+      if(!NZ.node) return;
+      if(s.length<2){ NZ.node.classed("hit",false); hebeHervor(NZ.sel); if(hint) hint.textContent=""; return; }
+      const ids = new Set(treffer(s).map(d=>d.id));
+      if(hint) hint.textContent = ids.size ? ids.size+" Treffer, Enter zum Anspringen" : "Nichts gefunden";
+      if(!ids.size){ NZ.node.classed("hit",false); hebeHervor(NZ.sel); return; }
+      NZ.node.classed("hit", d=>ids.has(d.id)).classed("dim", d=>!ids.has(d.id));
+      NZ.link.classed("dim", true).classed("on", false);
+    });
+    q.addEventListener("keydown", e=>{
+      if(e.key!=="Enter") return;
+      const s = e.target.value.trim().toLowerCase();
+      const n = treffer(s)[0];
+      if(n){ NZ.node.classed("hit",false); waehle(n.id, true); const h=document.getElementById("nzhint"); if(h) h.textContent=""; }
+    });
+  }
+  mountNetz();
+}
+
+/* ====================== HILFEN ====================== */
+const view = () => document.getElementById("view");
+const esc = s => String(s==null?"":s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const modByK = k => MODULE.find(m=>m.k===k);
+const toolById = i => WERKZEUGE.find(t=>t.id===i);
+const uid = () => "p"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const SEMINFO = {1:{n:"1. Semester",z:"Herbst 2025"},2:{n:"2. Semester",z:"Frühling 2026"},3:{n:"3. Semester",z:"Herbst 2026, läuft"}};
+const semVar = s => `--c:var(--s${s});--t:var(--s${s}t)`;
+const toolSem = t => { const m = modByK((t.m||[])[0]); return m?m.s:1; };
+const STATUS = ["Idee","Offen","Laufend","Fertig"];
+const KONTEXT = ["Arbeit","Studium","Verein","Privat"];
+
+let S = {v:"uebersicht", id:null, kat:"Alle", mod:null, q:"",
+         lernMod:"Alle", li:0, auf:false, karten:[], stat:{}, projekte:[], pickQ:""};
+
+const NAV = [{v:"uebersicht",n:"Übersicht"},{v:"methoden",n:"Methoden"},{v:"netz",n:"Wissensnetz"},{v:"projekte",n:"Projekte"},{v:"lernen",n:"Lernen"}];
+function renderNav(){
+  const aktiv = {methode:"methoden", projekt:"projekte"}[S.v] || S.v;
+  document.getElementById("nav").innerHTML = NAV.map(x=>
+    `<button type="button" data-go="${x.v}" aria-current="${aktiv===x.v}">${x.n}</button>`).join("");
+}
+function go(v,id){ if(NZ.sim&&v!=="netz"){ NZ.sim.stop(); NZ.sim=null; NZ.node=null; } S.v=v; S.id=id||null; S.q=""; document.getElementById("q").value=""; renderNav(); render(); window.scrollTo(0,0); }
+
+/* ====================== ÜBERSICHT ====================== */
+function vUebersicht(){
+  const p = S.projekte;
+  const offen = p.filter(x=>x.status==="Laufend"||x.status==="Offen");
+  const gek = Object.values(S.stat).filter(x=>x>0).length;
+  const weg = [1,2,3].map(s=>`
+    <section class="sem" style="${semVar(s)}">
+      <h2>${SEMINFO[s].n}</h2><div class="jahr">${SEMINFO[s].z}</div>
+      ${MODULE.filter(m=>m.s===s).map(m=>{
+        const n = (m.tl||[]).length;
+        return `<button class="mod" type="button" data-mod="${m.k}"><b>${esc(m.n)}</b><i>${n?n+" Methoden":"Inhalt folgt"}</i></button>`;
+      }).join("")}
+    </section>`).join("");
+  return `
+  <div class="hero">
+    <h1>Hallo Yusi</h1>
+    <p>Dein Studium an einem Ort. Tipp ein Modul an, um die Methoden daraus zu sehen.</p>
+  </div>
+  <div class="nums">
+    <div><b>${MODULE.length}</b><span>Module</span></div>
+    <div><b>${WERKZEUGE.length}</b><span>Methoden</span></div>
+    <div><b>${p.length}</b><span>Projekte</span></div>
+    <div><b>${gek}</b><span>Karten gekonnt</span></div>
+  </div>
+  <div class="weg">${weg}</div>
+  <div class="row2">
+    <div class="box">
+      <h3>Woran du gerade arbeitest</h3>
+      ${offen.length? offen.slice(0,5).map(itemProjekt).join("")
+        : `<div class="empty">Noch kein laufendes Projekt.<div style="margin-top:12px"><button class="btn" type="button" data-neu="1">Projekt erfassen</button></div></div>`}
+    </div>
+    <div class="box">
+      <h3>Wissensnetz</h3>
+      <div class="chips" style="margin-bottom:18px">
+        <button class="chip" type="button" data-gonetz="wi">Wirtschaftsinformatik</button>
+        <button class="chip" type="button" data-gonetz="inf">Informatik</button>
+        <button class="chip" type="button" data-gonetz="wirt">Wirtschaft</button>
+      </div>
+      <h3>Rechner</h3>
+      <div class="chips">
+        <button class="chip" type="button" data-tool="subnetting">Subnetz</button>
+        <button class="chip" type="button" data-tool="invest">Kapitalwert</button>
+        <button class="chip" type="button" data-tool="kalk-handel">Handelskalkulation</button>
+        <button class="chip" type="button" data-tool="nutzwert">Nutzwertanalyse</button>
+        <button class="chip" type="button" data-tool="zinseszins">Zinseszins</button>
+      </div>
+    </div>
+  </div>`;
+}
+function itemProjekt(x){
+  return `<button class="item" type="button" data-projekt="${esc(x.id)}">
+    <span class="dot"></span><b>${esc(x.titel)}<small>${esc(x.kontext||"")}${x.datum?" · "+esc(x.datum):""}</small></b>
+    <span class="pill ${esc(x.status)}">${esc(x.status)}</span></button>`;
+}
+
+/* ====================== METHODEN ====================== */
+function vMethoden(){
+  const kats = ["Alle", ...Array.from(new Set(WERKZEUGE.map(t=>t.kat))).sort()];
+  let list = WERKZEUGE.filter(t=>S.kat==="Alle"||t.kat===S.kat);
+  const m = S.mod ? modByK(S.mod) : null;
+  if(m) list = list.filter(t=>(t.m||[]).includes(m.k));
+  return `
+  <div class="hero">
+    <h1>${m?esc(m.n):"Methoden"}</h1>
+    <p>${m?`${esc(SEMINFO[m.s].n)}. ${esc(m.pruef)}`:"Nachschlagen, wie es geht und wofür. Fünf davon rechnen für dich."}</p>
+  </div>
+  <div class="bar">
+    ${m?`<button class="chip x" type="button" data-clearmod="1" aria-pressed="true">${esc(m.k)}</button>`:""}
+    <div class="chips">${kats.map(k=>`<button class="chip" type="button" data-kat="${esc(k)}" aria-pressed="${S.kat===k}">${esc(k)}</button>`).join("")}</div>
+  </div>
+  ${m && m.t ? `<details class="box" style="margin-top:16px"><summary style="cursor:pointer;font-weight:600">Themen im Modul</summary>
+     <div class="serif" style="margin-top:12px">${m.t.map(t=>`<p style="margin-bottom:10px"><b style="font-family:Archivo,sans-serif;font-size:14.5px">${esc(t.h)}</b><br>${esc(t.p.join(", "))}</p>`).join("")}</div></details>`:""}
+  ${list.length? `<div class="mgrid">${list.map(cardMethode).join("")}</div>`
+    : `<div class="empty" style="margin-top:18px">Zu diesem Modul sind noch keine Methoden hinterlegt.</div>`}`;
+}
+function cardMethode(t){
+  return `<button class="mcard" type="button" data-tool="${t.id}" style="${semVar(toolSem(t))}">
+    <h4>${esc(t.n)}</h4><p>${esc(t.kurz)}</p>
+    <div class="ft"><span>${esc(t.kat)}</span>${t.calc?'<span class="rk">Rechner</span>':""}</div></button>`;
+}
+
+function vMethode(){
+  const t = toolById(S.id); if(!t) return vMethoden();
+  const mods = (t.m||[]).map(modByK).filter(Boolean);
+  const proj = S.projekte.filter(p=>(p.tools||[]).includes(t.id));
+  return `
+  <button class="back" type="button" data-go="methoden">‹ Alle Methoden</button>
+  <div class="hero"><h1>${esc(t.n)}</h1><p>${esc(t.kurz)}</p></div>
+  <div class="det">
+    <div>
+      ${t.calc?`<div class="box" style="margin-bottom:14px"><h3>Rechnen</h3><div id="calc"></div></div>`:""}
+      <div class="box"><h3>So gehst du vor</h3><ol class="steps serif">${t.s.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></div>
+    </div>
+    <aside class="side">
+      <div class="box"><h3>Wofür</h3><p class="serif" style="margin:0;font-size:15.5px">${esc(t.wf)}</p></div>
+      <div class="box"><h3>Gelernt in</h3><div class="chips">${mods.map(m=>`<button class="chip" type="button" data-mod="${m.k}">${esc(m.n)}</button>`).join("")}</div></div>
+      <div class="box"><h3>Bei dir angewendet</h3>
+        ${proj.length? proj.map(itemProjekt).join("")
+          : `<p class="meta">Noch nicht.</p><button class="btn l" type="button" data-neu="${t.id}">Projekt damit erfassen</button>`}
+      </div>
+    </aside>
+  </div>`;
+}
+
+/* ====================== PROJEKTE ====================== */
+function vProjekte(){
+  const p = S.projekte.slice().sort((a,b)=>(b.datum||"").localeCompare(a.datum||""));
+  return `
+  <div class="hero"><h1>Projekte</h1><p>Was du mit dem Gelernten gelöst hast, bei der Arbeit, im Verein oder privat.</p></div>
+  <div style="margin-bottom:18px"><button class="btn" type="button" data-neu="1">Neues Projekt</button></div>
+  ${p.length? `<div class="box">${p.map(itemProjekt).join("")}</div>`
+    : `<div class="empty">Noch nichts abgelegt. Wenn du das nächste Mal eine Methode bei der Arbeit einsetzt, halte es hier fest.</div>`}`;
+}
+
+function vProjekt(){
+  const neu = S.id==="neu";
+  if(!S.entwurf || S.entwurf._for!==S.id){
+    const p = neu ? {id:uid(), titel:"", kontext:"Arbeit", status:"Laufend", datum:new Date().toISOString().slice(0,10),
+                     problem:"", loesung:"", erkenntnis:"", tools:(S.vorTool?[S.vorTool]:[]), module:[]}
+                  : S.projekte.find(x=>x.id===S.id);
+    if(!p) return vProjekte();
+    S.entwurf = JSON.parse(JSON.stringify(p)); S.entwurf._for = S.id; S.pickQ="";
+  }
+  const e = S.entwurf;
+  return `
+  <button class="back" type="button" data-go="projekte">‹ Alle Projekte</button>
+  <div class="hero"><h1>${neu?"Neues Projekt":esc(e.titel||"Projekt")}</h1></div>
+  <div class="det">
+    <div class="box">
+      <label for="f-titel" style="margin-top:0">Titel</label>
+      <input type="text" id="f-titel" value="${esc(e.titel)}" placeholder="Zum Beispiel: Berechtigungen beim Kunden neu aufgebaut">
+      <label for="f-problem">Was war das Problem?</label>
+      <textarea id="f-problem">${esc(e.problem||"")}</textarea>
+      <label for="f-loesung">Wie hast du es gelöst?</label>
+      <textarea id="f-loesung">${esc(e.loesung||"")}</textarea>
+      <label for="f-erkenntnis">Was nimmst du mit?</label>
+      <textarea id="f-erkenntnis">${esc(e.erkenntnis||"")}</textarea>
+      <div class="acts">
+        <button class="btn" type="button" id="save">Speichern</button>
+        <button class="btn l" type="button" data-go="projekte">Abbrechen</button>
+        ${neu?"":`<button class="btn d" type="button" id="del">Löschen</button>`}
+      </div>
+    </div>
+    <aside class="side">
+      <div class="box">
+        <label for="f-kontext" style="margin-top:0">Wo</label>
+        <select id="f-kontext">${KONTEXT.map(k=>`<option ${e.kontext===k?"selected":""}>${k}</option>`).join("")}</select>
+        <label for="f-status">Stand</label>
+        <select id="f-status">${STATUS.map(k=>`<option ${e.status===k?"selected":""}>${k}</option>`).join("")}</select>
+        <label for="f-datum">Datum</label>
+        <input type="text" id="f-datum" value="${esc(e.datum||"")}">
+      </div>
+      <div class="box">
+        <h3>Methoden</h3>
+        <div class="chips picked" id="picked">${pickedHtml()}</div>
+        <input type="search" id="pickq" placeholder="Methode suchen" value="${esc(S.pickQ)}">
+        <div class="plist" id="plist" style="margin-top:8px">${plistHtml()}</div>
+      </div>
+    </aside>
+  </div>`;
+}
+function pickedHtml(){
+  const a = S.entwurf.tools||[];
+  return a.length ? a.map(i=>{const t=toolById(i); return t?`<button class="chip x" type="button" data-pick="${t.id}" aria-pressed="true">${esc(t.n)}</button>`:"";}).join("")
+                  : `<span class="meta">Noch keine gewählt.</span>`;
+}
+function plistHtml(){
+  const q = S.pickQ.toLowerCase(), a = S.entwurf.tools||[];
+  return WERKZEUGE.filter(t=>!a.includes(t.id) && (!q || (t.n+" "+t.kat).toLowerCase().includes(q)))
+    .map(t=>`<button class="chip" type="button" data-pick="${t.id}">${esc(t.n)}</button>`).join("") || `<span class="meta">Nichts gefunden.</span>`;
+}
+function syncForm(){
+  const e = S.entwurf; if(!e) return;
+  const g = id => { const x=document.getElementById(id); return x?x.value:null; };
+  ["titel","problem","loesung","erkenntnis","kontext","status","datum"].forEach(f=>{ const v=g("f-"+f); if(v!=null) e[f]=v; });
+}
+function bindForm(){
+  const pq = document.getElementById("pickq");
+  if(pq) pq.addEventListener("input", ev=>{ S.pickQ = ev.target.value; document.getElementById("plist").innerHTML = plistHtml(); });
+  const save = document.getElementById("save");
+  if(save) save.onclick = async ()=>{
+    syncForm();
+    const d = Object.assign({}, S.entwurf); delete d._for;
+    d.titel = (d.titel||"").trim() || "Ohne Titel";
+    d.module = Array.from(new Set((d.tools||[]).flatMap(i=>(toolById(i)||{}).m||[])));
+    save.textContent = "Speichert";
+    await store.saveProjekt(d);
+    S.projekte = await store.projekte(); S.entwurf = null; S.vorTool = null;
+    go("projekte");
+  };
+  const del = document.getElementById("del");
+  if(del) del.onclick = async ()=>{
+    if(!confirm("Dieses Projekt löschen?")) return;
+    await store.delProjekt(S.entwurf.id);
+    S.projekte = await store.projekte(); S.entwurf = null; go("projekte");
+  };
+}
+
+/* ====================== LERNEN ====================== */
+function bauKarten(){
+  const k = [];
+  WERKZEUGE.forEach(t=>{
+    if(S.lernMod!=="Alle" && !(t.m||[]).includes(S.lernMod)) return;
+    k.push({id:"t-"+t.id, f:t.n, r:esc(t.kurz)+"<br><br>"+t.s.slice(0,4).map(x=>"· "+esc(x)).join("<br>"), s:toolSem(t)});
+  });
+  MODULE.forEach(m=>{
+    if(S.lernMod!=="Alle" && S.lernMod!==m.k) return;
+    m.t.forEach((t,i)=>{
+      if(t.p.length===1 && /nachzutragen/.test(t.p[0])) return;
+      k.push({id:"m-"+m.k+"-"+i, f:"Was gehört zu "+t.h+"?", r:t.p.map(x=>"· "+esc(x)).join("<br>"), s:m.s});
+    });
+  });
+  return k;
+}
+function vLernen(){
+  S.karten = bauKarten();
+  const n = S.karten.length; if(S.li>=n) S.li=0;
+  const c = S.karten[S.li];
+  const gek = S.karten.filter(x=>(S.stat[x.id]||0)>0).length;
+  return `
+  <div class="hero"><h1>Lernen</h1><p>Karte antippen, Antwort prüfen, ehrlich bewerten.</p></div>
+  <div style="max-width:720px">
+    <select id="lernmod" aria-label="Modul wählen">
+      <option value="Alle">Alle Module</option>
+      ${[1,2,3].map(s=>`<optgroup label="${SEMINFO[s].n}">${MODULE.filter(m=>m.s===s).map(m=>`<option value="${m.k}" ${S.lernMod===m.k?"selected":""}>${esc(m.n)}</option>`).join("")}</optgroup>`).join("")}
+    </select>
+    <div class="prog"><i style="width:${n?Math.round(gek/n*100):0}%"></i></div>
+    <div class="meta" style="margin-bottom:16px">${gek} von ${n} gekonnt</div>
+    ${c?`
+    <div class="flash" id="flash" style="${semVar(c.s)}">
+      <div class="q">${esc(c.f)}</div>
+      ${S.auf?`<div class="a">${c.r}</div>`:`<div class="h">Antippen zum Umdrehen</div>`}
+    </div>
+    <div class="acts">
+      ${S.auf?`<button class="btn l" type="button" data-bew="0">Nochmal</button><button class="btn" type="button" data-bew="1">Gekonnt</button>`
+             :`<button class="btn" type="button" id="flip">Umdrehen</button>`}
+      <button class="btn l" type="button" data-skip="1">Weiter</button>
+    </div>
+    <p class="meta" style="margin-top:22px"><button class="back" type="button" id="reset" style="margin:0">Fortschritt zurücksetzen</button></p>`
+    :`<div class="empty">Für dieses Modul gibt es noch keine Karten.</div>`}
+  </div>`;
+}
+
+/* ====================== SUCHE ====================== */
+function vSuche(){
+  const q = S.q.toLowerCase();
+  const tt = WERKZEUGE.filter(t=>(t.n+" "+t.kurz+" "+t.wf+" "+t.s.join(" ")+" "+t.kat).toLowerCase().includes(q));
+  const mm = MODULE.filter(m=>(m.n+" "+m.k+" "+m.t.map(t=>t.h+" "+t.p.join(" ")).join(" ")).toLowerCase().includes(q));
+  const pp = S.projekte.filter(p=>(p.titel+" "+(p.problem||"")+" "+(p.loesung||"")+" "+(p.erkenntnis||"")).toLowerCase().includes(q));
+  const tot = tt.length+mm.length+pp.length;
+  return `<div class="hero"><h1>Suche</h1><p>${tot} Treffer für „${esc(S.q)}“</p></div>
+  ${!tot?`<div class="empty">Nichts gefunden. Versuch es mit einem anderen Begriff.</div>`:""}
+  ${mm.length?`<div class="chips" style="margin-bottom:8px">${mm.map(m=>`<button class="chip" type="button" data-mod="${m.k}" style="${semVar(m.s)}">${esc(m.n)}</button>`).join("")}</div>`:""}
+  ${pp.length?`<div class="box" style="margin-top:14px">${pp.map(itemProjekt).join("")}</div>`:""}
+  ${tt.length?`<div class="mgrid">${tt.map(cardMethode).join("")}</div>`:""}`;
+}
+
+/* ====================== RENDER ====================== */
+function render(){
+  const v = view();
+  v.classList.toggle("wide", S.v==="netz" && S.q.trim().length<2);
+  if(S.q.trim().length>1){ v.innerHTML = vSuche(); return; }
+  switch(S.v){
+    case "methoden": v.innerHTML = vMethoden(); break;
+    case "methode":  v.innerHTML = vMethode(); { const t=toolById(S.id); if(t&&t.calc) mountCalc(t.calc); } break;
+    case "netz":     v.innerHTML = vNetz(); bindNetz(); break;
+    case "projekte": v.innerHTML = vProjekte(); break;
+    case "projekt":  v.innerHTML = vProjekt(); bindForm(); break;
+    case "lernen":   v.innerHTML = vLernen(); { const s=document.getElementById("lernmod"); if(s) s.onchange = e=>{ S.lernMod=e.target.value; S.li=0; S.auf=false; render(); }; } break;
+    default:         v.innerHTML = vUebersicht();
+  }
+}
+
+document.addEventListener("click", ev=>{
+  const b = ev.target.closest("button");
+  if(!b){ if(ev.target.closest("#flash") && !S.auf){ S.auf=true; render(); } return; }
+  const d = b.dataset;
+  if(d.gonetz){ NZ.map=d.gonetz; go("netz"); return; }
+  if(d.go){ S.entwurf=null; if(d.go==="methoden"){ S.mod=null; } go(d.go); return; }
+  if(d.mod){ S.mod=d.mod; S.kat="Alle"; go("methoden"); return; }
+  if(d.clearmod){ S.mod=null; render(); return; }
+  if(d.tool){ go("methode", d.tool); return; }
+  if(d.projekt){ S.entwurf=null; go("projekt", d.projekt); return; }
+  if(d.neu!=null){ S.entwurf=null; S.vorTool = d.neu!=="1"?d.neu:null; go("projekt","neu"); return; }
+  if(d.kat){ S.kat=d.kat; render(); return; }
+  if(d.netz){ NZ.map=d.netz; document.querySelectorAll("[data-netz]").forEach(x=>x.setAttribute("aria-selected", x.dataset.netz===d.netz)); const q=document.getElementById("nzq"); if(q) q.value=""; mountNetz(); return; }
+  if(d.nzsel!=null){ waehle(d.nzsel||null, true); return; }
+  if(d.pick){
+    syncForm();
+    const a = S.entwurf.tools || (S.entwurf.tools=[]);
+    const i = a.indexOf(d.pick); if(i>=0) a.splice(i,1); else a.push(d.pick);
+    document.getElementById("picked").innerHTML = pickedHtml();
+    document.getElementById("plist").innerHTML = plistHtml();
+    return;
+  }
+  if(d.bew!=null){ const c=S.karten[S.li]; if(c){ S.stat[c.id]= d.bew==="1"?1:0; store.saveLern(S.stat);} S.li=(S.li+1)%Math.max(1,S.karten.length); S.auf=false; render(); return; }
+  if(d.skip){ S.li=(S.li+1)%Math.max(1,S.karten.length); S.auf=false; render(); return; }
+  if(b.id==="flip"){ S.auf=true; render(); return; }
+  if(b.id==="reset"){ if(confirm("Lernfortschritt zurücksetzen?")){ S.stat={}; store.saveLern({}); render(); } return; }
+  if(b.id==="themeBtn"){
+    const dunkelJetzt = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim().toLowerCase()==="#0f1416";
+    const neu = dunkelJetzt ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", neu);
+    try{ localStorage.setItem("hfwi-theme", neu); }catch(e){}
+  }
+});
+document.getElementById("q").addEventListener("input", e=>{ S.q=e.target.value; render(); });
+
+(async function(){
+  try{ const th=localStorage.getItem("hfwi-theme"); if(th) document.documentElement.setAttribute("data-theme", th); }catch(e){}
+  renderNav(); render();
+  await store.init();
+  S.projekte = await store.projekte();
+  S.stat = await store.lern();
+  render();
+})();
+</script>
+</body>
+</html>
