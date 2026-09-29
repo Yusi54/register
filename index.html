@@ -113,6 +113,9 @@ button{font:inherit; color:inherit}
 .steps li::before{content:counter(s); flex:none; width:24px; height:24px; border-radius:50%; background:var(--bg); color:var(--soft); font-size:12px; font-weight:700; display:grid; place-items:center; font-family:Archivo,sans-serif}
 .side .box{margin-bottom:14px}
 .side h3{font-size:13.5px; color:var(--soft); font-weight:600; margin-bottom:9px}
+.diag{width:100%; height:auto; display:block; overflow:visible}
+.herkunft b{display:block; font-size:16px; margin-bottom:2px}
+.herkunft p{margin:0}
 
 /* Formular */
 label{display:block; font-size:13px; color:var(--soft); margin:14px 0 5px; font-weight:500}
@@ -621,6 +624,328 @@ const WERKZEUGE = [
  wf:"Moderne Sicherheitsarchitektur statt reiner Perimeterschutz.",
  s:["Niemals vertrauen, immer prüfen","Identität als neue Grenze, MFA als Basis","Least Privilege, nur das Nötigste berechtigen","Segmentierung statt flaches Netz","Laufende Überwachung und Protokollierung"],m:["NETWOENG"]}
 ];
+
+/* ====================== HERKUNFT (Jahr & Urheber je Methode) ====================== */
+const HERKUNFT = {
+swot:{j:"um 1965–1970",w:"Wird meist Albert Humphrey (Stanford Research Institute) zugeschrieben; die genaue Urheberschaft ist in der Managementliteratur umstritten."},
+porter:{j:"1979",w:"Michael E. Porter, Harvard Business School, im Artikel „How Competitive Forces Shape Strategy“ (Harvard Business Review)."},
+bmc:{j:"2004 / 2010",w:"Alexander Osterwalder und Yves Pigneur, aus Osterwalders Dissertation, verbreitet durch das Buch „Business Model Generation“."},
+stgaller:{j:"1972, überarbeitet 2002",w:"Hans Ulrich, Universität St. Gallen; das „Neue St. Galler Management-Modell“ stammt von Johannes Rüegg-Stürm."},
+umweltsph:{j:"seit den 1990er-Jahren",w:"Teil des St. Galler Management-Modells, Universität St. Gallen."},
+stakeholder:{j:"1984",w:"Begriff und Ansatz geprägt durch R. Edward Freeman im Buch „Strategic Management: A Stakeholder Approach“."},
+nutzwert:{j:"1970",w:"Christoph Zangemeister, aus seiner Dissertation „Nutzwertanalyse in der Systemtechnik“."},
+bsc:{j:"1992",w:"Robert S. Kaplan und David P. Norton, Harvard Business Review."},
+risikomatrix:{j:"Mitte 20. Jh.",w:"Kein einzelner Urheber, Standardwerkzeug aus Versicherungs- und Ingenieurwesen, seit den 1980ern fest im Projektmanagement."},
+psp:{j:"ab 1957, als WBS 1968",w:"Entstanden im US-Verteidigungsministerium und der NASA (PERT-Programm der US Navy); als „Work Breakdown Structure“ 1968 formal definiert."},
+gantt:{j:"um 1910",w:"Henry L. Gantt, USA; ein ähnliches Diagramm entwickelte bereits 1896 der Pole Karol Adamiecki."},
+evm:{j:"1960er, Standard seit 1998",w:"Ursprung in der US Air Force und im US-Verteidigungsministerium; als Standard ANSI/EIA-748 1998 festgelegt."},
+hermes:{j:"1975",w:"Schweizerische Bundesverwaltung. IPMA als Vergleich: 1965 als „INTERNET“ gegründet, 1979 in IPMA umbenannt."},
+scrum:{j:"1995",w:"Ken Schwaber und Jeff Sutherland; der Name stammt aus dem Artikel „The New New Product Development Game“ von Takeuchi und Nonaka, 1986."},
+magdreieck:{j:"1969",w:"Wird Dr. Martin Barnes zugeschrieben, der das Zeit-Kosten-Qualität-Dreieck im Projektmanagement bekannt machte."},
+smart:{j:"1981",w:"George T. Doran, im Artikel „There’s a S.M.A.R.T. way to write management’s goals and objectives“."},
+gtd:{j:"2001",w:"David Allen, Buch „Getting Things Done“."},
+eisenhower:{j:"popularisiert 1989",w:"Das Zitat wird Dwight D. Eisenhower zugeschrieben; als Matrix bekannt gemacht durch Stephen Covey."},
+alpen:{j:"1980er-Jahre",w:"Lothar J. Seiwert, deutscher Zeitmanagement-Experte."},
+pareto:{j:"1896, als Regel 1940er",w:"Vilfredo Pareto (Einkommensverteilung in Italien); als „80/20-Regel“ fürs Management verallgemeinert durch Joseph M. Juran."},
+mindmap:{j:"1974",w:"Tony Buzan machte die Methode mit dem Buch „Use Your Head“ populär; radiale Diagramme gab es als Idee schon früher."},
+starfish:{j:"popularisiert um 2010",w:"In der Agile- und Scrum-Community verbreitet, unter anderem durch den Coach Patrick Kua; kein eindeutig belegter Erstautor."},
+organigramm:{j:"1854",w:"Als erstes bekanntes Organigramm gilt das Diagramm für die Eisenbahngesellschaft New York and Erie Railroad."},
+stellenb:{j:"frühes 20. Jh.",w:"Kein einzelner Urheber; wurzelt im Scientific Management von Frederick W. Taylor."},
+aufgabenanalyse:{j:"1962",w:"Erich Kosiol, deutscher Organisationstheoretiker, im Werk „Organisation der Unternehmung“."},
+raci:{j:"ab den 1970er-Jahren",w:"Ursprung nicht eindeutig belegt, seit den 1970ern in der Projektmanagement-Praxis verbreitet."},
+prozesslandkarte:{j:"1990er-Jahre",w:"Entstanden im Umfeld des Business Process Reengineering und der ARIS-Methode von August-Wilhelm Scheer."},
+swimlane:{j:"1990",w:"Geary Rummler und Alan Brache, Buch „Improving Performance“, daher auch „Rummler-Brache-Diagramm“."},
+epk:{j:"1992",w:"August-Wilhelm Scheer mit Gerhard Keller und Markus Nüttgens, Universität des Saarlandes, im Rahmen von ARIS."},
+turtle:{j:"verbreitet ab den 1980ern",w:"Kein einzelner Urheber; im Qualitätsmanagement verbreitet, oft im Umfeld von Philip Crosbys Qualitätslehre und späteren ISO-9001-Audits."},
+flussdiag:{j:"1921, für Software 1947",w:"Frank Gilbreth stellte 1921 die ersten Ablaufdiagramme vor; die heutige Notation für Software geht auf Herman Goldstine und John von Neumann zurück."},
+spaghetti:{j:"Mitte 20. Jh.",w:"Kein einzelner Urheber; wurzelt in den Bewegungsstudien von Frank und Lillian Gilbreth und im Toyota-Produktionssystem."},
+pdca:{j:"1930er, verbreitet ab 1950",w:"Walter A. Shewhart entwickelte den Kreislauf, W. Edwards Deming machte ihn ab 1950 in Japan bekannt (daher „Deming-Kreis“)."},
+ishikawa:{j:"1968 (entwickelt bereits 1943)",w:"Kaoru Ishikawa, Japan."},
+kaizen:{j:"1986",w:"Der Begriff wurde durch Masaaki Imai international bekannt; die Praxis wurzelt im Toyota-Produktionssystem der Nachkriegszeit."},
+lean:{j:"1988",w:"Der Begriff „Lean“ wurde von John Krafcik (MIT) geprägt; die Praxis dahinter ist das Toyota-Produktionssystem von Taiichi Ohno."},
+sixsigma:{j:"1986, verbreitet ab 1995",w:"Bill Smith, Ingenieur bei Motorola; durch Jack Welch bei General Electric ab 1995 bekannt gemacht."},
+prozesskenn:{j:"seit den 1980er/90er-Jahren",w:"Kein einzelner Urheber, Standardbegriff aus Prozess-Controlling und Qualitätsmanagement."},
+tqm:{j:"Grundlagen ab 1950, Begriff 1985",w:"Grundgedanken von W. Edwards Deming, Joseph Juran und Armand Feigenbaum; der Begriff „TQM“ wurde 1985 vom US-Marinekommando geprägt."},
+kotter:{j:"1996",w:"John P. Kotter, Harvard Business School, Buch „Leading Change“."},
+lewin:{j:"1947",w:"Kurt Lewin, Sozialpsychologe."},
+re:{j:"seit den 1970er/80er-Jahren",w:"Entwickelte sich als Teildisziplin des Software Engineering, kein einzelner Urheber."},
+userstory:{j:"Ende 1990er, Buch 2004",w:"Entstanden im Umfeld von Extreme Programming (Kent Beck); systematisiert durch Mike Cohn im Buch „User Stories Applied“."},
+usecase:{j:"1986, bekannt ab 1992",w:"Ivar Jacobson, ursprünglich in seiner Objectory-Methode, später Teil der UML."},
+moscow:{j:"1994",w:"Dai Clegg (Oracle UK), im Rahmen der Methode DSDM."},
+kano:{j:"1984",w:"Noriaki Kano, Japan."},
+erm:{j:"1976",w:"Peter Chen, im Artikel „The Entity-Relationship Model“."},
+sharepoint:{j:"2001",w:"Microsoft-Produkt, kein Erfinder im klassischen Sinn; erstmals 2001 veröffentlicht."},
+schulz:{j:"1981",w:"Friedemann Schulz von Thun, Buch „Miteinander reden 1“."},
+eisberg:{j:"Bild um 1900, für Kommunikation später übernommen",w:"Die Eisberg-Metapher für die Psyche stammt von Sigmund Freud; im 20. Jahrhundert von mehreren Autoren für Kommunikationsmodelle übernommen."},
+gfk:{j:"entwickelt ab den 1960ern, Buch 1999",w:"Marshall B. Rosenberg, US-Psychologe."},
+watzlawick:{j:"1967",w:"Paul Watzlawick mit Janet Beavin Bavelas und Don D. Jackson, Buch „Menschliche Kommunikation“."},
+prep:{j:"kein belegtes Ursprungsjahr",w:"Kein eindeutig belegter Urheber; verbreitete Technik aus Rhetorik- und Präsentationstraining, unter anderem über Toastmasters."},
+pyramid:{j:"ca. 1973, Buch 1987",w:"Barbara Minto, ehemalige McKinsey-Beraterin."},
+dasmodell:{j:"kein belegtes Ursprungsjahr",w:"Kein eindeutig belegter Urheber; ähnlich aufgebaut wie das ältere AIDA-Modell (Elias St. Elmo Lewis, 1898) aus der Werbepsychologie."},
+mehrabian:{j:"1967",w:"Albert Mehrabian, Psychologe, UCLA."},
+zuhoeren:{j:"1957",w:"Carl Rogers und Richard Farson, im Artikel „Active Listening“."},
+wissenstreppe:{j:"1998",w:"Klaus North, Buch „Wissensorientierte Unternehmensführung“."},
+seci:{j:"1995",w:"Ikujiro Nonaka und Hirotaka Takeuchi, Buch „The Knowledge-Creating Company“."},
+wissensbau:{j:"1997 / 1998",w:"Gilbert Probst, Steffen Raub und Kai Romhardt, Buch „Wissen managen“."},
+tom:{j:"seit den 1990ern verbreitet",w:"Kein einzelner Urheber; verwandt mit Harold Leavitts „Diamond-Modell“ (1965) aus der Organisationsforschung."},
+vuca:{j:"Ende 1980er, fürs Management ab den 2000ern",w:"Geprägt am US Army War College; für die Wirtschaft ab den frühen 2000er-Jahren popularisiert."},
+"kalk-handel":{j:"Jahrhunderte alt",w:"Klassische kaufmännische Rechentechnik ohne einzelnen Urheber, Teil der Handelsarithmetik."},
+"kalk-prod":{j:"frühes 20. Jh.",w:"Wurzelt in der deutschen Kostenrechnungstradition, massgeblich geprägt von Eugen Schmalenbach."},
+invest:{j:"1930, systematisiert ab 1951",w:"Grundlage: Irving Fisher, „The Theory of Interest“; als Kapitalbudgetierung systematisiert durch Joel Dean."},
+kennz:{j:"seit 1919",w:"Frühe Kennzahlenanalyse durch Alexander Wall in den USA; seither Standard der Bilanzanalyse ohne einzelnen Urheber."},
+geldfluss:{j:"Vorläufer 1908, Pflicht seit 1987",w:"Frühe Fondsrechnungen etwa bei William Morse Cole; in den USA seit 1987 verpflichtender Abschlussbestandteil (FASB 95)."},
+"stille-res":{j:"traditionell",w:"Kein einzelner Urheber, Ausdruck des Vorsichtsprinzips im Handelsrecht (HGB/OR)."},
+gewinnvert:{j:"gesetzlich geregelt",w:"Kein Erfinder; folgt dem schweizerischen Obligationenrecht (OR)."},
+kurvendisk:{j:"1660er–1680er",w:"Baut auf der Differentialrechnung von Isaac Newton und Gottfried Wilhelm Leibniz auf."},
+gewinnmax:{j:"1838, verfeinert 1890",w:"Grenzanalyse von Antoine Augustin Cournot; von Alfred Marshall zur modernen Grenzkostenregel verfeinert."},
+zinseszins:{j:"seit der Antike bekannt",w:"Kein moderner Erfinder; Zinseszinstabellen sind bereits aus der babylonischen Mathematik belegt."},
+subnetting:{j:"1985",w:"RFC 950 von Jeffrey Mogul und Jon Postel."},
+osi:{j:"1984, Vorarbeiten ab 1977",w:"International Organization for Standardization (ISO); massgeblich mitgeprägt durch Hubert Zimmermann."},
+agdlp:{j:"seit den späten 1990ern",w:"Microsoft-Empfehlung zu Active Directory, kein einzelner Erfinder."},
+raid:{j:"1987 / 1988",w:"David Patterson, Garth Gibson und Randy Katz, UC Berkeley."},
+backup:{j:"2005",w:"Peter Krogh, Fotograf, Buch „The DAM Book“."},
+rtorpo:{j:"seit den 1970er/80er-Jahren",w:"Kein einzelner Urheber, entstanden in der IT-Notfallplanung (Disaster Recovery)."},
+zerotrust:{j:"2010",w:"John Kindervag, Analyst bei Forrester Research."}
+};
+
+/* ====================== VISUAL (Diagramm-Spezifikation je Methode) ====================== */
+const VISUAL = {
+swot:{t:"grid",cols:2,rows:2,l:["Stärken","Schwächen","Chancen","Gefahren"],ax:["Intern → Extern","Positiv → Negativ"]},
+porter:{t:"radial",center:"Branche",l:["Neue Anbieter","Ersatzprodukte","Lieferanten","Abnehmer","Wettbewerber"]},
+bmc:{t:"grid",cols:3,rows:3,l:["Partner","Aktivitäten","Wertangebot","Kundenbeziehung","Kundensegmente","Ressourcen","Kanäle","Kostenstruktur","Einnahmen"]},
+stgaller:{t:"grid",cols:2,rows:2,l:["Umweltsphären","Anspruchsgruppen","Ordnungsmomente","Prozesse"]},
+umweltsph:{t:"grid",cols:4,rows:1,l:["Gesellschaft","Natur","Technologie","Wirtschaft"]},
+stakeholder:{t:"grid",cols:2,rows:2,l:["Eng führen","Zufriedenstellen","Informieren","Beobachten"],ax:["Interesse →","Einfluss ↑"]},
+nutzwert:{t:"seq",dir:"v",l:["Kriterien gewichten","Varianten bewerten","Punkte × Gewicht","Summen vergleichen"]},
+bsc:{t:"grid",cols:2,rows:2,l:["Finanzen","Kunden","Prozesse","Lernen & Entwicklung"]},
+risikomatrix:{t:"grid",cols:2,rows:2,l:["Vermeiden","Vermindern","Übertragen","Selber tragen"],ax:["Auswirkung →","Wahrscheinlichkeit ↑"]},
+psp:{t:"tree",root:"Projekt",l:["Teilprojekt A","Teilprojekt B","Arbeitspaket"]},
+gantt:{t:"seq",dir:"h",l:["AP 1","AP 2","AP 3","Meilenstein"]},
+evm:{t:"bars",l:[["PV Planwert",70],["EV Fertigstellungswert",55],["AC Ist-Kosten",65]]},
+hermes:{t:"seq",dir:"h",l:["Initialisierung","Konzept","Realisierung","Einführung"]},
+scrum:{t:"radial",cycle:true,center:"Sprint",l:["Planning","Daily","Review","Retrospektive"]},
+magdreieck:{t:"triangle3",l:["Zeit","Kosten","Qualität"]},
+smart:{t:"seq",dir:"h",l:["Spezifisch","Messbar","Attraktiv","Realistisch","Terminiert"]},
+gtd:{t:"seq",dir:"h",l:["Erfassen","Durchgehen","Organisieren","Erledigen"]},
+eisenhower:{t:"grid",cols:2,rows:2,l:["Sofort erledigen","Terminieren","Delegieren","Streichen"],ax:["Dringend →","Wichtig ↑"]},
+alpen:{t:"seq",dir:"v",l:["Aufgaben notieren","Länge schätzen","Pufferzeit einplanen","Prioritäten setzen","Nachkontrolle"]},
+pareto:{t:"bars",l:[["20 % Aufwand",20],["80 % Ergebnis",80]]},
+mindmap:{t:"radial",center:"Thema",l:["Ast 1","Ast 2","Ast 3","Ast 4"]},
+starfish:{t:"grid",cols:5,rows:1,l:["Beibehalten","Mehr davon","Weniger davon","Aufhören","Anfangen"]},
+organigramm:{t:"tree",root:"Geschäftsleitung",l:["Bereich A","Bereich B","Bereich C"]},
+stellenb:{t:"seq",dir:"v",l:["Stellenbezeichnung","Ziel der Stelle","Aufgaben","Kompetenzen","Verantwortung"]},
+aufgabenanalyse:{t:"seq",dir:"v",l:["Gesamtaufgabe","Zerlegen","Teilaufgaben","Synthese zu Stellen"]},
+raci:{t:"grid",cols:4,rows:1,l:["R","A","C","I"],note:"Responsible · Accountable · Consulted · Informed"},
+prozesslandkarte:{t:"grid",cols:1,rows:3,l:["Managementprozesse","Kernprozesse","Unterstützungsprozesse"]},
+swimlane:{t:"grid",cols:1,rows:3,l:["Kunde","Verkauf","Logistik"]},
+epk:{t:"seq",dir:"v",l:["Ereignis","Funktion","Ereignis","Funktion"]},
+turtle:{t:"radial",center:"Prozess",l:["Input","Output","Womit","Mit wem","Wie","Kennzahlen"]},
+flussdiag:{t:"seq",dir:"v",l:["Start","Tätigkeit","Entscheidung","Ende"]},
+spaghetti:{t:"radial",center:"Arbeitsplatz",l:["Weg 1","Weg 2","Weg 3","Weg 4","Weg 5"]},
+pdca:{t:"radial",cycle:true,l:["Plan","Do","Check","Act"]},
+ishikawa:{t:"fishbone",head:"Problem",bones:["Mensch","Maschine","Material","Methode","Milieu","Messung"]},
+kaizen:{t:"radial",cycle:true,l:["Standard","Verbessern","Prüfen","Verankern"]},
+lean:{t:"seq",dir:"h",l:["Wert bestimmen","Wertstrom abbilden","Fluss herstellen","Pull statt Push"]},
+sixsigma:{t:"radial",cycle:true,l:["Define","Measure","Analyze","Improve","Control"]},
+prozesskenn:{t:"bars",l:[["Zeit",60],["Kosten",45],["Qualität",80]]},
+tqm:{t:"grid",cols:2,rows:2,l:["Kundenorientierung","Alle einbeziehen","Prozessorientierung","Stetige Verbesserung"]},
+kotter:{t:"seq",dir:"h",l:["Dringlichkeit","Koalition","Vision","Kommunizieren","Hindernisse räumen","Erfolge zeigen","Konsolidieren","Verankern"]},
+lewin:{t:"radial",cycle:true,l:["Unfreeze","Change","Refreeze"]},
+re:{t:"seq",dir:"v",l:["Erheben","Dokumentieren","Prüfen","Verwalten"]},
+userstory:{t:"seq",dir:"h",l:["Als Rolle …","möchte ich Ziel …","damit Nutzen …"]},
+usecase:{t:"radial",center:"Akteur",l:["Standardablauf","Alternativablauf","Fehlerablauf"]},
+moscow:{t:"grid",cols:4,rows:1,l:["Must","Should","Could","Won't"]},
+kano:{t:"bars",l:[["Basismerkmale",33],["Leistungsmerkmale",33],["Begeisterungsmerkmale",34]]},
+erm:{t:"seq",dir:"h",l:["Entität","Beziehung","Entität"]},
+sharepoint:{t:"grid",cols:2,rows:2,l:["Bibliothek","Liste","Seite","Navigation"]},
+schulz:{t:"grid",cols:2,rows:2,l:["Sachinhalt","Selbstoffenbarung","Beziehung","Appell"]},
+eisberg:{t:"iceberg",top:["Fakten","Zahlen"],bottom:["Gefühle","Werte","Erfahrungen","Beziehungen"]},
+gfk:{t:"seq",dir:"v",l:["Beobachtung","Gefühl","Bedürfnis","Bitte"]},
+watzlawick:{t:"seq",dir:"v",l:["Nicht nicht kommunizieren","Inhalt & Beziehung","Interpunktion","Digital & analog","Symmetrisch/komplementär"]},
+prep:{t:"seq",dir:"h",l:["Point","Reason","Example","Point"]},
+pyramid:{t:"tree",root:"Kernaussage",l:["Argument 1","Argument 2","Argument 3"]},
+dasmodell:{t:"seq",dir:"h",l:["Desire","Action","Satisfaction"]},
+mehrabian:{t:"bars",l:[["Wort",7],["Stimme",38],["Mimik",55]]},
+zuhoeren:{t:"seq",dir:"v",l:["Ausreden lassen","Zusammenfassen","Nachfragen","Bestätigen"]},
+wissenstreppe:{t:"seq",dir:"v",l:["Zeichen","Daten","Information","Wissen","Können","Kompetenz"]},
+seci:{t:"radial",cycle:true,l:["Sozialisation","Externalisierung","Kombination","Internalisierung"]},
+wissensbau:{t:"grid",cols:3,rows:2,l:["Wissensziele","Identifikation","Erwerb","Entwicklung","Verteilung","Nutzung"]},
+tom:{t:"grid",cols:3,rows:1,l:["Technology","Organisation","Mensch"]},
+vuca:{t:"grid",cols:2,rows:2,l:["Volatil","Unsicher","Komplex","Mehrdeutig"]},
+"kalk-handel":{t:"seq",dir:"v",l:["Einkaufspreis","– Rabatt / Skonto","+ Bezugskosten","Einstandspreis","+ Gewinnzuschlag","Verkaufspreis"]},
+"kalk-prod":{t:"seq",dir:"v",l:["Einzelkosten","+ Gemeinkosten","Herstellkosten","+ Verwaltung/Vertrieb","Selbstkosten"]},
+invest:{t:"seq",dir:"v",l:["Rückflüsse abzinsen","– Anschaffungswert","Kapitalwert"]},
+kennz:{t:"grid",cols:2,rows:2,l:["Liquidität","Rentabilität","Finanzierung","Intensität"]},
+geldfluss:{t:"seq",dir:"h",l:["Betrieb","Investition","Finanzierung"]},
+"stille-res":{t:"seq",dir:"h",l:["Interner Wert","Stille Reserve","Bilanzwert"]},
+gewinnvert:{t:"seq",dir:"v",l:["Bilanzgewinn","Gesetzliche Reserve","Dividende","Gewinnvortrag"]},
+kurvendisk:{t:"curve",shape:"parabola",markLabel:"Hoch-/Wendepunkt"},
+gewinnmax:{t:"curve",shape:"parabola",markLabel:"Gewinnmaximum"},
+zinseszins:{t:"curve",shape:"exp",markLabel:"Exponentielles Wachstum"},
+subnetting:{t:"grid",cols:4,rows:1,l:["Netzadresse","Host","Host","Broadcast"]},
+osi:{t:"seq",dir:"v",l:["7 Anwendung","6 Darstellung","5 Sitzung","4 Transport","3 Vermittlung","2 Sicherung","1 Bitübertragung"]},
+agdlp:{t:"seq",dir:"h",l:["Account","Globale Gruppe","Domänenlokale Gruppe","Berechtigung"]},
+raid:{t:"grid",cols:5,rows:1,l:["RAID 0","RAID 1","RAID 5","RAID 6","RAID 10"]},
+backup:{t:"grid",cols:3,rows:1,l:["3 Kopien","2 Medien","1 ausser Haus"]},
+rtorpo:{t:"seq",dir:"h",l:["Ausfall","RTO: Wiederherstellung","RPO: Datenverlust"]},
+zerotrust:{t:"radial",center:"Nie vertrauen",l:["Identität prüfen","Least Privilege","Segmentierung","Überwachung"]}
+};
+
+WERKZEUGE.forEach(t=>{ if(HERKUNFT[t.id]) Object.assign(t, HERKUNFT[t.id]); if(VISUAL[t.id]) t.vis = VISUAL[t.id]; });
+
+/* ====================== DIAGRAMM-RENDERER ====================== */
+function diagSVG(v){
+  if(!v) return "";
+  const W=520;
+  const colr = i => NETZFARBEN[i%NETZFARBEN.length];
+  const box = (x,y,w,h,txt,i,fs) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="8" fill="${colr(i)}" fill-opacity="0.14" stroke="${colr(i)}" stroke-opacity="0.5"/>
+    <foreignObject x="${x+4}" y="${y+2}" width="${w-8}" height="${h-4}"><div xmlns="http://www.w3.org/1999/xhtml" style="display:flex;align-items:center;justify-content:center;text-align:center;height:100%;word-break:break-word;overflow-wrap:break-word;font:${fs||12}px Archivo,sans-serif;font-weight:600;color:var(--ink);line-height:1.2">${esc(txt)}</div></foreignObject>`;
+  const arrow = (x1,y1,x2,y2) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="var(--soft)" stroke-width="1.5" marker-end="url(#arr)"/>`;
+  const defs = `<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--soft)"/></marker></defs>`;
+
+  if(v.t==="grid"){
+    const n=v.l.length, cols=v.cols, rows=v.rows||Math.ceil(n/cols);
+    const gap=8, pad=10, H = rows*70 + (v.ax?30:0) + pad*2;
+    const cw=(W-pad*2-gap*(cols-1))/cols, ch=70;
+    let inner="";
+    v.l.forEach((txt,i)=>{
+      const c=i%cols, r=Math.floor(i/cols);
+      inner += box(pad+c*(cw+gap), pad+r*(ch+gap), cw, ch, txt, i, 12.5);
+    });
+    if(v.ax){
+      inner += `<text x="${W/2}" y="${H-8}" text-anchor="middle" font-size="11" fill="var(--soft)" font-family="Archivo,sans-serif">${esc(v.ax[0])}</text>`;
+      inner += `<text x="${pad}" y="${pad-2}" font-size="11" fill="var(--soft)" font-family="Archivo,sans-serif">${esc(v.ax[1])}</text>`;
+    }
+    if(v.note){ inner += `<text x="${W/2}" y="${H-8}" text-anchor="middle" font-size="11" fill="var(--soft)" font-family="Archivo,sans-serif">${esc(v.note)}</text>`; }
+    return `<svg class="diag" viewBox="0 0 ${W} ${H}" role="img" aria-label="Diagramm">${inner}</svg>`;
+  }
+
+  if(v.t==="seq"){
+    const n=v.l.length;
+    if(v.dir==="v"){
+      const bw=Math.min(300,W-40), bh=42, gap=22, pad=10;
+      const H = n*bh + (n-1)*gap + pad*2;
+      let inner="";
+      v.l.forEach((txt,i)=>{
+        const y=pad+i*(bh+gap);
+        inner += box(W/2-bw/2, y, bw, bh, txt, i, 12.5);
+        if(i<n-1) inner += arrow(W/2, y+bh+2, W/2, y+bh+gap-2);
+      });
+      return `<svg class="diag" viewBox="0 0 ${W} ${H}" role="img" aria-label="Ablauf">${defs}${inner}</svg>`;
+    }
+    const perRow = n>5?4:n, rows=Math.ceil(n/perRow);
+    const gap=26, pad=10, bh=54;
+    const bw=(W-pad*2-gap*(perRow-1))/perRow;
+    const H = rows*bh + (rows-1)*34 + pad*2;
+    let inner="";
+    v.l.forEach((txt,i)=>{
+      const c=i%perRow, r=Math.floor(i/perRow);
+      const x=pad+c*(bw+gap), y=pad+r*(bh+34);
+      inner += box(x,y,bw,bh,txt,i,12);
+      if(c<perRow-1 && i<n-1) inner += arrow(x+bw+2, y+bh/2, x+bw+gap-2, y+bh/2);
+    });
+    const H2 = H;
+    return `<svg class="diag" viewBox="0 0 ${W} ${H2}" role="img" aria-label="Ablauf">${defs}${inner}</svg>`;
+  }
+
+  if(v.t==="radial"){
+    const H=320, cx=W/2, cy=H/2, R=110;
+    const n=v.l.length;
+    let inner = defs;
+    if(v.cycle){
+      const pts = v.l.map((txt,i)=>{ const a=(i/n)*Math.PI*2 - Math.PI/2; return {x:cx+Math.cos(a)*R, y:cy+Math.sin(a)*R, txt}; });
+      pts.forEach((p,i)=>{ const q=pts[(i+1)%n];
+        const dx=q.x-p.x, dy=q.y-p.y, len=Math.hypot(dx,dy), ux=dx/len, uy=dy/len, rad=44;
+        inner += arrow(p.x+ux*rad, p.y+uy*rad, q.x-ux*rad, q.y-uy*rad);
+      });
+      pts.forEach((p,i)=>{ inner += `<circle cx="${p.x}" cy="${p.y}" r="40" fill="${colr(i)}" fill-opacity="0.16" stroke="${colr(i)}" stroke-opacity="0.6"/>
+        <foreignObject x="${p.x-38}" y="${p.y-38}" width="76" height="76"><div xmlns="http://www.w3.org/1999/xhtml" style="display:flex;align-items:center;justify-content:center;text-align:center;height:100%;word-break:break-word;overflow-wrap:break-word;font:600 12px Archivo,sans-serif;color:var(--ink)">${esc(p.txt)}</div></foreignObject>`; });
+      if(v.center) inner += `<text x="${cx}" y="${cy+4}" text-anchor="middle" font-size="13" font-weight="700" fill="var(--soft)" font-family="Archivo,sans-serif">${esc(v.center)}</text>`;
+    } else {
+      v.l.forEach((txt,i)=>{
+        const a=(i/n)*Math.PI*2 - Math.PI/2;
+        const x=cx+Math.cos(a)*R, y=cy+Math.sin(a)*R;
+        inner += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="var(--line)" stroke-width="1.5"/>`;
+        inner += `<circle cx="${x}" cy="${y}" r="44" fill="${colr(i)}" fill-opacity="0.16" stroke="${colr(i)}" stroke-opacity="0.6"/>
+        <foreignObject x="${x-42}" y="${y-42}" width="84" height="84"><div xmlns="http://www.w3.org/1999/xhtml" style="display:flex;align-items:center;justify-content:center;text-align:center;height:100%;word-break:break-word;overflow-wrap:break-word;font:600 11px Archivo,sans-serif;color:var(--ink)">${esc(txt)}</div></foreignObject>`;
+      });
+      inner += `<circle cx="${cx}" cy="${cy}" r="46" fill="var(--ink)"/>
+        <foreignObject x="${cx-42}" y="${cy-42}" width="84" height="84"><div xmlns="http://www.w3.org/1999/xhtml" style="display:flex;align-items:center;justify-content:center;text-align:center;height:100%;font:700 12px Archivo,sans-serif;color:var(--bg)">${esc(v.center||"")}</div></foreignObject>`;
+    }
+    return `<svg class="diag" viewBox="0 0 ${W} ${H}" role="img" aria-label="Übersicht">${inner}</svg>`;
+  }
+
+  if(v.t==="triangle3"){
+    const H=260, cx=W/2, cy=130, R=95;
+    const pts = v.l.map((txt,i)=>{ const a=(i/3)*Math.PI*2 - Math.PI/2; return {x:cx+Math.cos(a)*R, y:cy+Math.sin(a)*R, txt}; });
+    let inner = `<polygon points="${pts.map(p=>p.x+","+p.y).join(" ")}" fill="var(--ink)" fill-opacity="0.06" stroke="var(--line)"/>`;
+    pts.forEach((p,i)=>{ inner += `<circle cx="${p.x}" cy="${p.y}" r="42" fill="${colr(i)}" fill-opacity="0.18" stroke="${colr(i)}" stroke-opacity="0.6"/>
+      <foreignObject x="${p.x-40}" y="${p.y-40}" width="80" height="80"><div xmlns="http://www.w3.org/1999/xhtml" style="display:flex;align-items:center;justify-content:center;text-align:center;height:100%;word-break:break-word;overflow-wrap:break-word;font:700 13px Archivo,sans-serif;color:var(--ink)">${esc(p.txt)}</div></foreignObject>`; });
+    return `<svg class="diag" viewBox="0 0 ${W} ${H}" role="img" aria-label="Dreieck">${inner}</svg>`;
+  }
+
+  if(v.t==="tree"){
+    const n=v.l.length, H=200, pad=10, cw=(W-pad*2)/n;
+    let inner = box(W/2-90,10,180,42,v.root,7,13);
+    v.l.forEach((txt,i)=>{
+      const x=pad+i*cw, y=110;
+      inner += `<line x1="${W/2}" y1="52" x2="${x+cw/2}" y2="${y}" stroke="var(--line)" stroke-width="1.5"/>`;
+      inner += box(x+6, y, cw-12, 42, txt, i, 12);
+    });
+    return `<svg class="diag" viewBox="0 0 ${W} ${H}" role="img" aria-label="Hierarchie">${inner}</svg>`;
+  }
+
+  if(v.t==="fishbone"){
+    const H=240, spineY=130, bones=v.bones, n=bones.length;
+    let inner = `<line x1="30" y1="${spineY}" x2="${W-90}" y2="${spineY}" stroke="var(--ink)" stroke-width="2" marker-end="url(#arr)"/>${defs}`;
+    inner += box(W-84,spineY-24,74,48,v.head,6,12);
+    bones.forEach((b,i)=>{
+      const x = 60 + i*((W-160)/(n-1));
+      const up = i%2===0;
+      const y2 = up? spineY-70 : spineY+70;
+      inner += `<line x1="${x}" y1="${spineY}" x2="${x+ (up?26:26)}" y2="${y2}" stroke="var(--soft)" stroke-width="1.5"/>`;
+      inner += `<foreignObject x="${x-34}" y="${up?y2-30:y2+4}" width="100" height="30"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center;font:600 12px Archivo,sans-serif;color:var(--ink)">${esc(b)}</div></foreignObject>`;
+    });
+    return `<svg class="diag" viewBox="0 0 ${W} ${H}" role="img" aria-label="Ishikawa-Diagramm">${inner}</svg>`;
+  }
+
+  if(v.t==="iceberg"){
+    const H=260;
+    let inner = `<line x1="0" y1="90" x2="${W}" y2="90" stroke="var(--soft)" stroke-dasharray="4 4"/>`;
+    inner += `<polygon points="${W/2},18 ${W/2+42},90 ${W/2-42},90" fill="${colr(0)}" fill-opacity="0.22" stroke="${colr(0)}"/>`;
+    inner += `<polygon points="${W/2-30},90 ${W/2+30},90 ${W/2+130},250 ${W/2-130},250" fill="${colr(2)}" fill-opacity="0.16" stroke="${colr(2)}"/>`;
+    inner += `<foreignObject x="${W/2-70}" y="30" width="140" height="55"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center;font:600 12px Archivo,sans-serif;color:var(--ink)">${v.top.map(esc).join(" · ")}</div></foreignObject>`;
+    inner += `<foreignObject x="${W/2-125}" y="130" width="250" height="100"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center;font:600 12.5px Archivo,sans-serif;color:var(--ink);line-height:1.7">${v.bottom.map(esc).join(" · ")}</div></foreignObject>`;
+    return `<svg class="diag" viewBox="0 0 ${W} ${H}" role="img" aria-label="Eisbergmodell">${inner}</svg>`;
+  }
+
+  if(v.t==="bars"){
+    const n=v.l.length, H=n*44+20, max=Math.max(...v.l.map(x=>x[1]));
+    let inner="";
+    v.l.forEach(([txt,val],i)=>{
+      const y=10+i*44, bw=(val/max)*(W-190);
+      inner += `<text x="0" y="${y+18}" font-size="12.5" fill="var(--ink)" font-family="Archivo,sans-serif">${esc(txt)}</text>`;
+      inner += `<rect x="170" y="${y+4}" width="${bw}" height="20" rx="4" fill="${colr(i)}" fill-opacity="0.75"/>`;
+      inner += `<text x="${170+bw+8}" y="${y+18}" font-size="12" fill="var(--soft)" font-family="Archivo,sans-serif">${val}%</text>`;
+    });
+    return `<svg class="diag" viewBox="0 0 ${W} ${H}" role="img" aria-label="Balkendiagramm">${inner}</svg>`;
+  }
+
+  if(v.t==="curve"){
+    const H=220, pad=30;
+    let path, mark;
+    if(v.shape==="parabola"){ path = `M ${pad} ${H-pad} Q ${W/2} ${pad-10} ${W-pad} ${H-pad}`; mark={x:W/2,y:(H-10)/2}; }
+    else { path = `M ${pad} ${H-pad} C ${W*0.5} ${H-pad}, ${W*0.7} ${H*0.4}, ${W-pad} ${pad}`; mark={x:W-pad,y:pad}; }
+    let inner = `<line x1="${pad}" y1="${H-pad}" x2="${W-pad}" y2="${H-pad}" stroke="var(--line)"/>
+      <line x1="${pad}" y1="${H-pad}" x2="${pad}" y2="${pad}" stroke="var(--line)"/>
+      <path d="${path}" fill="none" stroke="var(--acc)" stroke-width="2.5"/>
+      <circle cx="${mark.x}" cy="${mark.y}" r="5" fill="var(--acc)"/>
+      <text x="${mark.x}" y="${mark.y-12}" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)" font-family="Archivo,sans-serif">${esc(v.markLabel||"")}</text>`;
+    return `<svg class="diag" viewBox="0 0 ${W} ${H}" role="img" aria-label="Funktionsgraf">${inner}</svg>`;
+  }
+
+  return "";
+}
 
 /* ====================== WISSENSNETZ DATEN ====================== */
 /* Themen: [Name, Methoden-ID oder "", Kurzbeschrieb falls keine Methode] */
@@ -1309,7 +1634,7 @@ function vMethoden(){
 function cardMethode(t){
   return `<button class="mcard" type="button" data-tool="${t.id}" style="${semVar(toolSem(t))}">
     <h4>${esc(t.n)}</h4><p>${esc(t.kurz)}</p>
-    <div class="ft"><span>${esc(t.kat)}</span>${t.calc?'<span class="rk">Rechner</span>':""}</div></button>`;
+    <div class="ft"><span>${esc(t.kat)}${t.j?" · "+esc(t.j):""}</span>${t.calc?'<span class="rk">Rechner</span>':""}</div></button>`;
 }
 
 function vMethode(){
@@ -1321,11 +1646,13 @@ function vMethode(){
   <div class="hero"><h1>${esc(t.n)}</h1><p>${esc(t.kurz)}</p></div>
   <div class="det">
     <div>
+      ${t.vis?`<div class="box" style="margin-bottom:14px"><h3>Auf einen Blick</h3>${diagSVG(t.vis)}</div>`:""}
       ${t.calc?`<div class="box" style="margin-bottom:14px"><h3>Rechnen</h3><div id="calc"></div></div>`:""}
       <div class="box"><h3>So gehst du vor</h3><ol class="steps serif">${t.s.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></div>
     </div>
     <aside class="side">
       <div class="box"><h3>Wofür</h3><p class="serif" style="margin:0;font-size:15.5px">${esc(t.wf)}</p></div>
+      ${t.j||t.w?`<div class="box herkunft"><h3>Herkunft</h3><b>${esc(t.j||"")}</b><p class="serif" style="font-size:14.5px">${esc(t.w||"")}</p></div>`:""}
       <div class="box"><h3>Gelernt in</h3><div class="chips">${mods.map(m=>`<button class="chip" type="button" data-mod="${m.k}">${esc(m.n)}</button>`).join("")}</div></div>
       <div class="box"><h3>Bei dir angewendet</h3>
         ${proj.length? proj.map(itemProjekt).join("")
