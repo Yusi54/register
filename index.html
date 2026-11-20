@@ -1446,7 +1446,7 @@ const store = {
   async init(){
     try{
       if(window.claude && claude.use){
-        const d = await claude.use("db");
+        const d = await Promise.race([claude.use("db"), new Promise(r=>setTimeout(()=>r(null), 4000))]);
         if(d){ this.db = d; this.mode = "synchron"; }
       }
     }catch(e){ }
