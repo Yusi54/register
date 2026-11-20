@@ -2408,7 +2408,8 @@ function icsAktion(a){
   if(a==="copy"){
     const url="https://"+ICS_PFAD;
     const ok=()=>hinweis("Link kopiert. Im Kalender unter «Per URL abonnieren» einfügen.");
-    if(navigator.clipboard) navigator.clipboard.writeText(url).then(ok, ()=>prompt("Abo-Link:", url)); else prompt("Abo-Link:", url);
+    const zeig=()=>hinweis("Abo-Link: "+url);
+    if(navigator.clipboard) navigator.clipboard.writeText(url).then(ok, zeig); else zeig();
   } else {
     try{
       const u=URL.createObjectURL(new Blob([icsText()],{type:"text/calendar"})), l=document.createElement("a");
@@ -2552,7 +2553,10 @@ function klickNeu(b,d){
   if(d.rate!=null){ qBewerte(Number(d.rate)); return true; }
   if(d.qnav){ qNav(Number(d.qnav)); return true; }
   if(b.id==="qflip"){ qDreh(); return true; }
-  if(b.id==="qreset"){ if(confirm("Fortschritt dieses Stapels zurücksetzen?")){ DECKS[S.tr.deck].k.forEach(c=>{ delete S.stat[c.id]; }); store.saveLern(S.stat); trStart(S.tr.deck); render(); } return true; }
+  if(b.id==="qreset"){
+    if(b.dataset.sicher){ DECKS[S.tr.deck].k.forEach(c=>{ delete S.stat[c.id]; }); store.saveLern(S.stat); trStart(S.tr.deck); render(); hinweis("Stapel zurückgesetzt."); }
+    else { b.dataset.sicher="1"; b.textContent="Wirklich zurücksetzen? Nochmals antippen"; }
+    return true; }
   return false;
 }
 document.addEventListener("keydown", ev=>{
