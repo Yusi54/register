@@ -205,6 +205,170 @@ td.n{text-align:right; font-variant-numeric:tabular-nums}
   .nzpanel{position:static; max-height:none}
   .netz{height:62vh; min-height:400px}
 }
+
+/* ====================== TERMINE, PRÜFUNGEN, TRAINER ====================== */
+[hidden]{display:none!important}
+.top{background:color-mix(in srgb,var(--bg) 80%,transparent); -webkit-backdrop-filter:saturate(1.4) blur(14px); backdrop-filter:saturate(1.4) blur(14px)}
+.tabs{overflow-x:auto; scrollbar-width:none; min-width:0}
+.tabs::-webkit-scrollbar{display:none}
+.top .srch{width:150px}
+.fc{--fct:color-mix(in srgb,var(--fc) 13%,var(--card)); --fci:color-mix(in srgb,var(--fc) 72%,var(--ink))}
+.kicker{font-size:12px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--fci,var(--soft)); display:flex; align-items:center; gap:8px}
+.sech{font-size:20px; font-weight:800; margin:34px 0 14px}
+.sech small{font-weight:400; color:var(--soft); font-size:14px; margin-left:8px}
+
+/* Als Nächstes */
+.now{position:relative; overflow:hidden; display:grid; grid-template-columns:1fr auto; gap:22px; align-items:center; border-radius:24px; padding:26px 28px; margin-bottom:26px; border:1px solid color-mix(in srgb,var(--fc) 30%,var(--line)); background:
+  radial-gradient(120% 140% at 0% 0%, color-mix(in srgb,var(--fc) 26%,transparent), transparent 58%),
+  radial-gradient(90% 120% at 100% 100%, color-mix(in srgb,var(--fc2,var(--fc)) 22%,transparent), transparent 60%),
+  var(--card)}
+.now::after{content:""; position:absolute; right:-70px; top:-90px; width:260px; height:260px; border-radius:50%; background:color-mix(in srgb,var(--fc) 20%,transparent); filter:blur(46px); pointer-events:none; animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(-50px,40px) scale(1.15)}}
+.now>*{position:relative; z-index:1}
+.now h2{font-size:clamp(24px,3.4vw,34px); font-weight:800; margin:8px 0 6px}
+.now h2 span{color:var(--fci); font-weight:700}
+.now .now-m{font-weight:600; font-variant-numeric:tabular-nums}
+.now p{color:var(--soft); margin:8px 0 0; max-width:60ch}
+.now .acts{margin-top:16px}
+.live{width:9px; height:9px; border-radius:50%; background:#E5484D; box-shadow:0 0 0 0 rgba(229,72,77,.6); animation:pulse 1.6s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(229,72,77,0)} 100%{box-shadow:0 0 0 0 rgba(229,72,77,0)}}
+.now-ex{display:flex; align-items:center; gap:14px; text-align:left; background:color-mix(in srgb,var(--card) 70%,transparent); border:1px solid var(--line); border-radius:18px; padding:14px 18px 14px 14px; cursor:pointer; max-width:300px}
+.now-ex:hover{border-color:var(--fci)}
+.now-ex b{display:block; font-size:15px; line-height:1.25}
+.now-ex small{color:var(--soft); font-size:12.5px}
+
+/* Countdown-Ring */
+.ring{position:relative; width:76px; height:76px; flex:none}
+.ring svg{width:100%; height:100%; transform:rotate(-90deg)}
+.ring circle{fill:none; stroke-width:7}
+.ring .bg{stroke:color-mix(in srgb,var(--fc) 16%,var(--line))}
+.ring .fg{stroke:var(--fci); stroke-linecap:round; transition:stroke-dashoffset .8s cubic-bezier(.2,.8,.2,1)}
+.ring div{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; line-height:1}
+.ring b{font-size:22px; font-weight:800; font-variant-numeric:tabular-nums}
+.ring span{font-size:10.5px; color:var(--soft); margin-top:3px; letter-spacing:.04em; text-transform:uppercase}
+
+/* Kalenderleiste */
+.calbar{display:flex; flex-wrap:wrap; gap:10px; align-items:center; background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:14px 16px; margin-bottom:18px}
+.calbar .txt{flex:1 1 260px; font-size:13.5px; color:var(--soft)}
+.calbar .txt b{color:var(--ink); display:block; font-size:15px}
+a.btn{text-decoration:none; display:inline-block}
+.months{display:flex; gap:12px; overflow-x:auto; padding-bottom:6px; margin-bottom:18px; scrollbar-width:thin}
+.month{flex:0 0 232px; background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:14px}
+.month h4{font-size:14px; margin-bottom:10px}
+.mgridc{display:grid; grid-template-columns:repeat(7,1fr); gap:2px; font-size:11.5px; text-align:center}
+.mgridc i{font-style:normal; color:var(--soft); padding-bottom:4px}
+.mday{position:relative; aspect-ratio:1; display:flex; align-items:center; justify-content:center; border-radius:8px; border:0; background:none; padding:0; color:var(--soft); font-variant-numeric:tabular-nums}
+button.mday{cursor:pointer; color:var(--ink); font-weight:700; background:color-mix(in srgb,var(--fc) 15%,transparent)}
+button.mday:hover{background:color-mix(in srgb,var(--fc) 30%,transparent)}
+.mday.ex{outline:2px solid var(--fci); outline-offset:-2px}
+.mday.heute{box-shadow:inset 0 0 0 2px var(--ink)}
+.mday.alt{opacity:.45}
+.mday u{position:absolute; bottom:3px; left:50%; transform:translateX(-50%); display:flex; gap:2px; text-decoration:none}
+.mday u s{width:4px; height:4px; border-radius:50%; background:var(--d)}
+
+/* Agenda */
+.week{margin-top:22px}
+.week>h3{font-size:12.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--soft); margin-bottom:8px; display:flex; gap:10px; align-items:center}
+.week>h3::after{content:""; flex:1; height:1px; background:var(--line)}
+.trow{display:grid; grid-template-columns:62px 1fr; gap:14px; align-items:stretch; margin-bottom:8px; scroll-margin-top:90px}
+.tdate{display:flex; flex-direction:column; align-items:center; justify-content:center; border-radius:14px; background:var(--card); border:1px solid var(--line); padding:8px 0; line-height:1.1}
+.tdate span{font-size:11.5px; color:var(--soft); text-transform:uppercase; letter-spacing:.05em}
+.tdate b{font-size:22px; font-weight:800; font-variant-numeric:tabular-nums}
+.trow.heute .tdate{background:var(--ink); border-color:var(--ink); color:var(--bg)}
+.trow.heute .tdate span{color:inherit; opacity:.75}
+.tcard{position:relative; background:var(--fct); border-radius:14px; padding:12px 16px 12px 20px; border:1px solid color-mix(in srgb,var(--fc) 22%,var(--line))}
+.tcard::before{content:""; position:absolute; left:7px; top:10px; bottom:10px; width:4px; border-radius:4px; background:var(--fci)}
+.tcard+.tcard{margin-top:6px}
+.tcard .tt{font-weight:700; display:flex; flex-wrap:wrap; gap:6px 10px; align-items:center}
+.tcard .tt em{font-style:normal; font-weight:500; color:var(--fci)}
+.tcard .tm{font-size:13.5px; color:var(--soft); font-variant-numeric:tabular-nums; margin-top:2px}
+.tcard .tth{font-size:14px; margin-top:6px}
+.trow.alt{opacity:.55}
+.bdg{font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:2px 8px; border-radius:99px; background:var(--fci); color:var(--card)}
+.bdg.l{background:none; color:var(--fci); border:1px solid currentColor}
+.tcard.ex{background:color-mix(in srgb,var(--fc) 22%,var(--card)); border-color:var(--fci)}
+
+/* Prüfungen */
+.pgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:14px}
+.pcard{background:var(--card); border:1px solid var(--line); border-radius:20px; padding:20px; display:flex; flex-direction:column; gap:12px; position:relative; overflow:hidden; transition:transform .15s, border-color .15s, box-shadow .15s}
+.pcard::before{content:""; position:absolute; inset:0 0 auto 0; height:5px; background:linear-gradient(90deg,var(--fci),color-mix(in srgb,var(--fc) 40%,transparent))}
+.pcard:hover{transform:translateY(-3px); border-color:color-mix(in srgb,var(--fc) 45%,var(--line)); box-shadow:0 14px 34px -18px color-mix(in srgb,var(--fc) 55%,transparent)}
+.pcard.vorbei{opacity:.55}
+.phead{display:flex; gap:14px; align-items:center}
+.phead h3{font-size:18px; margin:4px 0 3px}
+.facts{list-style:none; margin:0; padding:0; display:grid; gap:5px; font-size:14px}
+.facts li{display:grid; grid-template-columns:92px 1fr; gap:8px}
+.facts li span{color:var(--soft)}
+.pcard details{border-top:1px solid var(--line); padding-top:10px; font-size:14px}
+.pcard summary{cursor:pointer; font-weight:600; list-style:none; display:flex; justify-content:space-between}
+.pcard summary::after{content:"+"; color:var(--soft); font-weight:400}
+.pcard details[open] summary::after{content:"–"}
+.pcard details ul,.pcard details ol{margin:8px 0 0; padding-left:20px}
+.pcard details li{margin:3px 0}
+.pcard .acts{margin-top:auto; padding-top:4px}
+.dtile{display:flex; flex-direction:column; gap:8px; text-align:left; background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:16px; cursor:pointer; transition:transform .15s, border-color .15s}
+.dtile:hover{transform:translateY(-2px); border-color:var(--fci)}
+.dtile b{font-size:16px}
+.dtile small{color:var(--soft)}
+.seg{display:flex; height:8px; border-radius:99px; overflow:hidden; background:var(--line)}
+.seg i{display:block; height:100%; transition:width .4s}
+.seg .g{background:var(--ok)} .seg .u{background:#D9A21B} .seg .n{background:#D4583F}
+.legend{display:flex; flex-wrap:wrap; gap:6px 16px; font-size:13px; color:var(--soft); margin:8px 0 18px}
+.legend span::before{content:""; display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; background:var(--k)}
+
+/* Karteikarten-Trainer */
+.tr{max-width:760px; margin:0 auto}
+.qcard{perspective:1600px; cursor:pointer; margin-top:6px; outline:none}
+.qin{display:grid; transition:transform .55s cubic-bezier(.2,.75,.2,1); transform-style:preserve-3d}
+.qcard.is-flipped .qin{transform:rotateY(180deg)}
+.face{grid-area:1/1; -webkit-backface-visibility:hidden; backface-visibility:hidden; min-height:300px; border-radius:26px; padding:34px 30px 30px; display:flex; flex-direction:column; border:1px solid color-mix(in srgb,var(--fc) 28%,var(--line)); box-shadow:0 26px 50px -30px color-mix(in srgb,var(--fc) 60%,transparent); background:
+  radial-gradient(110% 90% at 100% 0%, color-mix(in srgb,var(--fc) 18%,transparent), transparent 60%), var(--card)}
+.face.qb{transform:rotateY(180deg); background:radial-gradient(110% 90% at 0% 0%, color-mix(in srgb,var(--fc) 14%,transparent), transparent 60%), var(--card)}
+.qtag{align-self:flex-start; font-size:11.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--fci); background:var(--fct); padding:4px 10px; border-radius:99px}
+.qq{font-size:clamp(20px,3vw,27px); font-weight:800; line-height:1.25; letter-spacing:-0.015em; margin:auto 0; padding:22px 0; text-wrap:balance}
+.qh{font-size:13px; color:var(--soft)}
+.qa{font-family:'Source Serif 4',Georgia,serif; font-size:17px; line-height:1.65; margin:auto 0; padding:18px 0 4px}
+.qa b{font-family:Archivo,sans-serif; font-weight:700; font-size:.95em}
+.rate{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
+.rate button{border-radius:16px; padding:13px 8px; font-weight:700; border:1px solid var(--line); background:var(--card); cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; transition:transform .1s}
+.rate button:active{transform:scale(.97)}
+.rate button small{font-weight:400; color:var(--soft); font-size:11.5px}
+.rate .r0{border-color:#D4583F; color:#D4583F} .rate .r1{border-color:#D9A21B; color:#B58512} .rate .r2{border-color:var(--ok); color:var(--ok)}
+.rate .r0:hover{background:color-mix(in srgb,#D4583F 12%,var(--card))} .rate .r1:hover{background:color-mix(in srgb,#D9A21B 14%,var(--card))} .rate .r2:hover{background:color-mix(in srgb,var(--ok) 12%,var(--card))}
+kbd{font:inherit; font-size:11px; border:1px solid var(--line); border-radius:5px; padding:0 5px; color:var(--soft)}
+.trbar{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; font-size:13.5px; color:var(--soft); margin:14px 0 4px}
+.lnk{background:none; border:0; padding:0; color:var(--soft); text-decoration:underline; cursor:pointer; font-size:13.5px}
+.lnk:hover{color:var(--ink)}
+.fertig{text-align:center; border-radius:26px; padding:44px 26px; background:radial-gradient(120% 100% at 50% 0%, color-mix(in srgb,var(--fc) 20%,transparent), transparent 62%), var(--card); border:1px solid var(--line)}
+.fertig h2{font-size:28px; font-weight:800; margin-bottom:8px}
+.fertig .acts{justify-content:center}
+
+/* Probeprüfung */
+.bridges{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:10px}
+.bridge{background:var(--fct); border-radius:var(--r); padding:14px 16px; font-size:14px}
+.bridge h4{font-size:12px; letter-spacing:.07em; text-transform:uppercase; color:var(--fci); margin-bottom:6px}
+.bridge .satz{font-weight:800; font-size:17px; line-height:1.25}
+.bridge .satz b{color:var(--fci)}
+.bridge p{margin:6px 0 0; color:var(--soft)}
+.qa-d{background:var(--card); border:1px solid var(--line); border-radius:var(--r); margin-top:10px; overflow:hidden}
+.qa-d summary{cursor:pointer; list-style:none; display:flex; align-items:center; gap:12px; padding:14px 16px; font-weight:700}
+.qa-d summary i{font-style:normal; width:28px; height:28px; border-radius:50%; background:var(--fci); color:var(--card); display:flex; align-items:center; justify-content:center; font-size:13px; flex:none}
+.qa-d summary span{margin-left:auto; font-weight:400; color:var(--soft); font-size:13px}
+.qa-b{padding:0 16px 16px; font-size:15px}
+.qa-b .frage{color:var(--soft); font-size:14px}
+.qa-b .kern{background:var(--fct); border-radius:var(--rs); padding:10px 12px; font-weight:600; margin:10px 0}
+.qa-b .model{font-family:'Source Serif 4',Georgia,serif; line-height:1.65}
+.qa-b h5{margin:12px 0 4px; font-size:12px; letter-spacing:.07em; text-transform:uppercase; color:var(--soft)}
+.qa-b ul{margin:0; padding-left:20px}
+
+@media (max-width:640px){
+  .now{grid-template-columns:1fr; padding:22px 20px}
+  .now-ex{max-width:none}
+  .trow{grid-template-columns:52px 1fr; gap:10px}
+  .face{min-height:260px; padding:26px 22px 24px}
+  .facts li{grid-template-columns:84px 1fr}
+}
+@media (prefers-reduced-motion:reduce){.now::after,.live{animation:none} .qin{transition:none}}
 </style>
 </head>
 <body>
@@ -1584,11 +1748,12 @@ const STATUS = ["Idee","Offen","Laufend","Fertig"];
 const KONTEXT = ["Arbeit","Studium","Verein","Privat"];
 
 let S = {v:"uebersicht", id:null, kat:"Alle", mod:null, q:"",
-         lernMod:"Alle", li:0, auf:false, karten:[], stat:{}, projekte:[], pickQ:""};
+         lernMod:"Alle", li:0, auf:false, karten:[], stat:{}, projekte:[], pickQ:"",
+         tf:"Alle", tAlt:false, tr:null};
 
-const NAV = [{v:"uebersicht",n:"Übersicht"},{v:"methoden",n:"Methoden"},{v:"netz",n:"Wissensnetz"},{v:"projekte",n:"Projekte"},{v:"lernen",n:"Lernen"}];
+const NAV = [{v:"uebersicht",n:"Übersicht"},{v:"termine",n:"Termine"},{v:"pruefungen",n:"Prüfungen"},{v:"methoden",n:"Methoden"},{v:"netz",n:"Wissensnetz"},{v:"projekte",n:"Projekte"},{v:"lernen",n:"Lernen"}];
 function renderNav(){
-  const aktiv = {methode:"methoden", projekt:"projekte"}[S.v] || S.v;
+  const aktiv = {methode:"methoden", projekt:"projekte", trainer:"pruefungen", probe:"pruefungen"}[S.v] || S.v;
   document.getElementById("nav").innerHTML = NAV.map(x=>
     `<button type="button" data-go="${x.v}" aria-current="${aktiv===x.v}">${x.n}</button>`).join("");
 }
@@ -1612,6 +1777,7 @@ function vUebersicht(){
     <h1>Hallo Yusi</h1>
     <p>Dein Studium an einem Ort. Tipp ein Modul an, um die Methoden daraus zu sehen.</p>
   </div>
+  ${nowCard(true)}
   <div class="nums">
     <div><b>${MODULE.length}</b><span>Module</span></div>
     <div><b>${WERKZEUGE.length}</b><span>Methoden</span></div>
@@ -1817,6 +1983,7 @@ function vLernen(){
   const gek = S.karten.filter(x=>(S.stat[x.id]||0)>0).length;
   return `
   <div class="hero"><h1>Lernen</h1><p>Karte antippen, Antwort prüfen, ehrlich bewerten.</p></div>
+  <div class="chips" style="margin-bottom:18px"><span class="meta" style="align-self:center">Auf eine Prüfung lernen:</span>${Object.keys(DECKS).map(k=>`<button class="chip fc" type="button" data-deck="${k}" style="${fcVar(DECKS[k].f)}">${esc(DECKS[k].n)}</button>`).join("")}</div>
   <div style="max-width:720px">
     <select id="lernmod" aria-label="Modul wählen">
       <option value="Alle">Alle Module</option>
@@ -1853,6 +2020,553 @@ function vSuche(){
   ${tt.length?`<div class="mgrid">${tt.map(cardMethode).join("")}</div>`:""}`;
 }
 
+/* ====================== TERMINE (Quelle: OpenOLAT «Termine» + Prüfungsplan) ====================== */
+/*TERMINE-START*/
+const STAND = "2026-11-20";
+const ORT = "Zimmer A503";
+const FACH = {
+  LEAD:{n:"Leadership", c:"#C2410C"},
+  INFW:{n:"Informations- und Wissensmanagement", kn:"Info- & Wissensmanagement", c:"#0F766E"},
+  BUSI:{n:"Business und ICT-Development", kn:"Business & ICT", c:"#4F46E5"},
+  CM:{n:"Change Management", c:"#BE185D"},
+  DSR:{n:"Datenschutzrecht", c:"#0369A1"},
+  AUFTR:{n:"Auftrittskompetenz", c:"#7C3AED"},
+  INNO:{n:"Innovationsmanagement", c:"#4D7C0F"},
+  HF:{n:"Klasse HFWI", c:"#64748B"}
+};
+/* [Datum, von, bis, Fach, Art (u Unterricht · p Prüfung · a Abgabe), Titel, Thema] */
+const TERMINE_ROH = [
+["2026-08-12","18:15","21:30","INFW","u","Block 01","Einführung · Daten, Information, Wissen · Lerntypen"],
+["2026-08-14","13:30","16:45","AUFTR","u","Block 1",""],
+["2026-08-14","17:15","20:30","CM","u","Einheit 1",""],
+["2026-08-19","18:15","21:30","BUSI","u","Block 1","Grundlagen Requirements Engineering"],
+["2026-08-21","13:30","16:45","AUFTR","u","Block 2",""],
+["2026-08-21","17:15","20:30","CM","u","Einheit 2",""],
+["2026-08-26","18:15","21:30","INFW","u","Block 02","Persönliches Wissensmanagement · Lerntheorien · Gehirn"],
+["2026-08-28","13:30","16:45","CM","u","Einheit 3",""],
+["2026-09-02","18:15","21:30","INFW","u","Block 03","Modelle: TOM, Wissenswürfel, Wissenstreppe, SECI, Wissensbausteine"],
+["2026-09-04","13:30","16:45","AUFTR","u","Block 3",""],
+["2026-09-09","18:15","21:30","BUSI","u","Block 2","Anforderungen erheben · KI im Requirements Engineering"],
+["2026-09-11","17:15","20:30","CM","u","Einheit 4",""],
+["2026-09-16","18:15","21:30","INFW","u","Block 04","Wissensinstrumente · Open Innovation · Crowdsourcing"],
+["2026-09-18","13:30","16:45","CM","u","Einheit 5",""],
+["2026-09-18","17:15","20:30","AUFTR","u","Block 4","Präsentationen"],
+["2026-09-23","18:15","21:30","BUSI","u","Block 3","Zertifikate im Vergleich · Konzeptvorgabe · KI verstehen"],
+["2026-09-25","13:30","16:45","CM","u","Einheit 6",""],
+["2026-10-21","18:15","21:30","BUSI","u","Block 4","Agile und Scrum · User Stories · Planning Poker"],
+["2026-11-04","18:15","21:30","LEAD","u","Block 1","Führungskompetenz: Selbstführung, Stress, Führungsstile"],
+["2026-11-06","13:30","16:45","DSR","u","Block 1",""],
+["2026-11-06","17:15","20:30","INFW","u","Block 05","Lernende Organisation · KVP · VUCA · Kick-off Transferarbeit"],
+["2026-11-11","18:15","21:30","LEAD","u","Block 2","Mitarbeiterführung 1: Motivation, Coaching, GROW-Modell"],
+["2026-11-13","13:30","16:45","DSR","u","Block 2",""],
+["2026-11-13","17:15","20:30","BUSI","u","Block 5","Scrum-Simulation: Fallstudie Reservationsportal, Sprint Review"],
+["2026-11-18","18:15","21:30","CM","u","Letzte Einheit","Präsentation Arbeitsauftrag · Abschluss"],
+["2026-11-20","13:30","16:45","INFW","u","Block 06","Wissensmanagement im Unternehmen · Xerox und Accenture · KPI · Balanced Scorecard · Probeprüfung"],
+["2026-11-20","17:15","20:30","LEAD","u","Block 3","Mitarbeiterführung 2: Delegieren"],
+["2026-11-25","18:15","21:30","LEAD","u","Block 4","Teamführung: Gruppendynamik, Schindler, Tuckman"],
+["2026-11-27","13:30","16:45","BUSI","u","Block 6","Arbeitsauftrag «Eigenes Konzept» (laut Vorjahr)"],
+["2026-11-27","17:15","20:30","INFW","u","Block 07","«Der Kunde» · Unternehmenskommunikation · Communities of Practice"],
+["2026-12-02","18:15","21:30","BUSI","u","Block 7","Beschaffung, Pflichtenheft, Evaluation, Nutzwertanalyse (laut Vorjahr)"],
+["2026-12-04","13:30","16:45","DSR","u","Block 3",""],
+["2026-12-04","17:15","20:30","INFW","p","Block 08 · Theorieprüfung (20 %)","Prüfungsstoff: Blöcke 01 bis 06 · danach Wissensmanagementsysteme"],
+["2026-12-09","18:15","21:30","LEAD","u","Block 5","Kommunikation (voraussichtlich)"],
+["2026-12-11","17:15","20:30","BUSI","u","Block 8","Requirements-Brainstorming, agile Ausschreibungen (laut Vorjahr)"],
+["2026-12-16","18:15","21:30","LEAD","u","Block 6","Konfliktmanagement 1 (voraussichtlich)"],
+["2026-12-18","13:30","16:45","INFW","u","Block 09","Datenmodelle · Data Mining · Informationsqualität"],
+["2026-12-18","17:15","20:30","BUSI","u","Block 9",""],
+["2027-01-06","18:15","21:30","LEAD","u","Block 7","Konfliktmanagement 2 (voraussichtlich)"],
+["2027-01-08","13:30","16:45","DSR","u","Block 4",""],
+["2027-01-08","17:15","20:30","BUSI","u","Block 10",""],
+["2027-01-09","23:00","","BUSI","a","Abgabe Konzept-Arbeit","Max. 10 Seiten PDF · Frist 22:00 UTC = 23:00 Schweizer Zeit"],
+["2027-01-10","23:59","","INFW","a","Abgabe Transferarbeit (80 %)","6 bis 10 Seiten PDF, per E-Mail an den Dozenten"],
+["2027-01-15","13:30","16:45","INNO","u","Einziger Termin","4 Lektionen"],
+["2027-01-15","17:15","20:30","INFW","u","Block 10","Recht: Datenschutz CH/EU, geistiges Eigentum · Modulabschluss"],
+["2027-01-27","18:15","19:45","CM","p","Schriftliche Prüfung","90 Minuten"],
+["2027-01-29","15:00","16:00","DSR","p","Schriftliche Prüfung","60 Minuten"],
+["2027-01-29","16:15","17:15","LEAD","p","Schriftliche Prüfung","60 Minuten"],
+["2027-02-08","18:00","19:00","HF","p","Nachprüfungen",""]
+];
+function icsText(){
+  const esc = s => String(s).replace(/\\/g,"\\\\").replace(/;/g,"\;").replace(/,/g,"\\,").replace(/\n/g,"\\n");
+  const fold = l => { const o=[]; while(l.length>73){ o.push(l.slice(0,73)); l=" "+l.slice(73); } o.push(l); return o.join("\r\n"); };
+  const dt = (d,t) => d.replace(/-/g,"")+"T"+t.replace(":","")+"00";
+  const plus = (t,min) => { const [h,m]=t.split(":").map(Number); const x=Math.min(h*60+m+min, 23*60+59); return String(Math.floor(x/60)).padStart(2,"0")+":"+String(x%60).padStart(2,"0"); };
+  const L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Register HFWI//Termine//DE","CALSCALE:GREGORIAN","METHOD:PUBLISH",
+    "X-WR-CALNAME:HFWI Schule","X-WR-TIMEZONE:Europe/Zurich","REFRESH-INTERVAL;VALUE=DURATION:PT12H","X-PUBLISHED-TTL:PT12H",
+    "BEGIN:VTIMEZONE","TZID:Europe/Zurich",
+    "BEGIN:STANDARD","DTSTART:19701025T030000","RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU","TZOFFSETFROM:+0200","TZOFFSETTO:+0100","TZNAME:CET","END:STANDARD",
+    "BEGIN:DAYLIGHT","DTSTART:19700329T020000","RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU","TZOFFSETFROM:+0100","TZOFFSETTO:+0200","TZNAME:CEST","END:DAYLIGHT",
+    "END:VTIMEZONE"];
+  TERMINE_ROH.forEach(([d,von,bis,f,art,t,th])=>{
+    const name = FACH[f].kn||FACH[f].n;
+    const pre = art==="p"?"PRÜFUNG ":art==="a"?"ABGABE ":"";
+    const start = art==="a" ? plus(von,-30) : von;
+    L.push("BEGIN:VEVENT",
+      "UID:"+d+"-"+f+"-"+art+"-"+von.replace(":","")+"@register-hfwi",
+      "DTSTAMP:"+STAND.replace(/-/g,"")+"T120000Z",
+      "DTSTART;TZID=Europe/Zurich:"+dt(d,start),
+      "DTEND;TZID=Europe/Zurich:"+dt(d, art==="a"?von:(bis||plus(von,60))),
+      "SUMMARY:"+esc(pre+name+" · "+t));
+    if(art!=="a" && f!=="HF") L.push("LOCATION:"+esc("BZBS Buchs, "+ORT));
+    if(th) L.push("DESCRIPTION:"+esc(th));
+    if(art!=="u") L.push("BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+esc(pre+name),"TRIGGER:-P7D","END:VALARM",
+                         "BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+esc(pre+name),"TRIGGER:-P1D","END:VALARM");
+    L.push("END:VEVENT");
+  });
+  L.push("END:VCALENDAR");
+  return L.map(fold).join("\r\n")+"\r\n";
+}
+/*TERMINE-END*/
+const ICS_PFAD = "raw.githubusercontent.com/Yusi54/register/HEAD/termine.ics";
+const TERMINE = TERMINE_ROH.map(([d,von,bis,f,art,t,th])=>({d,von,bis,f,art,t,th,
+  ts:new Date(d+"T"+von+":00"), te:new Date(d+"T"+(bis||von)+":00")}));
+
+/* ====================== PRÜFUNGEN & TRANSFERARBEITEN ====================== */
+const PRUEF = [
+  {id:"infw-theorie", f:"INFW", art:"Prüfung", n:"Theorieprüfung", d:"2026-12-04", von:"17:15", ort:ORT,
+   fakt:[["Gewicht","20 % der Modulnote"],["Dauer","im Block 08, Dauer offen"],["Hilfsmittel","beim Dozenten nachfragen"]],
+   stoffT:"Prüfungsstoff",
+   stoff:["Theorie auf den Folien, Block 1 bis 6","Verbunden mit Praxisanwendungen im eigenen Unternehmen","Schwerpunkte laut Probeprüfung: Information, Kompetenzen, Wissensarten, Open Innovation, Umweltdynamiken, Balanced Scorecard"],
+   deck:"infw", probe:true},
+  {id:"busi-konzept", f:"BUSI", art:"Abgabe", n:"Konzept-Arbeit", d:"2027-01-09", von:"23:00",
+   fakt:[["Umfang","max. 10 Seiten PDF inkl. Grafiken"],["Bewertung","Konzept oder Zertifizierung, die bessere Note zählt"],["Thema","frei wählbar, praxisnah"]],
+   stoffT:"Pflichtinhalte", ol:true,
+   stoff:["Executive Summary (½ bis 1 Seite): Ziel, Relevanz, Kernaussage","Rahmenbedingungen: Ausgangslage, Umfeld, Voraussetzungen, Zielgruppe, Stakeholder","Use Case(s): konkreter Ablauf und erwartetes Ergebnis, mit den gelernten Modellen dargestellt","Chancen und Risiken","Realisierungsplan: Zeitplan, Meilensteine, Ressourcen, Fortschrittskontrolle"]},
+  {id:"infw-transfer", f:"INFW", art:"Transferarbeit", n:"Transferarbeit Wissensmanagement", d:"2027-01-10", von:"23:59",
+   fakt:[["Gewicht","80 % der Modulnote"],["Umfang","6 bis 10 A4-Seiten Text, Schrift 10–12 Pt."],["Abgabe","als PDF per E-Mail an den Dozenten, Kopie an die Schulleitung (Adressen im Aufgabenblatt)"],["Bewertung","6 Kriterien à 4 Punkte = 24 Punkte"]],
+   stoffT:"Aufgabenstellung", ol:true,
+   stoff:["Persönliche Wissenslandkarte: Woher beziehst du Wissen, wo speicherst du es, wie teilst du es? Schnittstellen zwischen individuellem und organisationalem Wissen markieren",
+          "Analyse der Wissensspeicher im Unternehmen: Qualität bewerten (Struktur, Zugänglichkeit, Aktualität), mit dem TOM-Modell einordnen",
+          "Einarbeitung und Wissensweitergabe: Prozesse, Checklisten, Mentoring, Risiken, Verbesserungsvorschläge",
+          "Wissenslücken erkennen: Wo, warum, und welche Massnahmen helfen?",
+          "Schlussfolgerung: wichtigste Erkenntnisse und Nutzen eines systematischen Wissensmanagements"],
+   extraT:"Bewertungskriterien",
+   extra:["Wissenslandkarte klar und logisch aufgebaut","Analyse der Wissensspeicherung fundiert, kritisch, praxisnah","Einarbeitung und Wissenstransfer klar beschrieben, Vorschläge realistisch","Wissenslücken erkannt und reflektiert, Optimierungen begründet","Modelle (TOM, SECI, Wissenstreppe) korrekt angewendet und mit der Praxis verknüpft","Klar strukturiert, sprachlich präzise, Vorgaben eingehalten, Visualisierungen"]},
+  {id:"cm", f:"CM", art:"Prüfung", n:"Schriftliche Prüfung", d:"2027-01-27", von:"18:15", ort:ORT,
+   fakt:[["Gewicht","80 % (Onlinetest 20 %)"],["Dauer","90 Minuten"],["Hilfsmittel","Extended closed book: 1 A4-Blatt beidseitig, Taschenrechner"]],
+   stoffT:"Prüfungsstoff",
+   stoff:["Compendio «Change Management», Kapitel 1 bis 6","Veränderungskurve, Vier-Zimmer-Modell, Kotter, Lewin, ADKAR","Führungsrollen, Widerstand, Massnahmen im Team"], deck:"cm"},
+  {id:"dsr", f:"DSR", art:"Prüfung", n:"Schriftliche Prüfung", d:"2027-01-29", von:"15:00", ort:ORT,
+   fakt:[["Gewicht","80 % (Onlinetest 20 %)"],["Dauer","60 Minuten"],["Hilfsmittel","Extended closed book: 1 A4-Blatt beidseitig"]],
+   stoffT:"Prüfungsstoff", stoff:["Noch keine Unterlagen ausgewertet, Karten folgen"]},
+  {id:"lead", f:"LEAD", art:"Prüfung", n:"Schriftliche Prüfung", d:"2027-01-29", von:"16:15", ort:ORT,
+   fakt:[["Gewicht","80 % (Onlinetest 20 %)"],["Dauer","60 Minuten"],["Hilfsmittel","Extended closed book: 1 A4-Blatt beidseitig"]],
+   stoffT:"Prüfungsstoff",
+   stoff:["Führungskompetenz, Mitarbeiterführung 1 und 2, Teamführung","Kommunikation, Konfliktmanagement 1 und 2 (folgen noch)"], deck:"lead"},
+  {id:"nach", f:"HF", art:"Prüfung", n:"Nachprüfungen", d:"2027-02-08", von:"18:00", fakt:[["Für","nicht bestandene Prüfungen des 3. Semesters"]]}
+];
+const DECKS = {
+  infw:{f:"INFW", n:"Informations- und Wissensmanagement", sub:"Theorieprüfung am 04.12.", k:[
+{"id":"infw-01","t":"Information","f":"Wie wird aus Zeichen Wissen? Nenne die Stufen und was jeweils dazukommt.","r":"<b>Zeichen + Syntax</b> = Daten<br><b>Daten + Bedeutung</b> = Information<br><b>vernetzte Information + Erfahrung</b> = Wissen<br>Wissen lässt uns handeln."},
+{"id":"infw-02","t":"Information","f":"Definiere «Information» in einem Satz.","r":"Informationen sind <b>Daten mit Bedeutung</b>: geordnet, in einen Kontext gestellt und nützlich für eine Frage oder Entscheidung (wer, was, wo, wann, wie viel)."},
+{"id":"infw-03","t":"Information","f":"Warum ist «Information» schwer zu definieren?","r":"Die Definition variiert je nach <b>Fachgebiet, Sichtweise und Autor</b>, auch in der Wirtschaftsinformatik gibt es <b>keinen Konsens</b>. Einig ist man nur: Von Daten über Information zu Wissen braucht es mehrere Anreicherungsstufen."},
+{"id":"infw-04","t":"Information","f":"Dein Beispiel: Daten, Information und Wissen im Betrieb?","r":"<b>Daten:</b> «SRV-EWK01», «95 %»<br><b>Information:</b> Der Server der Einwohnerkontrolle einer Gemeinde ist zu 95 % voll, in etwa drei Tagen ist er voll.<br><b>Wissen:</b> Aus Erfahrung ein Ticket eröffnen und den Speicher erweitern, bevor die Gemeinde etwas merkt."},
+{"id":"infw-05","t":"Information","f":"Eselsbrücke für Daten, Information und Wissen?","r":"<b>Daten</b> = was steht da<br><b>Information</b> = was es bedeutet<br><b>Wissen</b> = was ich damit tue"},
+{"id":"infw-06","t":"Kompetenzen","f":"Nenne die vier Kompetenzarten und die Eselsbrücke.","r":"<b>Fach-, Methoden-, Selbst- und Sozialkompetenz</b><br>«<b>F</b>achmann <b>M</b>acht <b>S</b>eine <b>S</b>ache»"},
+{"id":"infw-07","t":"Kompetenzen","f":"Was ist Selbstkompetenz?","r":"Wie ich <b>mich selbst führe und motiviere</b>: Zeitmanagement, Belastbarkeit, Selbstreflexion, Lernbereitschaft."},
+{"id":"infw-08","t":"Kompetenzen","f":"Was ist Sozialkompetenz?","r":"Wie ich <b>mit anderen umgehe und zusammenarbeite</b>: Kommunikation, Teamfähigkeit, Konfliktfähigkeit, Führung."},
+{"id":"infw-09","t":"Kompetenzen","f":"Was ist Fachkompetenz?","r":"<b>Konkretes Wissen und Können in meinem Fachbereich</b>, bei dir z. B. Systemtechnik, Netzwerk und die Fachanwendungen der Gemeinden."},
+{"id":"infw-10","t":"Kompetenzen","f":"Was ist Methodenkompetenz?","r":"Wie ich <b>an Probleme herangehe und sie löse</b>: strukturiertes Vorgehen, Arbeits- und Lerntechnik, Projektmanagement, Präsentation."},
+{"id":"infw-11","t":"Kompetenzen","f":"Wie baust du eine Kompetenz-Antwort auf, damit sie zwei Punkte gibt?","r":"<b>1.</b> Kompetenz benennen und kurz erklären.<br><b>2.</b> Konkret sagen, <b>wie du sie einsetzt</b>: Situation aus deinem Alltag plus Nutzen."},
+{"id":"infw-12","t":"Kompetenzen","f":"Wozu dient ein Kompetenzportfolio?","r":"<b>Für dich:</b> Kompetenzen dokumentieren (Diplome, Kurse), Stärken und Lücken erkennen, Bewerbungen.<br><b>Fürs Unternehmen:</b> Kompetenzmatrix mehrerer Mitarbeitender, Abgleich des IST mit dem künftigen Bedarf."},
+{"id":"infw-13","t":"Wissensarten","f":"Implizites vs. explizites Wissen?","r":"<b>Implizit:</b> nur im Kopf, Erfahrung und Können, schwer in Worte zu fassen, nicht dokumentiert.<br><b>Explizit:</b> dokumentiert bzw. aufgeschrieben, etwa als Anleitung im Wiki, leicht weiterzugeben."},
+{"id":"infw-14","t":"Wissensarten","f":"Individuelles vs. kollektives Wissen?","r":"<b>Individuell:</b> gehört einer einzelnen Person.<br><b>Kollektiv:</b> wird vom Team bzw. der ganzen Organisation geteilt, z. B. gemeinsame Abläufe und Routinen."},
+{"id":"infw-15","t":"Wissensarten","f":"Internes vs. externes Wissen?","r":"<b>Intern:</b> stammt aus dem eigenen Unternehmen (Mitarbeitende, Erfahrungen, eigene Doku).<br><b>Extern:</b> kommt von aussen (Kunden, Hersteller, Partner, Hochschulen, Fachliteratur)."},
+{"id":"infw-16","t":"Wissensarten","f":"Aus welchem Modell stammen diese drei Gegensatzpaare?","r":"Aus dem <b>Wissenswürfel</b> von Klaus North (2002)."},
+{"id":"infw-17","t":"Wissensarten","f":"Welche drei Ziele verfolgt ein Unternehmen mit dem Wissenswürfel?","r":"<b>Implizit → explizit:</b> Erfahrungen dokumentieren<br><b>Individuell → kollektiv:</b> Einzelwissen im Team verankern<br><b>Extern → intern:</b> externes Wissen in die eigenen Abläufe holen"},
+{"id":"infw-18","t":"Wissensarten","f":"Eselsbrücke für den Wissenswürfel?","r":"Die drei <b>I</b> bleiben drin: <b>I</b>mplizit (im Kopf), <b>I</b>ndividuell (nur ich), <b>I</b>ntern (nur bei uns). Die Gegenteile gehen raus: explizit, kollektiv, extern."},
+{"id":"infw-19","t":"Wissensarten","f":"Je ein Beispiel aus deinem Job für die drei Paare?","r":"<b>Implizit/explizit:</b> Ein Techniker kennt den heiklen Server einer Gemeinde, dieselbe Anleitung steht im Wiki.<br><b>Individuell/kollektiv:</b> Nur ich kenne eine Firewall-Konfiguration, das ganze Team kennt die Onboarding-Checkliste.<br><b>Intern/extern:</b> eigene Ticket-Historie, Doku und Support der Hersteller."},
+{"id":"infw-20","t":"Open Innovation","f":"Welches Ziel verfolgt Open Innovation?","r":"Den Innovationsprozess <b>nach aussen öffnen</b>: Wissen und Infos mit <b>externen Partnern teilen</b>, um <b>gemeinsam zu forschen und zu entwickeln</b> (Technologietransfer) und so schneller und besser zu Innovationen zu kommen. «Gemeinsam statt einsam»."},
+{"id":"infw-21","t":"Open Innovation","f":"Wer ist bei Open Innovation beteiligt?","r":"Das Unternehmen plus <b>Kunden, Business-Partner, Hochschulen, Forschung und öffentliche Institutionen</b>."},
+{"id":"infw-22","t":"Open Innovation","f":"Beispiel für Open Innovation aus dem Unterricht?","r":"Ein <b>Reifenhersteller</b> entwickelt mit einer <b>Hochschule</b> eine neue Gummimischung für Winterreifen."},
+{"id":"infw-23","t":"Open Innovation","f":"Open Innovation vs. Crowdsourcing?","r":"<b>Open Innovation:</b> ausgewählte, bekannte Partner, gemeinsame Forschung, Infos vernetzen.<br><b>Crowdsourcing:</b> Die unbekannte Masse online (Öffentlichkeit, Communities) arbeitet gemeinsam an einem Projekt oder Produkt, z. B. Wikipedia, OpenStreetMap."},
+{"id":"infw-24","t":"Open Innovation","f":"Wie beantwortest du «Nutzt dein Unternehmen Open Innovation?»","r":"<b>1.</b> Klare Antwort: ja, nein oder nur ansatzweise.<br><b>2.</b> Begründung mit Bezug, z. B.: Ja, wir haben Wissen, Erfahrungen und Strukturen mit der Gemeinde Rorschach und Umgebung geteilt, damit dort eine ähnliche Lösung entstehen konnte, und tauschen uns dauerhaft über gemeinsame Herausforderungen aus."},
+{"id":"infw-25","t":"Umweltdynamik","f":"Vier Möglichkeiten, auf Umweltdynamiken zu reagieren, mit Eselsbrücke?","r":"<b>M</b>anagementmethoden einsetzen<br><b>O</b>rganisationsstrukturen anpassen<br><b>P</b>rozessorientierung fördern<br><b>K</b>ultur: Unternehmens- und Kommunikationskultur<br>«Mein Opa Pflegt Kühe»"},
+{"id":"infw-26","t":"Umweltdynamik","f":"Warum ist das Reagieren auf Umweltdynamiken schwierig?","r":"Veränderungen passieren <b>schnell</b>, werden vom Unternehmen <b>nicht gesehen (wollen)</b> oder lösen <b>hohe Kosten</b> aus. Grosse Konzerne sind träge, z. B. VW bei der E-Mobilität."},
+{"id":"infw-27","t":"Umweltdynamik","f":"Beispiele für aktuelle Umweltdynamiken?","r":"<b>Homeoffice und Teilzeit</b>, immer mehr <b>KI-Anwendungen</b>, <b>Machine Learning</b>. Wer nicht reagiert, verliert Kunden und Umsatz."},
+{"id":"infw-28","t":"Umweltdynamik","f":"Managementmethoden: welche, und wie helfen sie?","r":"<b>Strategisches Management</b> (Strategie planen, umsetzen, überwachen, regelmässige Situationsanalyse), <b>Geschäftsprozessmanagement</b>, <b>Informationsmanagement</b>, <b>Ideen- und Innovationsmanagement</b>. So erkennt man Trends früh und reagiert gezielt."},
+{"id":"infw-29","t":"Umweltdynamik","f":"Worauf achtest du beim Anpassen von Organisationsstrukturen?","r":"<b>Nicht alles auf einmal</b>, Veränderungen zuerst <b>stabilisieren</b>, zu viele oder zu schnelle Änderungen wirken kontraproduktiv. Grösstes Risiko: Der <b>Kundenfokus</b> geht verloren. Beispiel VW: Werke schliessen, Know-how geht verloren."},
+{"id":"infw-30","t":"Umweltdynamik","f":"Wie hilft Prozessorientierung?","r":"Immer gleiche Arbeiten als <b>Prozess standardisieren</b>, den Rest dokumentieren. Eine <b>ISO-Zertifizierung</b> wie ISO 27001 hilft: Prozesse aufbauen, Kennzahlen messen, kontinuierlich verbessern."},
+{"id":"infw-31","t":"Umweltdynamik","f":"Wie wirkt die Unternehmens- und Kommunikationskultur?","r":"Sie gibt <b>Orientierung</b> über Vision, Leitbild und Werte, sichtbar in Sprache (Slogans), Handlung (Kommunikation) und Artefakten (Organigramm). Beispiele: <b>Bosch</b> «House of Orientation», <b>Mercedes</b> mit neuem Leitspruch für mehr Kundenorientierung."},
+{"id":"infw-32","t":"Umweltdynamik","f":"Wofür steht VUCA?","r":"<b>V</b>olatility (Unbeständigkeit), <b>U</b>ncertainty (Unsicherheit), <b>C</b>omplexity (Komplexität), <b>A</b>mbiguity (Mehrdeutigkeit): ein Modell, um eine immer dynamischere Welt zu erfassen."},
+{"id":"infw-33","t":"Umweltdynamik","f":"Was ist KVP und wie läuft der PDCA-Zyklus?","r":"Kontinuierlicher Verbesserungsprozess <b>ohne Start und Ende</b>:<br><b>Plan</b> Verbesserung planen → <b>Do</b> umsetzen → <b>Check</b> Erfolg prüfen → <b>Act</b> Massnahmen einführen"},
+{"id":"infw-34","t":"Umweltdynamik","f":"Wie dämmt man die Informationsflut ein?","r":"<b>1.</b> Filtern und Automatisieren: Daten reduzieren, KI fasst Mails und Dokumente zusammen.<br><b>2.</b> Organisatorisch: <b>Single Source of Truth</b> und klare Regeln, was wohin gehört."},
+{"id":"infw-35","t":"BSC & KPI","f":"Was ist die Grundidee der Balanced Scorecard?","r":"Die <b>Unternehmensstrategie in konkrete, messbare Ziele und Kennzahlen</b> bzw. Handlungen übersetzen. Ein Messinstrument für die unternehmerische Tätigkeit."},
+{"id":"infw-36","t":"BSC & KPI","f":"Die vier Perspektiven der BSC?","r":"<b>Finanzen, Kunden, interne Prozesse, Lernen und Entwicklung</b> (Wachstum)<br>Merkkette von unten: Lernen → Prozesse → Kunden → Finanzen"},
+{"id":"infw-37","t":"BSC & KPI","f":"Warum heisst sie «balanced»?","r":"Sie ist <b>ausgewogen</b>: Nicht nur Finanzkennzahlen zählen, sondern auch Kunden, Prozesse und Lernen. Kurz- und langfristige Sicht im Gleichgewicht."},
+{"id":"infw-38","t":"BSC & KPI","f":"Was ist die Voraussetzung für eine BSC?","r":"Eine <b>Umfeldanalyse</b> (Branchenstrukturanalyse): intern und extern, jeweils sachlich (Datenschutz, Technik, Know-how) und sozial (Mitarbeitende, Behörden). Kernfrage: Worauf müssen wir alles achten?"},
+{"id":"infw-39","t":"BSC & KPI","f":"BSC-Kennzahlen für einen IT-Dienstleister, je Perspektive eine?","r":"<b>Finanzen:</b> Budget-Einhaltung, Ein- und Ausgaben<br><b>Kunden:</b> Zufriedenheit der Gemeinden, Feedback<br><b>Prozesse:</b> Ticketzahlen, Reaktionszeit, Verfügbarkeit aus dem Monitoring<br><b>Lernen:</b> Zertifizierungen, Schulungstage"},
+{"id":"infw-40","t":"BSC & KPI","f":"Welche Eigenschaften haben gute KPIs?","r":"<b>Strategisch, ressourcenorientiert, messbar, beeinflussbar, zielverbunden, transparent</b>: Mitarbeitende sehen, was ihre Arbeit zum Ziel beiträgt."},
+{"id":"infw-41","t":"BSC & KPI","f":"Wie erarbeitet man KPIs?","r":"<b>1.</b> Unternehmensziele bestimmen<br><b>2.</b> Kennzahlen definieren<br><b>3.</b> KPI mit Bewertungsstufen festlegen, z. B. 25’000 Online-Käufe pro Monat = gut"},
+{"id":"infw-42","t":"Weitere Themen","f":"Die Stufen der Wissenstreppe nach North, mit Eselsbrücke?","r":"Zeichen → Daten → Informationen → Wissen → Handeln → Kompetenz → Wettbewerbsfähigkeit<br>«<b>Z</b>wei <b>D</b>ackel <b>I</b>m <b>W</b>ald <b>H</b>olen <b>K</b>eine <b>W</b>urst»"},
+{"id":"infw-43","t":"Weitere Themen","f":"Was kommt bei jeder Stufe der Wissenstreppe dazu?","r":"+ Syntax → Daten<br>+ Bedeutung → Informationen<br>+ Vernetzung (Kontext, Erfahrung) → Wissen<br>+ Anwendung und Wollen → Handeln<br>+ richtig handeln → Kompetenz<br>+ Einzigartigkeit → Wettbewerbsfähigkeit"},
+{"id":"infw-44","t":"Weitere Themen","f":"Wissenstreppe: strategisch vs. operativ?","r":"<b>Strategisch, top-down:</b> Was macht uns einzigartig? Welche Kompetenzen und welches Wissen brauchen wir?<br><b>Operativ, bottom-up:</b> Daten- und Informationsmanagement aufsetzen → Organisation entwickeln → Strategieprozess."},
+{"id":"infw-45","t":"Weitere Themen","f":"SECI: die vier Formen der Wissensumwandlung?","r":"<b>S</b>ozialisation: implizit → implizit<br><b>E</b>xternalisierung: implizit → explizit (die wichtigste)<br><b>C</b> Kombination: explizit → explizit<br><b>I</b>nternalisierung: explizit → implizit"},
+{"id":"infw-46","t":"Weitere Themen","f":"SECI: Was löst die vier Phasen aus?","r":"Sozialisation: <b>Feldaufbau</b><br>Externalisierung: <b>Dialog</b><br>Kombination: <b>Verbindung expliziten Wissens</b><br>Internalisierung: <b>Learning by doing</b>"},
+{"id":"infw-47","t":"Weitere Themen","f":"SECI: fünf Voraussetzungen für die Wissensspirale?","r":"Intention, Autonomie, Fluktuation und kreatives Chaos, Redundanz, notwendige Vielfalt."},
+{"id":"infw-48","t":"Weitere Themen","f":"Probst: die acht Bausteine, mit Eselsbrücke?","r":"<b>Aussen:</b> Wissensziele, Wissensbewertung<br><b>Innen:</b> Identifikation, Erwerb, Entwicklung, (Ver)teilung, Nutzung, Bewahrung<br>«<b>I</b>nge <b>E</b>rbt <b>E</b>ine <b>V</b>illa <b>N</b>ahe <b>B</b>ern»"},
+{"id":"infw-49","t":"Weitere Themen","f":"Was ist die Todesspirale der elektronischen Wissensbasis?","r":"Qualität sinkt → Vertrauen sinkt → Nutzung sinkt → keine Investitionen in Aktualisierung → Qualität sinkt weiter."},
+{"id":"infw-50","t":"Weitere Themen","f":"Was sagt das TOM-Modell?","r":"Ganzheitliches Wissensmanagement = Zusammenspiel von <b>Mensch</b> (Motivation, Fehlerkultur), <b>Organisation</b> (in Prozesse und Strukturen integriert) und <b>Technik</b> (Systeme zum Speichern und Verteilen)."},
+{"id":"infw-51","t":"Weitere Themen","f":"Die vier Lerntheorien in wenigen Worten?","r":"<b>Behaviorismus:</b> Reiz → Reaktion<br><b>Kognitivismus:</b> Informationen verarbeiten<br><b>Konstruktivismus:</b> Wissen selbst konstruieren<br><b>Konnektivismus:</b> Wissen in Netzwerken"},
+{"id":"infw-52","t":"Weitere Themen","f":"Klassische vs. operante Konditionierung?","r":"<b>Klassisch (Pawlow):</b> Ein neutraler Reiz wird an einen natürlichen gekoppelt (Glocke + Futter), die Reaktion ist unwillkürlich.<br><b>Operant (Skinner):</b> Die Konsequenz zählt: Belohnung macht ein Verhalten häufiger, Strafe seltener."},
+{"id":"infw-53","t":"Weitere Themen","f":"Ziele von Wissensinstrumenten aus Sicht des Unternehmens?","r":"Austausch fördern, <b>Informationsverlust bei Kündigung verhindern</b>, Effizienz der Informationsbeschaffung steigern."},
+{"id":"infw-54","t":"Weitere Themen","f":"Lessons Learned: wie läuft es ab?","r":"<b>Sammeln → Analysieren → Dokumentieren → Transferieren</b>, meist am Projektende. Auch Fehler gehören dazu, ohne Sanktionen."},
+{"id":"infw-55","t":"Weitere Themen","f":"Best Practice vs. Good Practice?","r":"<b>Best Practice:</b> die beste, mit anderen verglichene und wiederholbare Lösung.<br><b>Good Practice:</b> hinreichend gut, aber nicht die beste."},
+{"id":"infw-56","t":"Weitere Themen","f":"Storytelling: Vorteil und Nachteil?","r":"<b>Vorteil:</b> Der Kontext bleibt erhalten, implizites Wissen wird greifbar.<br><b>Nachteil:</b> hoher Zeit- und Personalaufwand, keine schnellen Resultate."},
+{"id":"infw-57","t":"Weitere Themen","f":"Was ist eine Wissensstafette?","r":"Moderierte <b>Übergabe von Erfahrungswissen an die Nachfolge</b> vor dem Austritt, eine Form des Expert Debriefing: Auftrag → Wissenslandkarte → Themen priorisieren → Transfergespräche → Übergabemappe."},
+{"id":"infw-58","t":"Weitere Themen","f":"Top-Barrieren im Wissensmanagement und was hilft?","r":"Zeitknappheit → Freiräume schaffen<br>Fehlendes Bewusstsein → Mitarbeitende einbeziehen<br>Fehlende Anreize → wissensfördernde Kultur<br>Ungeeignete Tools → Benutzerfreundlichkeit<br>Abteilungskonkurrenz → Partnerkultur"},
+{"id":"infw-59","t":"Weitere Themen","f":"Was ist eine lernende Organisation?","r":"Eine <b>anpassungsfähige</b> Organisation, die auf <b>äussere und innere Reize</b> reagiert."},
+{"id":"infw-60","t":"Weitere Themen","f":"Was ist Informationsmanagement?","r":"<b>Planung, Überwachung, Steuerung und Nutzung</b> der Ressource Information: die richtigen Daten zur richtigen Zeit zur richtigen Person. Ohne Informationsmanagement kein Wissensmanagement."},
+{"id":"infw-61","t":"Weitere Themen","f":"Innovationsmanagement: Ablauf und Merksatz?","r":"Ideen sammeln → bewerten → Produktentwicklung → Tests mit Kunden → Marketing → Vertrieb<br>«Eine Idee wird erst durch ihre Umsetzung zur Innovation.»"},
+{"id":"infw-62","t":"Weitere Themen","f":"Persönliches Wissensmanagement: die vier Herausforderungen?","r":"Datenflut filtern, lebenslanges Lernen, Wissen teilen und weitergeben, ehrliche Selbstreflexion."},
+{"id":"infw-63","t":"Weitere Themen","f":"Warum steigt der Wert von Wissen, wenn man es teilt?","r":"<b>Netzwerkeffekt:</b> Anders als physisches Anlagevermögen wird Wissen wertvoller, je mehr Personen es nutzen."}
+]},
+  lead:{f:"LEAD", n:"Leadership", sub:"Onlinetests und Folien Block 2 bis 4", k:[
+{"id":"lead-01","t":"Mitarbeiterführung 1","f":"Welche drei psychologischen Grundbedürfnisse nennt die Selbstbestimmungstheorie (Deci & Ryan)?","r":"<b>Autonomie, Kompetenz, Verbundenheit</b> (in den Folien: «Bindung»).<br>Falle: «Bindung, Orientierung/Kontrolle, Selbstwert» klingt ähnlich, gehört aber zu einem anderen Modell (Grawe). «Sicherheit, Nahrung, Schlaf» sind physiologische Bedürfnisse.","x":1},
+{"id":"lead-02","t":"Mitarbeiterführung 1","f":"Wodurch unterscheiden sich psychologische von physiologischen Grundbedürfnissen?","r":"Psychologische Bedürfnisse sind <b>wachstumsorientiert</b>: Ihre Erfüllung fördert <b>intrinsische Motivation</b>.<br>Physiologische Bedürfnisse sind Defizit-Bedürfnisse (gestillt = Ruhe). Psychologische sind weder nur erlernt noch nur in der Kindheit relevant.","x":1},
+{"id":"lead-03","t":"Mitarbeiterführung 1","f":"Wann steigt laut Deci & Ryan die intrinsische Motivation besonders?","r":"Wenn <b>Autonomie, Kompetenz und Verbundenheit erlebt</b> werden.<br>Kontrolle, Sanktionen, strikte Fristen und rein materielle Belohnung wirken dagegen.","x":1},
+{"id":"lead-04","t":"Mitarbeiterführung 1","f":"Was bedeutet Autonomie im Sinn der Selbstbestimmungstheorie?","r":"<b>Handeln im Einklang mit eigenen Werten und Interessen, frei von Zwang.</b><br>Nicht gemeint: völlige Unabhängigkeit, Egoismus oder das Vermeiden von Verpflichtungen.","x":1},
+{"id":"lead-05","t":"Mitarbeiterführung 1","f":"Wie beschreiben die Folien die drei Grundbedürfnisse in je einem Satz?","r":"· <b>Autonomie</b> = selbst entscheiden: handeln und entscheiden im Einklang mit den eigenen Werten<br>· <b>Kompetenz</b> = wirksam sein: Fähigkeiten zeigen und sich weiterentwickeln<br>· <b>Bindung</b> = verbunden sein: sich einer Gruppe zugehörig fühlen"},
+{"id":"lead-06","t":"Mitarbeiterführung 1","f":"Welche sechs Stufen hat das Motivationskontinuum (von fremd- zu selbstbestimmt)?","r":"1. <b>Amotivation</b> (Nicht-Regulation): keine Handlungsabsicht<br>2. <b>Externale Regulation</b>: äusserer Druck (Belohnung, Bestrafung)<br>3. <b>Introjizierte Regulation</b>: innerer Druck (Scham, schlechtes Gewissen, Selbstachtung)<br>4. <b>Identifizierte Regulation</b>: bewusste persönliche Wertschätzung der Handlung<br>5. <b>Integrierte Regulation</b>: Übereinstimmung mit eigenen Werten und Bedürfnissen<br>6. <b>Intrinsische Regulation</b>: Neugier und Freude<br>Stufen 2–5 sind alle extrinsisch, werden aber immer autonomer."},
+{"id":"lead-07","t":"Mitarbeiterführung 1","f":"Wann entsteht Flow?","r":"Wenn <b>Anforderungen und Fähigkeiten zusammenpassen</b>. Zu hohe Anforderungen führen zu Überforderung (Stress, Panik), zu tiefe zu Unterforderung (Langeweile, «Bore-out»)."},
+{"id":"lead-08","t":"Mitarbeiterführung 1","f":"Welche Zonen zeigt das Komfortzonen-Modell (Jenewein) und was heisst das fürs Führen?","r":"Bore-out-Zone → Flow-Zone (Eustress, gesunde Herausforderung) → Panik-Zone (Distress).<br>Wachstum durch <b>kleine, regelmässige Schritte</b> aus der Komfortzone: reflektieren, Feedback beim Team einholen, etwas delegieren («Vertrauen üben»), wöchentliche <b>«Eat the Frog»</b>-Zeit für Unangenehmes."},
+{"id":"lead-09","t":"Mitarbeiterführung 1","f":"Was sagt Herzbergs Zwei-Faktoren-Theorie?","r":"· <b>Hygienefaktoren</b> (Lohn, Arbeitsbedingungen, Sicherheit): verhindern Unzufriedenheit, motivieren aber nicht.<br>· <b>Motivatoren</b> (Anerkennung, Verantwortung, sinnvolle Arbeit, Entwicklung): erzeugen Zufriedenheit und Motivation.<br>(In den Folien nur als Grafik, Erklärung aus der Theorie ergänzt.)"},
+{"id":"lead-10","t":"Mitarbeiterführung 1","f":"Was ist mit «Sinn» gemeint?","r":"Es geht um das <b>Warum</b>: Menschen leisten mehr, wenn sie den Zweck ihrer Arbeit verstehen. Motto der Folien: «Make work to play» (inspirierend, sinnhaft, exklusiv)."},
+{"id":"lead-11","t":"Mitarbeiterführung 1","f":"Welche sechs Grundhaltungen hat ein Coach?","r":"1. <b>Nichtwissenshaltung</b>: Der Coachee findet die beste Lösung selbst, der Coach fragt statt vorzugeben<br>2. <b>Ressourcen- und Zielorientierung</b>: Stärken erkennen, eigene Ziele formulieren lassen<br>3. <b>Freiwilligkeit</b><br>4. <b>Verantwortung beim Coachee</b><br>5. <b>Vertraulichkeit</b><br>6. <b>Präsenz</b>: volle Aufmerksamkeit, aktives Zuhören"},
+{"id":"lead-12","t":"Mitarbeiterführung 1","f":"Welche fünf Techniken gehören zum aktiven Zuhören?","r":"1. <b>Paraphrasieren</b>: «Wenn ich dich richtig verstehe …»<br>2. <b>Zusammenfassen</b>: die Kernpunkte kurz wiedergeben<br>3. <b>Offene Fragen stellen</b>: «Was hat dich dazu bewegt …?»<br>4. <b>Emotionen spiegeln</b>: «Es klingt, als wärst du frustriert.»<br>5. <b>Bestätigen</b>: verbal und nonverbal zeigen, dass man folgt"},
+{"id":"lead-13","t":"Mitarbeiterführung 1","f":"Welche drei Hindernisse erschweren aktives Zuhören?","r":"Vorurteile und Annahmen · innere Ablenkungen (eigene Probleme, schon an Lösungen denken) · Zeitdruck."},
+{"id":"lead-14","t":"Mitarbeiterführung 1","f":"Wofür steht GROW, und wie viel Zeit bekommt jede Phase?","r":"<b>G</b>oal: Was willst du erreichen? · ca. 15 %<br><b>R</b>eality: Wie ist die Situation, was wurde schon versucht? · ca. 35 %<br><b>O</b>ptions: Welche Ideen gibt es, und welche noch? · ca. 30 %<br><b>W</b>ay: Was tun wir konkret, in welcher Reihenfolge? · ca. 20 %<br>Quelle: John Whitmore. In den Folien ist jede Phase einem Element zugeordnet: Goal = Feuer, Reality = Erde, Options = Luft, Way = Wasser."},
+{"id":"lead-15","t":"Mitarbeiterführung 1","f":"Woran erkennt man ein gutes GROW-Gespräch (Beobachtungsbogen)?","r":"Ziel klar vereinbart · aktives Zuhören · offene, nicht führende Fragen · Optionen erarbeitet («Was noch?») · konkreter nächster Schritt vereinbart."},
+{"id":"lead-16","t":"Mitarbeiterführung 1","f":"Wie definiert Peter Drucker Leadership (Repetition Block 1)?","r":"Nicht Leute dazu bringen, Dinge zu tun, die sie nicht wollen, sondern sie <b>befähigen, Dinge zu leisten, die sie sich nie zugetraut hätten</b>. Dazu: BHAG definieren, «Leaders create leaders, not followers»."},
+{"id":"lead-17","t":"Mitarbeiterführung 2","f":"Warum ist Delegieren wichtig?","r":"Es ermöglicht den <b>Fokus auf die eigenen Kernaufgaben</b>. (Es ist keine Form der Kontrolle und erhöht die eigene Arbeitslast nicht.)","x":1},
+{"id":"lead-18","t":"Mitarbeiterführung 2","f":"Welche Gefühle kann eine Führungskraft beim Delegieren haben? (Mehrfachauswahl)","r":"<b>Schuld</b> (anderen Arbeit aufbürden) und <b>Verlustängste</b> (Kontrolle, Einfluss oder die eigene Unersetzlichkeit verlieren).<br>Nicht: Gleichgültigkeit, Langeweile.","x":1},
+{"id":"lead-19","t":"Mitarbeiterführung 2","f":"Woran erkennt man, dass eine Aufgabe delegiert werden sollte? (Mehrfachauswahl)","r":"· Die Aufgabe könnte sich <b>in Zukunft wiederholen</b><br>· Die Aufgabe ist <b>dringend, aber nicht wichtig</b><br>· <b>Jemand kann sich dabei weiterentwickeln</b><br>Nicht delegieren: Aufgaben von grösster Wichtigkeit.","x":1},
+{"id":"lead-20","t":"Mitarbeiterführung 2","f":"Welches Prinzip hilft, Aufgaben zum Delegieren zu finden?","r":"Das <b>Eisenhower-Prinzip</b> (wichtig/dringend-Matrix):<br>wichtig + dringend = sofort selbst · wichtig + nicht dringend = terminieren · <b>dringend + nicht wichtig = delegieren</b> · weder noch = weglassen.","x":1},
+{"id":"lead-21","t":"Mitarbeiterführung 2","f":"Was ist ein Vorteil von Delegieren?","r":"<b>Höhere Effizienz und Qualität.</b> Delegieren senkt ausserdem die Zahl der «Single Points of Failure» und fördert Motivation und Kreativität im Team.","x":1},
+{"id":"lead-22","t":"Teamführung","f":"Welche Aussagen zur Beta-Position nach Schindler treffen zu? (Mehrfachauswahl)","r":"· <b>Bringt fachliche Expertise in die Gruppe ein</b> (Beta = Experte/Berater)<br>· <b>Vermittelt häufig zwischen Alpha und der Gruppenbasis</b><br>Falsch: «isoliert und ohne Einfluss auf Alpha» (Beta berät Alpha) und «in offener Opposition» (das ist Omega).","x":1},
+{"id":"lead-23","t":"Teamführung","f":"Welche Position ist bei Schindler die führende Rolle mit direktem Einfluss auf die Gruppe?","r":"<b>Alpha.</b> Alpha gibt die Richtung vor und vertritt die Gruppe nach aussen.","x":1},
+{"id":"lead-24","t":"Teamführung","f":"Welche Tuckman-Phase sollen Teams möglichst schnell erreichen und möglichst lange halten?","r":"<b>Performing</b>: Das Team arbeitet eingespielt und leistungsfähig.","x":1},
+{"id":"lead-25","t":"Teamführung","f":"In welcher Tuckman-Phase treten Konflikte um Rollen, Macht und Werte offen zutage?","r":"<b>Storming.</b>","x":1},
+{"id":"lead-26","t":"Teamführung","f":"Richtig oder falsch: (a) Die ersten vier Tuckman-Phasen sind Forming, Storming, Norming, Performing. (b) Schindler beschreibt vier Rollen. (c) Omega ist die schweigende Mehrheit. (d) Gamma ist der oppositionelle Pol.","r":"<b>(a) richtig, (b) richtig</b> (Alpha, Beta, Gamma, Omega).<br><b>(c) und (d) falsch, die Rollen sind vertauscht:</b> Gamma ist die Mehrheit der Mitläufer, Omega ist der oppositionelle Pol (Aussenseiter, oft Sündenbock).","x":1},
+{"id":"lead-27","t":"Teamführung","f":"Die vier rangdynamischen Positionen nach Schindler","r":"<b>Alpha</b>: Führt, gibt die Richtung vor<br><b>Beta</b>: Experte/Berater, unterstützt Alpha fachlich, relativ unabhängig<br><b>Gamma</b>: Mitglieder, die Alpha folgen (die Mehrheit)<br><b>Omega</b>: Gegenpol, kritisiert, wird leicht zum Sündenbock, zeigt aber oft verdeckte Probleme der Gruppe"},
+{"id":"lead-28","t":"Teamführung","f":"Die Teamphasen nach Tuckman","r":"1. <b>Forming</b>: kennenlernen, höflich, unsicher<br>2. <b>Storming</b>: Konflikte um Rollen, Macht und Werte<br>3. <b>Norming</b>: Regeln und Rollen klären sich, Wir-Gefühl<br>4. <b>Performing</b>: volle Leistung<br>5. (später ergänzt) <b>Adjourning</b>: Auflösung, Abschied"}
+]},
+  cm:{f:"CM", n:"Change Management", sub:"Modelle aus Kapitel 1 bis 6", k:[
+{"id":"cm-01","t":"Grundlagen","f":"Welche drei Voraussetzungen braucht eine Veränderung?","r":"<b>Bedarf, Bereitschaft, Fähigkeit.</b><br>Fehlt eine davon, scheitert der Wandel: Die Leute sehen keinen Grund, wollen nicht oder können nicht."},
+{"id":"cm-02","t":"Grundlagen","f":"Sach- und Beziehungsebene: Was sagt das Eisbergmodell im Change?","r":"Sichtbar ist nur die <b>Sachebene</b> (Ziele, Pläne, Strukturen). Unter Wasser liegt die <b>Beziehungsebene</b> (Gefühle, Ängste, Werte), und sie entscheidet über den Erfolg."},
+{"id":"cm-03","t":"Grundlagen","f":"Auf welchen drei Ebenen wirkt Change?","r":"<b>Mikro</b> (einzelne Person), <b>Meso</b> (Team, Organisation), <b>Makro</b> (Umfeld, Gesellschaft)."},
+{"id":"cm-04","t":"Grundlagen","f":"Nenne typische Auslöser für Change.","r":"Kundenbedürfnisse, Innovation und Technologie, agile Transformation, Wettbewerb. Intern (z. B. neue Strategie) oder extern (Umweltsphären)."},
+{"id":"cm-05","t":"Umgang mit Veränderung","f":"Die sieben Phasen der Veränderungskurve?","r":"Schock → Verneinung → Einsicht → Akzeptanz → Ausprobieren → Erkenntnis → Integration"},
+{"id":"cm-06","t":"Umgang mit Veränderung","f":"Was beschreibt das Vier-Zimmer-Modell?","r":"Menschen durchlaufen im Wandel vier Zimmer: <b>Zufriedenheit → Verleugnung → Verwirrung → Erneuerung</b>. Führen heisst, die Leute durch die Zimmer zu begleiten statt sie zu überspringen."},
+{"id":"cm-07","t":"Umgang mit Veränderung","f":"Wie geht man mit Widerstand um?","r":"«Widerstand enthält immer eine Botschaft.» Ernst nehmen, nachfragen, <b>Betroffene zu Beteiligten machen</b>."},
+{"id":"cm-08","t":"Planen & steuern","f":"Die drei Phasen nach Lewin?","r":"<b>Unfreeze</b> (auftauen) → <b>Move</b> (verändern) → <b>Refreeze</b> (festigen)"},
+{"id":"cm-09","t":"Planen & steuern","f":"Die acht Schritte nach Kotter?","r":"1. Dringlichkeit erzeugen<br>2. Führungskoalition aufbauen<br>3. Vision und Strategie entwickeln<br>4. Vision kommunizieren<br>5. Hindernisse beseitigen, Mitarbeitende befähigen<br>6. Kurzfristige Erfolge sichtbar machen<br>7. Erfolge konsolidieren, weiter verändern<br>8. Neues in der Kultur verankern"},
+{"id":"cm-10","t":"Planen & steuern","f":"Wofür steht ADKAR?","r":"<b>A</b>wareness (Bewusstsein) · <b>D</b>esire (Wille) · <b>K</b>nowledge (Wissen) · <b>A</b>bility (Fähigkeit) · <b>R</b>einforcement (Verankerung)<br>Hinweis des Dozenten: kam 2025 an der eidg. Berufsprüfung."},
+{"id":"cm-11","t":"Planen & steuern","f":"Wozu dient ein Sounding Board?","r":"Eine Gruppe von Betroffenen, die dem Projekt laufend Rückmeldung gibt: Stimmung, Sorgen und blinde Flecken werden früh sichtbar."},
+{"id":"cm-12","t":"Begleiten & umsetzen","f":"Welche Führungsrollen gibt es im Change?","r":"<b>Change Agent</b> (treibt an), <b>Facilitator</b> (begleitet, moderiert), <b>Leader</b> (gibt Richtung und Sinn)."},
+{"id":"cm-13","t":"Begleiten & umsetzen","f":"Welche vier Arten von Massnahmen setzt man im Team um?","r":"<b>Kommunikation</b> (Kick-off, Jour fixe), <b>Entwicklung</b> (Schulung, Coaching), <b>Mitwirkung</b> (Workshops), <b>Teamentwicklung</b>."},
+{"id":"cm-14","t":"Begleiten & umsetzen","f":"Die Teamphasen nach Tuckman?","r":"Forming → Storming → Norming → Performing"},
+{"id":"cm-15","t":"Begleiten & umsetzen","f":"Was ist das Führungssandwich?","r":"Führungskräfte der mittleren Ebene stehen zwischen den Vorgaben von oben und den Reaktionen von unten und müssen beides aushalten und übersetzen."},
+{"id":"cm-16","t":"Prüfung","f":"Wie beantwortest du die Bewerbungsfrage zu Change?","r":"Mit einem <b>SAR-Beispiel</b>: <b>S</b>ituation, <b>A</b>ktion, <b>R</b>esultat aus einem eigenen Change."}
+]}
+};
+const BRUECKEN = [
+  ["Daten, Information, Wissen","<b>D</b>aten = was steht da · <b>I</b>nformation = was es bedeutet · <b>W</b>issen = was ich damit tue","Zeichen + Syntax = Daten, + Bedeutung = Information, + Erfahrung = Wissen."],
+  ["Die vier Kompetenzarten","<b>F</b>achmann <b>M</b>acht <b>S</b>eine <b>S</b>ache","Fach-, Methoden-, Selbst- und Sozialkompetenz. Drei davon reichen, je mit Einsatz im Alltag."],
+  ["Wissenswürfel","<b>I</b>mplizit · <b>I</b>ndividuell · <b>I</b>ntern","Die drei I bleiben drin, die Gegenteile gehen raus: explizit, kollektiv, extern."],
+  ["Open Innovation","Gemeinsam statt einsam innovieren","Tür auf für ausgewählte Partner. Crowdsourcing: Tür auf für alle."],
+  ["Reaktionen auf Umweltdynamiken","<b>M</b>ein <b>O</b>pa <b>P</b>flegt <b>K</b>ühe","Managementmethoden, Organisationsstrukturen, Prozessorientierung, Kultur."],
+  ["Balanced Scorecard","Lernen → Prozesse → Kunden → Finanzen","Von unten gelesen: Lernende Mitarbeitende machen bessere Prozesse, zufriedene Kunden und am Ende Geld."],
+  ["Wissenstreppe nach North","<b>Z</b>wei <b>D</b>ackel <b>I</b>m <b>W</b>ald <b>H</b>olen <b>K</b>eine <b>W</b>urst","Zeichen, Daten, Informationen, Wissen, Handeln, Kompetenz, Wettbewerbsfähigkeit."],
+  ["Probst-Bausteine","<b>I</b>nge <b>E</b>rbt <b>E</b>ine <b>V</b>illa <b>N</b>ahe <b>B</b>ern","Identifikation, Erwerb, Entwicklung, Verteilung, Nutzung, Bewahrung. Aussen: Wissensziele und Wissensbewertung."]
+];
+const PROBE = [
+  {n:"Informationen", p:2, frage:"Erkläre in deinen eigenen Worten deine Definition von «Informationen» im Kontext deines Unternehmens.",
+   kern:"Information = Daten + Bedeutung: geordnet, in einen Kontext gestellt und nützlich für eine Entscheidung.",
+   a:"Für mich sind <b>Informationen Daten, die eine Bedeutung bekommen haben</b>. Daten allein sagen noch nichts aus. Erst im Kontext werden sie zu Informationen, mit denen ich entscheiden kann.<br><br><b>Beispiel bei uns:</b> Das Monitoring meldet «Server 95 %». Das sind Daten. Zur Information wird es, wenn klar ist: Der Server der Einwohnerkontrolle einer Gemeinde ist fast voll und fällt in wenigen Tagen aus. Mit meiner Erfahrung, was dann zu tun ist, wird daraus Wissen.",
+   r:["1 P: eigene Definition (Daten mit Bedeutung bzw. Kontext)","1 P: Bezug zum eigenen Unternehmen mit Beispiel"]},
+  {n:"Kompetenzen", p:6, frage:"Beschreibe drei Kompetenzen und wie du diese für dich einsetzen kannst.",
+   kern:"Drei der vier Kompetenzarten aus Block 02 nennen (Fach-, Methoden-, Selbst-, Sozialkompetenz), je erklären und den eigenen Einsatz zeigen.",
+   a:"<b>1. Fachkompetenz</b> = konkretes Wissen über meinen Bereich. Bei mir: Systeme, Netzwerk und die Fachanwendungen der Gemeinden. <i>Einsatz:</i> Ich verwalte komplexe Systeme, führe sie weiter und passe sie an.<br><br><b>2. Sozialkompetenz</b> = wie ich mit anderen Menschen umgehe und arbeite. <i>Einsatz:</i> Ich gehe kundenorientiert auf Fragen ein, sodass sich niemand für ein Problem schämen muss, und lerne schnell neue Leute kennen.<br><br><b>3. Selbstkompetenz</b> = wie ich mich selbst führe und motiviere. Bei mir zeigt sie sich im Sport: Ich weiss, wie man dranbleibt, mit Rückschlägen wie einer Verletzung umgeht und Kondition aufbaut. <i>Einsatz:</i> Dieselbe Disziplin nutze ich, um Studium und Arbeit nebeneinander zu schaffen.<br><br><b>Alternative: Methodenkompetenz</b> = wie ich an Probleme herangehe und sie löse, zum Beispiel strukturierte Fehlersuche.",
+   r:["Je Kompetenz 1 P für die Beschreibung (Begriff aus dem Unterricht)","Je Kompetenz 1 P für den konkreten Einsatz","Wichtig: die Kompetenzarten aus der Theorie verwenden. «Sport» ist ein Beispiel für Selbstkompetenz, keine eigene Kompetenzart"]},
+  {n:"Wissen", p:3, frage:"Erkläre den Unterschied zwischen a) implizitem und explizitem, b) individuellem und kollektivem, c) internem und externem Wissen.",
+   kern:"Die drei Gegensatzpaare des Wissenswürfels von Klaus North.",
+   a:"<b>a) Implizit</b> ist Erfahrungswissen im Kopf, das schwer in Worte zu fassen ist. <b>Explizit</b> ist aufgeschrieben und übertragbar, etwa eine Anleitung im Wiki.<br><br><b>b) Individuell</b> ist das Wissen einer einzelnen Person. <b>Kollektiv</b> ist Wissen, das ein Team oder die Firma gemeinsam hat, etwa Abläufe und Routinen.<br><br><b>c) Intern</b> stammt aus dem eigenen Unternehmen (Mitarbeitende, eigene Doku). <b>Extern</b> kommt von aussen (Kunden, Hersteller, Hochschulen, Fachliteratur).",
+   r:["1 P pro Teilaufgabe, beide Begriffe müssen erklärt sein"]},
+  {n:"Open Innovation", p:4, frage:"a) Welches Ziel verfolgt Open Innovation? b) Nutzt dein Unternehmen Open Innovation? Begründe.",
+   kern:"Den Innovationsprozess nach aussen öffnen: gemeinsam mit Partnern forschen und entwickeln.",
+   a:"<b>a)</b> Open Innovation öffnet den Innovationsprozess nach aussen. Das Unternehmen teilt Wissen gezielt mit externen Partnern wie Kunden, Hochschulen oder anderen Organisationen, um gemeinsam schneller und besser zu neuen Lösungen zu kommen.<br><br><b>b)</b> Ja. Wir haben unser Wissen, unsere Erfahrungen und Strukturen mit der Gemeinde Rorschach und Umgebung geteilt, damit dort eine ähnliche Lösung entstehen konnte. Der Austausch über gemeinsame Herausforderungen läuft dauerhaft weiter, beide Seiten profitieren.",
+   r:["a) 2 P: Öffnung nach aussen, externe Partner, gemeinsames Entwickeln","b) 2 P: klare Antwort (ja, nein, teilweise) und Begründung mit Bezug zum Betrieb"]},
+  {n:"Umweltdynamiken", p:4, frage:"Wie kann ein Unternehmen auf die neuen Umweltdynamiken reagieren? Nenne 2 Beispiele.",
+   kern:"Vier Reaktionen aus dem Unterricht, zwei nennen und erklären: Managementmethoden, Organisationsstrukturen, Prozessorientierung, Kultur.",
+   a:"<b>1. Managementmethoden einsetzen:</b> Mit strategischem Management und einer regelmässigen Situationsanalyse erkennt das Unternehmen Trends wie KI oder neue Gesetze früh und passt die Strategie an. <i>Bei uns:</i> neue Vorgaben wie das revidierte Datenschutzgesetz früh prüfen und die Dienste für die Gemeinden anpassen.<br><br><b>2. Prozessorientierung fördern:</b> Wiederkehrende Arbeiten als Prozess standardisieren und laufend verbessern (KVP, PDCA). <i>Bei uns:</i> Checklisten für Störungen und Notfälle, die nach jedem Vorfall verbessert werden.<br><br>Weitere Möglichkeiten: Organisationsstrukturen anpassen, Unternehmens- und Kommunikationskultur gestalten.",
+   r:["Je Beispiel 1 P für die Nennung und 1 P für die Erklärung"]},
+  {n:"Balanced Scorecard", p:4, frage:"a) Erkläre die Balanced Scorecard in deinen eigenen Worten. b) Begründe, warum dieses Modell in deinem Unternehmen angewendet oder nicht angewendet werden kann.",
+   kern:"Strategie in messbare Ziele und Kennzahlen übersetzen, ausgewogen über vier Perspektiven.",
+   a:"<b>a)</b> Die Balanced Scorecard ist ein Managementwerkzeug, das die Strategie in messbare Ziele, Kennzahlen und Massnahmen übersetzt. Sie betrachtet das Unternehmen aus vier Perspektiven: Finanzen, Kunden, interne Prozesse sowie Lernen und Entwicklung.<br><br><b>b)</b> Ja, sie ist bei uns anwendbar, weil wir die Daten schon haben. <i>Kunden:</i> Feedback und Zufriedenheit der Gemeinden. <i>Prozesse:</i> Ticketzahlen, Reaktionszeit, Verfügbarkeit aus dem Monitoring. <i>Finanzen:</i> Budget, Ein- und Ausgaben. <i>Lernen:</i> Weiterbildungen und Zertifizierungen.",
+   r:["a) 2 P: Strategie in Kennzahlen, vier Perspektiven","b) 2 P: klare Aussage und Begründung mit Kennzahlen aus dem Betrieb"]}
+];
+
+/* ====================== TERMINE & PRÜFUNGEN: ANSICHTEN ====================== */
+const WT = ["So","Mo","Di","Mi","Do","Fr","Sa"], MON = ["Jan","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"],
+      MONL = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+const fcVar = f => `--fc:${(FACH[f]||FACH.HF).c}`;
+const fName = (f,kurz) => { const x=FACH[f]||FACH.HF; return kurz?(x.kn||x.n):x.n; };
+const tag0 = d => { const x=new Date(d); x.setHours(0,0,0,0); return x; };
+const iso = d => d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const tageBis = d => Math.round((tag0(d)-tag0(new Date()))/864e5);
+const relTage = n => n===0?"heute":n===1?"morgen":n>1?"in "+n+" Tagen":n===-1?"gestern":"vor "+(-n)+" Tagen";
+const fmtD = (d,jahr) => WT[d.getDay()]+" "+String(d.getDate()).padStart(2,"0")+"."+String(d.getMonth()+1).padStart(2,"0")+"."+(jahr?d.getFullYear():"");
+const zeit = t => t.art==="a" ? "Frist "+t.von+" Uhr" : t.von+(t.bis?"–"+t.bis:"")+" Uhr";
+const kw = d => { const x=tag0(d); x.setDate(x.getDate()+3-((x.getDay()+6)%7)); const w1=new Date(x.getFullYear(),0,4); return 1+Math.round(((x-w1)/864e5-3+((w1.getDay()+6)%7))/7); };
+const pDatum = p => new Date(p.d+"T"+(p.von||"08:00")+":00");
+
+function ring(n, max, label){
+  const r=31, u=2*Math.PI*r, a=Math.max(0,Math.min(1, 1-(Math.max(n,0)/max)));
+  return `<div class="ring"><svg viewBox="0 0 76 76" aria-hidden="true"><circle class="bg" cx="38" cy="38" r="${r}"/><circle class="fg" cx="38" cy="38" r="${r}" stroke-dasharray="${u.toFixed(1)}" stroke-dashoffset="${(u*(1-a)).toFixed(1)}"/></svg><div><b>${n<0?"✓":n}</b><span>${n<0?"vorbei":label||(n===1?"Tag":"Tage")}</span></div></div>`;
+}
+function naechsterTermin(){ const j=new Date(); return TERMINE.find(t=>t.art!=="a" && (t.bis?t.te:new Date(t.ts.getTime()+36e5))>=j); }
+function naechstePruef(){ const j=tag0(new Date()); return PRUEF.find(p=>tag0(pDatum(p))>=j); }
+
+function nowCard(mitKnopf){
+  const t = naechsterTermin(), p = naechstePruef(), j = new Date();
+  if(!t && !p) return "";
+  const laeuft = t && t.ts<=j && t.te>=j, n = t?tageBis(t.ts):0;
+  const links = t ? `
+    <div>
+      <div class="kicker">${laeuft?'<span class="live"></span>Läuft jetzt':"Als Nächstes · "+relTage(n)}</div>
+      <h2>${esc(fName(t.f,true))} <span>${esc(t.t)}</span></h2>
+      <div class="now-m">${fmtD(t.ts)} · ${zeit(t)}${t.f!=="HF"?" · "+ORT:""}</div>
+      ${t.th?`<p>${esc(t.th)}</p>`:""}
+      ${mitKnopf?`<div class="acts"><button class="btn" type="button" data-go="termine">Alle Termine</button></div>`:""}
+    </div>` : `<div><div class="kicker">Semester</div><h2>Kein Unterricht mehr geplant</h2></div>`;
+  const pn = p?tageBis(pDatum(p)):0;
+  const rechts = p ? `<button class="now-ex fc" type="button" data-go="pruefungen" style="${fcVar(p.f)}">
+      ${ring(pn, 60)}
+      <span><small>${esc(p.art)} · ${fmtD(pDatum(p))}</small><b>${esc(p.n)}</b><small>${esc(fName(p.f,true))}</small></span></button>` : "";
+  return `<section class="now fc" style="${fcVar(t?t.f:p.f)};--fc2:${p?(FACH[p.f]||FACH.HF).c:"transparent"}">${links}${rechts}</section>`;
+}
+
+/* ---------- Termine ---------- */
+function monatHtml(y,m){
+  const erster=new Date(y,m,1), tage=new Date(y,m+1,0).getDate(), off=(erster.getDay()+6)%7, h=iso(new Date());
+  let z = ["Mo","Di","Mi","Do","Fr","Sa","So"].map(x=>`<i>${x}</i>`).join("") + "<span></span>".repeat(off);
+  for(let d=1; d<=tage; d++){
+    const k=iso(new Date(y,m,d)), ev=TERMINE.filter(t=>t.d===k);
+    const cls=(k===h?" heute":"")+(k<h?" alt":"")+(ev.some(t=>t.art!=="u")?" ex":"");
+    z += ev.length
+      ? `<button type="button" class="mday fc${cls}" data-tday="${k}" style="${fcVar(ev[0].f)}" title="${esc(ev.map(t=>fName(t.f,true)+" "+t.t).join(" · "))}">${d}<u>${ev.slice(0,3).map(t=>`<s style="--d:${FACH[t.f].c}"></s>`).join("")}</u></button>`
+      : `<span class="mday${cls}">${d}</span>`;
+  }
+  return `<div class="month"><h4>${MONL[m]} ${y}</h4><div class="mgridc">${z}</div></div>`;
+}
+function vTermine(){
+  const h = iso(new Date()), f = S.tf||"Alle";
+  let liste = TERMINE.filter(t => f==="Alle" || (f==="pa" ? t.art!=="u" : t.f===f));
+  const alt = liste.filter(t=>t.d<h), neu = liste.filter(t=>t.d>=h);
+  const zeigen = S.tAlt ? liste : neu;
+  const start = new Date(), monate = [];
+  for(let i=0;i<4;i++){ const d=new Date(start.getFullYear(), start.getMonth()+i, 1); monate.push(monatHtml(d.getFullYear(), d.getMonth())); }
+  const faecher = [...new Set(TERMINE.filter(t=>t.d>=h).map(t=>t.f))];
+  let html = "", woche = null, i = 0;
+  while(i < zeigen.length){
+    const t = zeigen[i], k = t.ts.getFullYear()+"-"+kw(t.ts);
+    if(k!==woche){
+      if(woche!==null) html += "</div>";
+      woche = k;
+      const mo = tag0(t.ts); mo.setDate(mo.getDate()-((mo.getDay()+6)%7)); const so=new Date(mo); so.setDate(so.getDate()+6);
+      html += `<div class="week"><h3>KW ${kw(t.ts)} · ${mo.getDate()}.${mo.getMonth()+1}. bis ${so.getDate()}.${so.getMonth()+1}.${so.getFullYear()}</h3>`;
+    }
+    const tagEv = []; while(i<zeigen.length && zeigen[i].d===t.d){ tagEv.push(zeigen[i]); i++; }
+    html += `<div class="trow${t.d===h?" heute":""}${t.d<h?" alt":""}" id="d-${t.d}">
+      <div class="tdate"><span>${WT[t.ts.getDay()]}</span><b>${t.ts.getDate()}</b><span>${MON[t.ts.getMonth()]}</span></div>
+      <div>${tagEv.map(e=>`<div class="tcard fc${e.art!=="u"?" ex":""}" style="${fcVar(e.f)}">
+        <div class="tt">${esc(fName(e.f,true))} <em>${esc(e.t)}</em>${e.art==="p"?'<span class="bdg">Prüfung</span>':e.art==="a"?'<span class="bdg">Abgabe</span>':""}</div>
+        <div class="tm">${zeit(e)}${e.art!=="a"&&e.f!=="HF"?" · "+ORT:""}</div>
+        ${e.th?`<div class="tth">${esc(e.th)}</div>`:""}</div>`).join("")}</div></div>`;
+  }
+  if(woche!==null) html += "</div>";
+  return `
+  <div class="hero"><h1>Termine</h1><p>Unterricht, Prüfungen und Abgaben im 3. Semester. Zeiten und Zimmer stammen aus OpenOLAT, Stand ${STAND.split("-").reverse().join(".")}.</p></div>
+  ${nowCard(false)}
+  <div class="calbar">
+    <div class="txt"><b>In deinen Kalender übernehmen</b>Das Abo aktualisiert sich selbst, wenn sich Termine ändern. Die Datei ist ein einmaliger Stand.</div>
+    <a class="btn" href="webcal://${ICS_PFAD}">Kalender abonnieren</a>
+    <button class="btn l" type="button" data-ics="copy">Abo-Link kopieren</button>
+    <button class="btn l" type="button" data-ics="dl">.ics-Datei laden</button>
+  </div>
+  <div class="months">${monate.join("")}</div>
+  <div class="chips">
+    <button class="chip" type="button" data-tf="Alle" aria-pressed="${f==="Alle"}">Alle</button>
+    <button class="chip" type="button" data-tf="pa" aria-pressed="${f==="pa"}">Prüfungen und Abgaben</button>
+    ${faecher.map(x=>`<button class="chip" type="button" data-tf="${x}" aria-pressed="${f===x}">${esc(fName(x,true))}</button>`).join("")}
+  </div>
+  ${alt.length?`<p class="meta" style="margin:14px 0 0"><button class="lnk" type="button" data-talt="1">${S.tAlt?"Vergangene ausblenden":alt.length+" vergangene Termine anzeigen"}</button></p>`:""}
+  ${html || `<div class="empty" style="margin-top:18px">Keine kommenden Termine in dieser Auswahl.</div>`}`;
+}
+function icsAktion(a){
+  if(a==="copy"){
+    const url="https://"+ICS_PFAD;
+    const ok=()=>hinweis("Link kopiert. Im Kalender unter «Per URL abonnieren» einfügen.");
+    if(navigator.clipboard) navigator.clipboard.writeText(url).then(ok, ()=>prompt("Abo-Link:", url)); else prompt("Abo-Link:", url);
+  } else {
+    try{
+      const u=URL.createObjectURL(new Blob([icsText()],{type:"text/calendar"})), l=document.createElement("a");
+      l.href=u; l.download="hfwi-termine.ics"; document.body.appendChild(l); l.click(); l.remove(); setTimeout(()=>URL.revokeObjectURL(u), 2000);
+    }catch(e){ hinweis("Download nicht möglich. Nutze den Abo-Link."); }
+  }
+}
+function hinweis(txt){
+  let el=document.getElementById("toast");
+  if(!el){ el=document.createElement("div"); el.id="toast"; el.setAttribute("role","status");
+    el.style.cssText="position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;font-size:14px;z-index:50;max-width:90vw;text-align:center;transition:opacity .3s";
+    document.body.appendChild(el); }
+  el.textContent=txt; el.style.opacity="1"; clearTimeout(hinweis.t); hinweis.t=setTimeout(()=>{ el.style.opacity="0"; }, 3200);
+}
+
+/* ---------- Prüfungen ---------- */
+function deckStand(key){
+  const k=DECKS[key].k, g=k.filter(c=>S.stat[c.id]===1).length, u=k.filter(c=>S.stat[c.id]===-1).length, n=k.filter(c=>S.stat[c.id]===0).length;
+  return {t:k.length, g, u, n, neu:k.length-g-u-n};
+}
+const segHtml = s => `<div class="seg" role="img" aria-label="${s.g} von ${s.t} gewusst"><i class="g" style="width:${s.g/s.t*100}%"></i><i class="u" style="width:${s.u/s.t*100}%"></i><i class="n" style="width:${s.n/s.t*100}%"></i></div>`;
+function vPruef(){
+  const karten = PRUEF.map(p=>{
+    const d=pDatum(p), n=tageBis(d), st=p.deck?deckStand(p.deck):null;
+    return `<article class="pcard fc${n<0?" vorbei":""}" style="${fcVar(p.f)}">
+      <div class="phead">${ring(n, 75)}
+        <div><span class="bdg${p.art==="Prüfung"?"":" l"}">${esc(p.art)}</span><h3>${esc(p.n)}</h3>
+        <div class="meta">${esc(fName(p.f,true))}<br>${fmtD(d,true)} · ${p.art==="Prüfung"?p.von+" Uhr":"bis "+p.von+" Uhr"}${p.ort?" · "+p.ort:""}</div></div></div>
+      <ul class="facts">${(p.fakt||[]).map(x=>`<li><span>${esc(x[0])}</span><b style="font-weight:500">${esc(x[1])}</b></li>`).join("")}</ul>
+      ${p.stoff?`<details><summary>${esc(p.stoffT)}</summary><${p.ol?"ol":"ul"}>${p.stoff.map(x=>`<li>${esc(x)}</li>`).join("")}</${p.ol?"ol":"ul"}></details>`:""}
+      ${p.extra?`<details><summary>${esc(p.extraT)}</summary><ol>${p.extra.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></details>`:""}
+      ${st?segHtml(st):""}
+      ${p.deck||p.probe?`<div class="acts">${p.deck?`<button class="btn" type="button" data-deck="${p.deck}">Karten lernen · ${st.g}/${st.t}</button>`:""}${p.probe?`<button class="btn l" type="button" data-go="probe">Probeprüfung</button>`:""}</div>`:""}
+    </article>`;
+  }).join("");
+  const stapel = Object.keys(DECKS).map(k=>{ const d=DECKS[k], s=deckStand(k);
+    return `<button class="dtile fc" type="button" data-deck="${k}" style="${fcVar(d.f)}"><span class="kicker">${s.t} Karten</span><b>${esc(d.n)}</b><small>${esc(d.sub)}</small>${segHtml(s)}<small>${s.g} gewusst · ${s.u} unsicher · ${s.n} nochmal · ${s.neu} neu</small></button>`; }).join("");
+  return `
+  <div class="hero"><h1>Prüfungen und Transferarbeiten</h1><p>Was wann fällig ist, was verlangt wird und womit du dafür lernst.</p></div>
+  <div class="pgrid">${karten}</div>
+  <h2 class="sech">Lernen auf die Prüfung<small>Karteikarten mit Bewertung, wie bei Quizlet</small></h2>
+  <div class="pgrid">${stapel}</div>`;
+}
+
+/* ---------- Karteikarten-Trainer ---------- */
+function trStart(key, opt){
+  const d=DECKS[key]; if(!d) return;
+  const o=Object.assign({tag:"Alle", nur:false, mix:false}, opt||{});
+  let k=d.k.filter(c=>(o.tag==="Alle"||c.t===o.tag) && (!o.nur || S.stat[c.id]!==1));
+  if(o.mix){ k=k.slice(); for(let i=k.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [k[i],k[j]]=[k[j],k[i]]; } }
+  S.tr={deck:key, tag:o.tag, nur:o.nur, mix:o.mix, q:k.map(c=>c.id), i:0, runde:{g:0,u:0,n:0}};
+}
+function vTrainer(){
+  const T=S.tr, d=DECKS[T.deck], st=deckStand(T.deck), tags=[...new Set(d.k.map(c=>c.t))];
+  const p=PRUEF.find(x=>x.deck===T.deck), pn=p?tageBis(pDatum(p)):null;
+  const kopf = `
+    <button class="back" type="button" data-go="pruefungen">← Prüfungen</button>
+    <div class="hero" style="margin-bottom:16px"><h1>${esc(d.n)}</h1><p>${st.t} Karten${p&&pn>=0?` · ${esc(p.n)} ${relTage(pn)}`:""}</p></div>
+    ${segHtml(st)}
+    <div class="legend"><span style="--k:var(--ok)">${st.g} gewusst</span><span style="--k:#D9A21B">${st.u} unsicher</span><span style="--k:#D4583F">${st.n} nochmal</span><span style="--k:var(--line)">${st.neu} neu</span></div>
+    <div class="chips" style="margin-bottom:8px">
+      <button class="chip" type="button" data-qtag="Alle" aria-pressed="${T.tag==="Alle"}">Alle Themen</button>
+      ${tags.map(t=>`<button class="chip" type="button" data-qtag="${esc(t)}" aria-pressed="${T.tag===t}">${esc(t)}</button>`).join("")}
+    </div>
+    <div class="chips">
+      <button class="chip" type="button" data-qnur="1" aria-pressed="${T.nur}">Nur offene Karten</button>
+      <button class="chip" type="button" data-qmix="1" aria-pressed="${T.mix}">Mischen</button>
+    </div>`;
+  if(T.i >= T.q.length){
+    const r=T.runde, offen=d.k.filter(c=>(T.tag==="Alle"||c.t===T.tag)&&S.stat[c.id]!==1).length;
+    return `<div class="tr fc" style="${fcVar(d.f)}">${kopf}
+      <div class="fertig" style="margin-top:18px">
+        <h2>${T.q.length? (offen? "Runde geschafft":"Alles gewusst") : "Keine Karten in dieser Auswahl"}</h2>
+        <p class="meta">${T.q.length?`Diese Runde: ${r.g} gewusst · ${r.u} unsicher · ${r.n} nochmal`:"Wähle ein anderes Thema oder schalte «Nur offene Karten» aus."}</p>
+        <div class="acts">${offen?`<button class="btn" type="button" data-qagain="offen">${offen} offene Karten nochmals</button>`:""}<button class="btn l" type="button" data-qagain="alle">Alle Karten nochmals</button></div>
+      </div></div>`;
+  }
+  const c=d.k.find(x=>x.id===T.q[T.i]);
+  return `<div class="tr fc" style="${fcVar(d.f)}">${kopf}
+    <div class="trbar"><span>Karte ${T.i+1} von ${T.q.length}</span><span><button class="lnk" type="button" data-qnav="-1">← zurück</button> · <button class="lnk" type="button" data-qnav="1">überspringen →</button></span></div>
+    <div class="qcard" id="qcard" tabindex="0" role="button" aria-label="Karte umdrehen">
+      <div class="qin">
+        <div class="face qf"><span class="qtag">${esc(c.t)}${c.x?" · Onlinetest":""}</span><div class="qq">${esc(c.f)}</div><div class="qh">Antwort im Kopf formulieren, dann antippen oder Leertaste</div></div>
+        <div class="face qb"><span class="qtag">Antwort</span><div class="qa">${c.r}</div></div>
+      </div>
+    </div>
+    <div class="acts" id="qvor"><button class="btn" type="button" id="qflip">Antwort zeigen</button></div>
+    <div class="rate" id="qnach" hidden style="margin-top:20px">
+      <button type="button" class="r0" data-rate="0">Nochmal<small><kbd>1</kbd></small></button>
+      <button type="button" class="r1" data-rate="-1">Unsicher<small><kbd>2</kbd></small></button>
+      <button type="button" class="r2" data-rate="1">Gewusst<small><kbd>3</kbd></small></button>
+    </div>
+    <p class="meta" style="margin-top:22px">Tastatur: Leertaste dreht um, 1 Nochmal, 2 Unsicher, 3 Gewusst, Pfeiltasten blättern · <button class="lnk" type="button" id="qreset">Stapel zurücksetzen</button></p>
+  </div>`;
+}
+function qDreh(){
+  const k=document.getElementById("qcard"); if(!k) return;
+  const auf=k.classList.toggle("is-flipped");
+  document.getElementById("qvor").hidden=auf; document.getElementById("qnach").hidden=!auf;
+}
+function qBewerte(v){
+  const T=S.tr, id=T.q[T.i]; if(!id) return;
+  S.stat[id]=v; store.saveLern(S.stat);
+  T.runde[v===1?"g":v===-1?"u":"n"]++; T.i++; render();
+}
+function qNav(n){ const T=S.tr; T.i=Math.max(0, Math.min(T.q.length-1, T.i+n)); render(); }
+
+/* ---------- Probeprüfung ---------- */
+function vProbe(){
+  const tot=PROBE.reduce((a,q)=>a+q.p,0);
+  return `<div class="fc" style="${fcVar("INFW")}">
+  <button class="back" type="button" data-go="pruefungen">← Prüfungen</button>
+  <div class="hero"><h1>Probeprüfung INFW</h1><p>Die sechs Aufgaben der Probeprüfung vom 20.11.2026, total ${tot} Punkte. Erst selbst beantworten, dann aufklappen.</p></div>
+  <div class="acts" style="margin:0 0 22px"><button class="btn" type="button" data-deck="infw">Karteikarten dazu lernen</button></div>
+  <h2 class="sech" style="margin-top:0">Eselsbrücken</h2>
+  <div class="bridges">${BRUECKEN.map(b=>`<div class="bridge"><h4>${esc(b[0])}</h4><div class="satz">${b[1]}</div><p>${esc(b[2])}</p></div>`).join("")}</div>
+  <h2 class="sech">Aufgaben mit Musterantwort</h2>
+  ${PROBE.map((q,i)=>`<details class="qa-d"><summary><i>${i+1}</i>${esc(q.n)}<span>${q.p} Punkte</span></summary>
+    <div class="qa-b"><p class="frage">${esc(q.frage)}</p><div class="kern">${esc(q.kern)}</div>
+    <div class="model">${q.a}</div><h5>So gibt es die Punkte</h5><ul>${q.r.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div></details>`).join("")}
+  <p class="meta" style="margin-top:18px">Die Musterantworten sind eigene Formulierungen mit Beispielen aus dem Betrieb, nicht vom Dozenten korrigiert.</p>
+  </div>`;
+}
+
+/* ---------- Klicks und Tasten ---------- */
+function klickNeu(b,d){
+  if(d.tf){ S.tf=d.tf; render(); return true; }
+  if(d.talt){ S.tAlt=!S.tAlt; render(); return true; }
+  if(d.ics){ icsAktion(d.ics); return true; }
+  if(d.tday){
+    if(d.tday<iso(new Date()) && !S.tAlt){ S.tAlt=true; render(); }
+    const el=document.getElementById("d-"+d.tday);
+    if(el) el.scrollIntoView({behavior:"smooth", block:"start"}); else { S.tf="Alle"; render(); const e2=document.getElementById("d-"+d.tday); if(e2) e2.scrollIntoView({block:"start"}); }
+    return true;
+  }
+  if(d.deck){ trStart(d.deck); go("trainer"); return true; }
+  if(d.qtag){ trStart(S.tr.deck,{tag:d.qtag, nur:S.tr.nur, mix:S.tr.mix}); render(); return true; }
+  if(d.qnur){ trStart(S.tr.deck,{tag:S.tr.tag, nur:!S.tr.nur, mix:S.tr.mix}); render(); return true; }
+  if(d.qmix){ trStart(S.tr.deck,{tag:S.tr.tag, nur:S.tr.nur, mix:!S.tr.mix}); render(); return true; }
+  if(d.qagain){ trStart(S.tr.deck,{tag:S.tr.tag, nur:d.qagain==="offen", mix:S.tr.mix}); render(); return true; }
+  if(d.rate!=null){ qBewerte(Number(d.rate)); return true; }
+  if(d.qnav){ qNav(Number(d.qnav)); return true; }
+  if(b.id==="qflip"){ qDreh(); return true; }
+  if(b.id==="qreset"){ if(confirm("Fortschritt dieses Stapels zurücksetzen?")){ DECKS[S.tr.deck].k.forEach(c=>{ delete S.stat[c.id]; }); store.saveLern(S.stat); trStart(S.tr.deck); render(); } return true; }
+  return false;
+}
+document.addEventListener("keydown", ev=>{
+  if(S.v!=="trainer" || S.q.trim().length>1 || /INPUT|TEXTAREA|SELECT/.test(ev.target.tagName) || ev.metaKey || ev.ctrlKey || ev.altKey) return;
+  const k=document.getElementById("qcard"); if(!k) return;
+  const auf=k.classList.contains("is-flipped");
+  if(ev.key===" " || (ev.key==="Enter" && ev.target===k)){ ev.preventDefault(); qDreh(); }
+  else if(auf && ev.key==="1") qBewerte(0);
+  else if(auf && ev.key==="2") qBewerte(-1);
+  else if(auf && ev.key==="3") qBewerte(1);
+  else if(ev.key==="ArrowRight") qNav(1);
+  else if(ev.key==="ArrowLeft") qNav(-1);
+});
+
 /* ====================== RENDER ====================== */
 function render(){
   const v = view();
@@ -1864,6 +2578,10 @@ function render(){
     case "netz":     v.innerHTML = vNetz(); bindNetz(); break;
     case "projekte": v.innerHTML = vProjekte(); break;
     case "projekt":  v.innerHTML = vProjekt(); bindForm(); break;
+    case "termine":  v.innerHTML = vTermine(); break;
+    case "pruefungen": v.innerHTML = vPruef(); break;
+    case "trainer":  if(!S.tr) trStart("infw"); v.innerHTML = vTrainer(); break;
+    case "probe":    v.innerHTML = vProbe(); break;
     case "lernen":   v.innerHTML = vLernen(); { const s=document.getElementById("lernmod"); if(s) s.onchange = e=>{ S.lernMod=e.target.value; S.li=0; S.auf=false; render(); }; } break;
     default:         v.innerHTML = vUebersicht();
   }
@@ -1871,8 +2589,9 @@ function render(){
 
 document.addEventListener("click", ev=>{
   const b = ev.target.closest("button");
-  if(!b){ if(ev.target.closest("#flash") && !S.auf){ S.auf=true; render(); } return; }
+  if(!b){ if(ev.target.closest("#qcard")){ qDreh(); return; } if(ev.target.closest("#flash") && !S.auf){ S.auf=true; render(); } return; }
   const d = b.dataset;
+  if(klickNeu(b,d)) return;
   if(d.gonetz){ NZ.map=d.gonetz; go("netz"); return; }
   if(d.go){ S.entwurf=null; if(d.go==="methoden"){ S.mod=null; } go(d.go); return; }
   if(d.mod){ S.mod=d.mod; S.kat="Alle"; go("methoden"); return; }
@@ -1894,7 +2613,7 @@ document.addEventListener("click", ev=>{
   if(d.bew!=null){ const c=S.karten[S.li]; if(c){ S.stat[c.id]= d.bew==="1"?1:0; store.saveLern(S.stat);} S.li=(S.li+1)%Math.max(1,S.karten.length); S.auf=false; render(); return; }
   if(d.skip){ S.li=(S.li+1)%Math.max(1,S.karten.length); S.auf=false; render(); return; }
   if(b.id==="flip"){ S.auf=true; render(); return; }
-  if(b.id==="reset"){ if(confirm("Lernfortschritt zurücksetzen?")){ S.stat={}; store.saveLern({}); render(); } return; }
+  if(b.id==="reset"){ if(confirm("Lernfortschritt der Methodenkarten zurücksetzen?")){ Object.keys(S.stat).forEach(k=>{ if(/^(t|m)-/.test(k)) delete S.stat[k]; }); store.saveLern(S.stat); render(); } return; }
   if(b.id==="themeBtn"){
     const dunkelJetzt = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim().toLowerCase()==="#0f1416";
     const neu = dunkelJetzt ? "light" : "dark";
