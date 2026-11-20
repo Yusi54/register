@@ -6,7 +6,7 @@
 <title>Register HFWI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Archivo:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#16212B; --soft:#56646F; --bg:#F2F4F1; --card:#FFFFFF; --line:#DCE1DC;
@@ -310,9 +310,8 @@ button.mday:hover{background:color-mix(in srgb,var(--fc) 30%,transparent)}
 .dtile:hover{transform:translateY(-2px); border-color:var(--fci)}
 .dtile b{font-size:16px}
 .dtile small{color:var(--soft)}
-.seg{display:flex; height:8px; border-radius:99px; overflow:hidden; background:var(--line)}
-.seg i{display:block; height:100%; transition:width .4s}
-.seg .g{background:var(--ok)} .seg .u{background:#D9A21B} .seg .n{background:#D4583F}
+.pseg{display:flex; height:10px; border-radius:99px; overflow:hidden; background:var(--line)}
+.pseg i{display:block; height:100%; transition:width .4s}
 .legend{display:flex; flex-wrap:wrap; gap:6px 16px; font-size:13px; color:var(--soft); margin:8px 0 18px}
 .legend span::before{content:""; display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; background:var(--k)}
 
@@ -369,6 +368,138 @@ kbd{font:inherit; font-size:11px; border:1px solid var(--line); border-radius:5p
   .facts li{grid-template-columns:84px 1fr}
 }
 @media (prefers-reduced-motion:reduce){.now::after,.live{animation:none} .qin{transition:none}}
+
+/* ====================== LOOK: FARBIG, WEICH, VERSPIELT ====================== */
+:root{
+  --ink:#1D1D1F; --soft:#6E6E73; --bg:#F5F5F7; --card:#FFFFFF; --line:#E4E4EA;
+  --s1:#0A7EA4; --s1t:#E2F3FA; --s2:#8E3BD0; --s2t:#F2E7FC; --s3:#D4680A; --s3t:#FFEFDB;
+  --acc:#0071E3; --ok:#1F9D4D; --mode:light; --r:22px; --rs:14px;
+  --sh:0 1px 2px rgba(0,0,0,.04), 0 10px 28px -14px rgba(20,20,40,.18);
+  --g1:#0A84FF; --g2:#AF52DE; --g3:#FF2D55; --g4:#FF9F0A; --g5:#30D158;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#F5F5F7; --soft:#A1A1A6; --bg:#000000; --card:#1C1C1E; --line:#2E2E32;
+    --s1:#64D2FF; --s1t:#0F2B37; --s2:#DA8FFF; --s2t:#2B1939; --s3:#FFB340; --s3t:#33240B;
+    --acc:#2997FF; --ok:#30D158; --mode:dark; --sh:0 0 0 1px rgba(255,255,255,.06); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#F5F5F7; --soft:#A1A1A6; --bg:#000000; --card:#1C1C1E; --line:#2E2E32;
+  --s1:#64D2FF; --s1t:#0F2B37; --s2:#DA8FFF; --s2t:#2B1939; --s3:#FFB340; --s3t:#33240B;
+  --acc:#2997FF; --ok:#30D158; --mode:dark; --sh:0 0 0 1px rgba(255,255,255,.06); color-scheme:dark;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Segoe UI",system-ui,sans-serif; -webkit-font-smoothing:antialiased;
+  background:
+    radial-gradient(900px 520px at 8% -8%, color-mix(in srgb,var(--g1) 13%,transparent), transparent 70%),
+    radial-gradient(820px 520px at 100% -4%, color-mix(in srgb,var(--g3) 10%,transparent), transparent 70%),
+    radial-gradient(700px 600px at 50% 110%, color-mix(in srgb,var(--g2) 8%,transparent), transparent 70%),
+    var(--bg); background-attachment:fixed}
+h1,h2,h3,h4{letter-spacing:-0.022em}
+.logo{font-size:19px}
+.logo span{background:linear-gradient(90deg,var(--g1),var(--g3)); -webkit-background-clip:text; background-clip:text; color:transparent}
+.top{background:color-mix(in srgb,var(--bg) 72%,transparent); border-bottom-color:color-mix(in srgb,var(--line) 60%,transparent)}
+.tabs{background:color-mix(in srgb,var(--ink) 6%,transparent); padding:3px; border-radius:99px; gap:2px; flex:0 1 auto}
+.tabs button{padding:7px 13px; font-size:14.5px; transition:background .2s,color .2s}
+.tabs button:hover{background:color-mix(in srgb,var(--card) 60%,transparent)}
+.tabs button[aria-current="true"]{background:var(--card); color:var(--ink); font-weight:600; box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.tools-r{margin-left:auto}
+.hero h1{font-size:clamp(32px,5vw,48px); letter-spacing:-0.035em; padding-bottom:.08em;
+  background:linear-gradient(92deg,var(--g1),var(--g2) 55%,var(--g3)); -webkit-background-clip:text; background-clip:text; color:transparent; display:inline-block}
+.hero p{font-size:17px}
+.box,.sem,.mcard,.month,.calbar,.pcard,.dtile,.qa-d,.tdate,.plist{border-color:transparent; box-shadow:var(--sh)}
+.sem::before{height:6px; background:linear-gradient(90deg,var(--c),color-mix(in srgb,var(--c) 45%,transparent))}
+.mod{border-radius:14px; transition:transform .15s}
+.mod:hover{outline:0; transform:scale(1.02)}
+.mcard:hover,.dtile:hover{transform:translateY(-3px)}
+.btn{background:linear-gradient(180deg,color-mix(in srgb,var(--acc) 86%,#fff),var(--acc)); color:#fff; box-shadow:0 6px 16px -8px var(--acc); transition:transform .12s, box-shadow .12s}
+.btn:hover{opacity:1; transform:translateY(-1px); box-shadow:0 10px 22px -10px var(--acc)}
+.btn:active{transform:scale(.97)}
+.btn.l,.btn.d,.btn.sec{background:var(--card); box-shadow:none; color:var(--ink); border-color:var(--line)}
+.chip{transition:transform .12s, background .2s}
+.chip:active{transform:scale(.95)}
+.chip[aria-pressed="true"]{background:var(--acc); border-color:var(--acc); color:#fff}
+.nums{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
+.nums div{border-radius:20px; padding:16px 18px; color:#fff; background:linear-gradient(140deg,var(--a),var(--b)); box-shadow:0 12px 24px -16px var(--b)}
+.nums div:nth-child(1){--a:#5AC8FA; --b:#0A84FF} .nums div:nth-child(2){--a:#C77DFF; --b:#8E3BD0}
+.nums div:nth-child(3){--a:#FFB340; --b:#FF7A00} .nums div:nth-child(4){--a:#5EE08A; --b:#1F9D4D}
+.nums div b{font-size:32px} .nums div span{color:rgba(255,255,255,.88)}
+.now{border-color:transparent; box-shadow:var(--sh); background:
+  radial-gradient(120% 150% at 0% 0%, color-mix(in srgb,var(--fc) 34%,transparent), transparent 60%),
+  radial-gradient(90% 130% at 100% 100%, color-mix(in srgb,var(--fc2,var(--fc)) 30%,transparent), transparent 62%),
+  var(--card)}
+.now-ex{border-color:transparent; -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); box-shadow:var(--sh); transition:transform .15s}
+.now-ex:hover{transform:scale(1.03)}
+.tcard{border-color:transparent}
+.bdg{background:linear-gradient(180deg,color-mix(in srgb,var(--fc) 80%,#fff),var(--fc)); color:#fff}
+.bdg.l{background:var(--fct); border:0; color:var(--fci)}
+.ring .fg{stroke:var(--fc)}
+.pcard::before{height:6px; background:linear-gradient(90deg,var(--fc),color-mix(in srgb,var(--fc) 35%,transparent))}
+.face{border-color:transparent; background:
+  radial-gradient(120% 100% at 100% 0%, color-mix(in srgb,var(--fc) 30%,transparent), transparent 58%),
+  radial-gradient(90% 90% at 0% 100%, color-mix(in srgb,var(--g2) 14%,transparent), transparent 60%), var(--card);
+  box-shadow:0 30px 60px -34px color-mix(in srgb,var(--fc) 80%,transparent), var(--sh)}
+.face.qb{background:
+  radial-gradient(120% 100% at 0% 0%, color-mix(in srgb,var(--ok) 20%,transparent), transparent 58%),
+  radial-gradient(90% 90% at 100% 100%, color-mix(in srgb,var(--fc) 18%,transparent), transparent 60%), var(--card)}
+.rate button{border-width:0; color:#fff; box-shadow:0 10px 20px -12px var(--k); background:linear-gradient(180deg,color-mix(in srgb,var(--k) 82%,#fff),var(--k))}
+.rate .r0{--k:#FF453A; color:#fff} .rate .r1{--k:#FF9F0A; color:#fff} .rate .r2{--k:#30B95A; color:#fff}
+.rate .r0:hover,.rate .r1:hover,.rate .r2:hover{background:linear-gradient(180deg,color-mix(in srgb,var(--k) 92%,#fff),var(--k)); transform:translateY(-2px)}
+.rate button small{color:rgba(255,255,255,.85)} .rate kbd{border-color:rgba(255,255,255,.5); color:#fff}
+.pseg .g{background:linear-gradient(90deg,#5EE08A,#30B95A)} .pseg .u{background:#FF9F0A} .pseg .n{background:#FF453A}
+
+/* ---------- Spielstand ---------- */
+.lvl{display:flex; align-items:center; gap:8px; border:0; cursor:pointer; border-radius:99px; padding:6px 12px 6px 6px; font-weight:700; font-size:13px; color:#fff; white-space:nowrap;
+  background:linear-gradient(120deg,var(--g1),var(--g2) 60%,var(--g3)); box-shadow:0 6px 16px -8px var(--g2); transition:transform .15s}
+.lvl:hover{transform:scale(1.05)}
+.lvl b{background:rgba(255,255,255,.25); border-radius:99px; min-width:24px; height:24px; display:grid; place-items:center; padding:0 6px}
+.game{display:grid; grid-template-columns:auto 1fr; gap:18px 24px; align-items:center; border-radius:26px; padding:22px 24px; margin-bottom:26px; color:#fff; position:relative; overflow:hidden;
+  background:linear-gradient(125deg,#0A84FF,#7D5BE6 48%,#FF2D75); box-shadow:0 24px 44px -26px #7D5BE6}
+.game::after{content:""; position:absolute; inset:0; background:radial-gradient(60% 90% at 90% 0%,rgba(255,255,255,.28),transparent 60%); pointer-events:none}
+.game>*{position:relative; z-index:1}
+.g-ring{position:relative; width:104px; height:104px}
+.g-ring svg{width:100%; height:100%; transform:rotate(-90deg)}
+.g-ring circle{fill:none; stroke-width:9}
+.g-ring .bg{stroke:rgba(255,255,255,.25)} .g-ring .fg{stroke:#fff; stroke-linecap:round; transition:stroke-dashoffset .9s cubic-bezier(.2,.8,.2,1)}
+.g-ring div{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; line-height:1}
+.g-ring small{font-size:11px; letter-spacing:.08em; text-transform:uppercase; opacity:.85}
+.g-ring b{font-size:36px; font-weight:800}
+.g-main h2{font-size:24px; font-weight:800; margin-bottom:2px}
+.g-main p{margin:0 0 10px; opacity:.9; font-size:14.5px}
+.xpbar{height:10px; border-radius:99px; background:rgba(255,255,255,.25); overflow:hidden}
+.xpbar i{display:block; height:100%; border-radius:99px; background:#fff; transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.g-stats{grid-column:1/-1; display:grid; grid-template-columns:repeat(4,1fr); gap:10px}
+.g-stat{background:rgba(255,255,255,.16); border-radius:16px; padding:11px 13px; -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px)}
+.g-stat b{display:block; font-size:21px; font-weight:800; line-height:1.15; font-variant-numeric:tabular-nums}
+.g-stat span{font-size:12.5px; opacity:.9}
+.g-stat .xpbar{height:5px; margin-top:6px}
+.badges{grid-column:1/-1; display:flex; flex-wrap:wrap; gap:8px}
+.badge{display:flex; align-items:center; gap:7px; background:rgba(255,255,255,.2); border-radius:99px; padding:5px 12px 5px 6px; font-size:13px; font-weight:600}
+.badge i{font-style:normal; width:26px; height:26px; border-radius:50%; background:#fff; display:grid; place-items:center; font-size:15px}
+.badge.zu{opacity:.55; font-weight:500} .badge.zu i{background:rgba(255,255,255,.35); filter:grayscale(1)}
+.hud{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 6px}
+.hud span{display:inline-flex; align-items:center; gap:6px; background:var(--card); box-shadow:var(--sh); border-radius:99px; padding:6px 13px; font-size:13.5px; font-weight:600; font-variant-numeric:tabular-nums}
+.hud .combo{color:#fff; background:linear-gradient(120deg,#FF9F0A,#FF2D55); animation:wackel .45s}
+@keyframes wackel{0%{transform:scale(.7)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.xp-pop{position:fixed; left:50%; top:38%; z-index:60; font-weight:800; font-size:26px; color:#fff; padding:8px 18px; border-radius:99px; pointer-events:none;
+  background:linear-gradient(120deg,var(--g1),var(--g2)); box-shadow:0 14px 30px -12px var(--g2); animation:hoch 1s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes hoch{0%{opacity:0; transform:translate(-50%,10px) scale(.7)}18%{opacity:1; transform:translate(-50%,0) scale(1.08)}100%{opacity:0; transform:translate(-50%,-90px) scale(1)}}
+#konfetti{position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:70}
+.sterne{font-size:40px; letter-spacing:6px; margin-bottom:6px}
+.sterne s{text-decoration:none; opacity:.22; filter:grayscale(1)}
+.ready{display:flex; justify-content:space-between; align-items:baseline; font-size:13px; color:var(--soft)}
+.ready b{font-size:15px; color:var(--fci)}
+.topin{max-width:1180px; gap:14px}
+.top .srch{width:128px}
+.tabs button{padding:7px 12px}
+@media (max-width:860px){ .nums{grid-template-columns:repeat(2,1fr)} .g-stats{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:640px){
+  .tabs{flex:0 0 100%; border-radius:16px}
+  .game{grid-template-columns:1fr; text-align:left; padding:20px}
+  .g-ring{width:88px; height:88px} .g-ring b{font-size:30px}
+  .lvl span{display:none}
+}
+@media (prefers-reduced-motion:reduce){ .xp-pop,.hud .combo{animation:none} }
 </style>
 </head>
 <body>
@@ -376,6 +507,7 @@ kbd{font:inherit; font-size:11px; border:1px solid var(--line); border-radius:5p
   <button class="logo" type="button" data-go="uebersicht">Register<span>.</span></button>
   <nav class="tabs" id="nav"></nav>
   <div class="tools-r">
+    <button class="lvl" id="lvl" type="button" data-go="pruefungen"></button>
     <input type="search" class="srch" id="q" placeholder="Suchen" autocomplete="off" aria-label="Suchen">
     <button class="icon" id="themeBtn" type="button" aria-label="Hell oder dunkel">◐</button>
   </div>
@@ -1778,6 +1910,7 @@ function vUebersicht(){
     <p>Dein Studium an einem Ort. Tipp ein Modul an, um die Methoden daraus zu sehen.</p>
   </div>
   ${nowCard(true)}
+  ${gameCard()}
   <div class="nums">
     <div><b>${MODULE.length}</b><span>Module</span></div>
     <div><b>${WERKZEUGE.length}</b><span>Methoden</span></div>
@@ -2025,14 +2158,14 @@ function vSuche(){
 const STAND = "2026-11-20";
 const ORT = "Zimmer A503";
 const FACH = {
-  LEAD:{n:"Leadership", c:"#C2410C"},
-  INFW:{n:"Informations- und Wissensmanagement", kn:"Info- & Wissensmanagement", c:"#0F766E"},
-  BUSI:{n:"Business und ICT-Development", kn:"Business & ICT", c:"#4F46E5"},
-  CM:{n:"Change Management", c:"#BE185D"},
-  DSR:{n:"Datenschutzrecht", c:"#0369A1"},
-  AUFTR:{n:"Auftrittskompetenz", c:"#7C3AED"},
-  INNO:{n:"Innovationsmanagement", c:"#4D7C0F"},
-  HF:{n:"Klasse HFWI", c:"#64748B"}
+  LEAD:{n:"Leadership", c:"#FF8A00"},
+  INFW:{n:"Informations- und Wissensmanagement", kn:"Info- & Wissensmanagement", c:"#12B5A6"},
+  BUSI:{n:"Business und ICT-Development", kn:"Business & ICT", c:"#5E5CE6"},
+  CM:{n:"Change Management", c:"#FF2D75"},
+  DSR:{n:"Datenschutzrecht", c:"#0A84FF"},
+  AUFTR:{n:"Auftrittskompetenz", c:"#AF52DE"},
+  INNO:{n:"Innovationsmanagement", c:"#34C759"},
+  HF:{n:"Klasse HFWI", c:"#8E8E93"}
 };
 /* [Datum, von, bis, Fach, Art (u Unterricht · p Prüfung · a Abgabe), Titel, Thema] */
 const TERMINE_ROH = [
@@ -2126,7 +2259,7 @@ const PRUEF = [
   {id:"infw-theorie", f:"INFW", art:"Prüfung", n:"Theorieprüfung", d:"2026-12-04", von:"17:15", ort:ORT,
    fakt:[["Gewicht","20 % der Modulnote"],["Dauer","im Block 08, Dauer offen"],["Hilfsmittel","beim Dozenten nachfragen"]],
    stoffT:"Prüfungsstoff",
-   stoff:["Theorie auf den Folien, Block 1 bis 6","Verbunden mit Praxisanwendungen im eigenen Unternehmen","Schwerpunkte laut Probeprüfung: Information, Kompetenzen, Wissensarten, Open Innovation, Umweltdynamiken, Balanced Scorecard"],
+   stoff:["Theorie auf den Folien, Block 1 bis 6","Verbunden mit Praxisanwendungen im eigenen Unternehmen","Die Probeprüfung zeigt die Art der Fragen. An der Prüfung kommen wahrscheinlich andere Themen, deshalb alle Blöcke lernen"],
    deck:"infw", probe:true},
   {id:"busi-konzept", f:"BUSI", art:"Abgabe", n:"Konzept-Arbeit", d:"2027-01-09", von:"23:00",
    fakt:[["Umfang","max. 10 Seiten PDF inkl. Grafiken"],["Bewertung","Konzept oder Zertifizierung, die bessere Note zählt"],["Thema","frei wählbar, praxisnah"]],
@@ -2280,6 +2413,41 @@ const BRUECKEN = [
   ["Wissenstreppe nach North","<b>Z</b>wei <b>D</b>ackel <b>I</b>m <b>W</b>ald <b>H</b>olen <b>K</b>eine <b>W</b>urst","Zeichen, Daten, Informationen, Wissen, Handeln, Kompetenz, Wettbewerbsfähigkeit."],
   ["Probst-Bausteine","<b>I</b>nge <b>E</b>rbt <b>E</b>ine <b>V</b>illa <b>N</b>ahe <b>B</b>ern","Identifikation, Erwerb, Entwicklung, Verteilung, Nutzung, Bewahrung. Aussen: Wissensziele und Wissensbewertung."]
 ];
+const WEITERE = [
+  {n:"Wissenstreppe", frage:"Erkläre die Wissenstreppe nach North und zeige an einem Beispiel aus deinem Unternehmen, wie aus Daten Wettbewerbsfähigkeit wird.",
+   kern:"Zeichen → Daten → Informationen → Wissen → Handeln → Kompetenz → Wettbewerbsfähigkeit. Jede Stufe braucht etwas Zusätzliches.",
+   a:"Aus <b>Zeichen</b> werden mit Syntax <b>Daten</b>, mit Bedeutung <b>Informationen</b>, mit Vernetzung und Erfahrung <b>Wissen</b>. Wird Wissen angewendet, entsteht <b>Handeln</b>, richtiges Handeln ist <b>Kompetenz</b>, und einzigartige Kompetenz bringt <b>Wettbewerbsfähigkeit</b>.<br><br><b>Bei uns:</b> Monitoring-Werte (Daten) zeigen, dass ein Server einer Gemeinde bald voll ist (Information). Wir wissen aus Erfahrung, was zu tun ist (Wissen), erweitern rechtzeitig (Handeln) und verhindern so Ausfälle zuverlässig (Kompetenz). Das macht uns für Gemeinden zum verlässlichen Partner (Wettbewerbsfähigkeit)."},
+  {n:"SECI-Modell", frage:"Beschreibe die vier Formen der Wissensumwandlung nach Nonaka und Takeuchi mit je einem Beispiel aus deinem Betrieb.",
+   kern:"Sozialisation, Externalisierung, Kombination, Internalisierung: Wissen wandert zwischen implizit und explizit.",
+   a:"<b>Sozialisation</b> (implizit → implizit): Ein neuer Techniker schaut einem erfahrenen über die Schulter.<br><b>Externalisierung</b> (implizit → explizit): Der erfahrene Techniker schreibt sein Vorgehen als Anleitung ins Wiki.<br><b>Kombination</b> (explizit → explizit): Mehrere Anleitungen werden zu einem Betriebshandbuch zusammengeführt.<br><b>Internalisierung</b> (explizit → implizit): Jemand arbeitet nach dem Handbuch, bis er es auswendig kann (Learning by doing)."},
+  {n:"Wissensbausteine", frage:"Nenne die Bausteine des Wissensmanagements nach Probst und erkläre, wo dein Unternehmen eine Schwäche hat.",
+   kern:"Aussen: Wissensziele und Wissensbewertung. Innen: Identifikation, Erwerb, Entwicklung, Verteilung, Nutzung, Bewahrung.",
+   a:"Die acht Bausteine sind <b>Wissensziele, Identifikation, Erwerb, Entwicklung, Verteilung, Nutzung, Bewahrung und Bewertung</b>.<br><br><b>Schwäche bei uns (Beispiel):</b> die <b>Bewahrung</b>. Viel Wissen steckt in den Köpfen einzelner Techniker. Geht jemand, geht das Wissen mit. Massnahme: Wissensstafette vor dem Austritt und Pflicht zur Dokumentation im Wiki."},
+  {n:"TOM-Modell", frage:"Was sagt das TOM-Modell aus? Wende es auf die Einführung eines neuen Wikis in deinem Unternehmen an.",
+   kern:"Ganzheitliches Wissensmanagement braucht Technik, Organisation und Mensch zusammen.",
+   a:"<b>Technik:</b> Das Wiki muss einfach bedienbar und überall erreichbar sein.<br><b>Organisation:</b> Es braucht Zuständigkeiten, feste Zeit für die Dokumentation und klare Regeln, was wohin gehört.<br><b>Mensch:</b> Die Mitarbeitenden müssen motiviert sein, ihr Wissen zu teilen, und es braucht eine Fehlerkultur.<br><br>Fehlt ein Teil, wird das Wiki nicht genutzt. Ein Tool allein reicht nicht."},
+  {n:"Lerntheorien", frage:"Erkläre zwei Lerntheorien und wie du sie beim Einarbeiten neuer Mitarbeitender nutzen würdest.",
+   kern:"Behaviorismus (Reiz und Reaktion), Kognitivismus (Informationen verarbeiten), Konstruktivismus (Wissen selbst aufbauen).",
+   a:"<b>Behaviorismus:</b> Lernen durch Reiz, Reaktion und Rückmeldung. <i>Einsatz:</i> Sofortiges Feedback und Lob, wenn ein Ticket sauber gelöst ist.<br><br><b>Konstruktivismus:</b> Wissen wird selbst aus Erfahrung aufgebaut. <i>Einsatz:</i> Neue Mitarbeitende lösen früh echte Fälle in einer Testumgebung, statt nur Handbücher zu lesen.<br><br>Dazu passt der <b>Kognitivismus:</b> Wissen strukturiert vermitteln, zum Beispiel mit Checklisten und Übersichten."},
+  {n:"Wissensinstrumente", frage:"Ein langjähriger Mitarbeiter verlässt dein Unternehmen. Welche zwei Instrumente setzt du ein, damit sein Wissen bleibt? Begründe.",
+   kern:"Wissensstafette (Expert Debriefing), Lessons Learned, Storytelling, Best Practice Sharing, Wiki.",
+   a:"<b>1. Wissensstafette:</b> eine moderierte Übergabe an die Nachfolge vor dem Austritt, mit Wissenslandkarte und priorisierten Themen. Sie sichert das Erfahrungswissen, das nirgends steht.<br><br><b>2. Dokumentation im Wiki oder Storytelling:</b> Er hält seine wichtigsten Fälle und Lösungen fest. So wird implizites Wissen explizit und bleibt für alle auffindbar.<br><br>Ziel aus Sicht des Unternehmens: kein Informationsverlust bei einer Kündigung."},
+  {n:"Barrieren", frage:"Nenne drei Barrieren im Wissensmanagement und wie sie zu Erfolgsfaktoren werden.",
+   kern:"Zeitknappheit, fehlendes Bewusstsein, fehlende Anreize, ungeeignete Tools, Konkurrenz unter Abteilungen.",
+   a:"<b>Zeitknappheit</b> → zeitliche Freiräume für Wissensarbeit schaffen.<br><b>Fehlende Anreize</b> → eine wissensfördernde Unternehmenskultur aufbauen.<br><b>Ungeeignete Tools</b> → auf Benutzerfreundlichkeit und einfache Bedienung achten.<br><br>Weitere: fehlendes Bewusstsein → Mitarbeitende in Entscheidungen einbeziehen. Konkurrenz unter Abteilungen → Partnerkultur fördern."},
+  {n:"Lernende Organisation", frage:"Was ist eine lernende Organisation, und woran erkennst du, ob dein Unternehmen eine ist?",
+   kern:"Eine anpassungsfähige Organisation, die auf äussere und innere Reize reagiert und sich laufend verbessert (KVP, PDCA).",
+   a:"Eine <b>lernende Organisation</b> reagiert auf Veränderungen von innen und aussen und passt sich an. Merkmale sind eine gemeinsame Vision, Fehlertoleranz, Teamgeist und Prozessorientierung. Sie verbessert sich laufend nach dem <b>KVP</b> mit dem Zyklus <b>Plan, Do, Check, Act</b>.<br><br><b>Bei uns:</b> Nach jeder grösseren Störung besprechen wir, was schiefging, und passen die Checkliste an. Das ist ein Ansatz. Es fehlt noch, dass dies überall verbindlich geschieht."},
+  {n:"Open Innovation und Crowdsourcing", frage:"Worin unterscheiden sich Open Innovation und Crowdsourcing? Gib je ein Beispiel.",
+   kern:"Open Innovation: ausgewählte, bekannte Partner. Crowdsourcing: die unbekannte Masse im Internet.",
+   a:"<b>Open Innovation</b> öffnet die Innovation für ausgewählte Partner wie Kunden, Hochschulen oder andere Organisationen. Beispiel: Ein Reifenhersteller entwickelt mit einer Hochschule eine neue Gummimischung.<br><br><b>Crowdsourcing</b> lässt eine offene, unbekannte Masse mitarbeiten. Beispiele: Wikipedia, OpenStreetMap."},
+  {n:"KPI", frage:"Welche Eigenschaften hat ein guter KPI? Entwickle einen KPI für dein Team.",
+   kern:"Strategisch, ressourcenorientiert, messbar, beeinflussbar, zielverbunden, transparent. Vorgehen: Ziel → Kennzahl → KPI mit Bewertungsstufen.",
+   a:"Ein guter KPI ist <b>strategisch, messbar, beeinflussbar, mit einem Ziel verbunden und transparent</b>.<br><br><b>Beispiel:</b><br>1. Unternehmensziel: Die Gemeinden erhalten schnelle Hilfe.<br>2. Kennzahl: Anteil der Tickets mit einer Antwort innert 4 Stunden.<br>3. KPI: unter 70 % schlecht · 70 bis 84 % genügend · 85 bis 94 % gut · ab 95 % hervorragend."},
+  {n:"Wissensmanagement in der Praxis", frage:"Was hat Xerox oder Accenture im Wissensmanagement umgesetzt, und was lernst du daraus für dein Unternehmen?",
+   kern:"Xerox: Communities of Practice, Eureka, Mentoren. Accenture: Knowledge Xchange mit klaren Rollen. Lehre: Technik allein reicht nicht.",
+   a:"<b>Accenture</b> baute ab 1992 die weltweite Wissensdatenbank <b>Knowledge Xchange</b>. Die erste Version war eine offene Sammelstelle und wurde unübersichtlich. Erst mit klaren Rollen (Chief Knowledge Officer, Knowledge Integrator, Knowledge Champion) und fester Struktur funktionierte sie.<br><br><b>Xerox</b> förderte den Austausch der Service-Techniker in Communities of Practice und speicherte Tipps in der Datenbank Eureka.<br><br><b>Lehre für uns:</b> Ein Tool allein genügt nicht. Es braucht Zuständige, Struktur und eine Kultur, in der Wissen geteilt wird."}
+];
 const PROBE = [
   {n:"Informationen", p:2, frage:"Erkläre in deinen eigenen Worten deine Definition von «Informationen» im Kontext deines Unternehmens.",
    kern:"Information = Daten + Bedeutung: geordnet, in einen Kontext gestellt und nützlich für eine Entscheidung.",
@@ -2430,7 +2598,7 @@ function deckStand(key){
   const k=DECKS[key].k, g=k.filter(c=>S.stat[c.id]===1).length, u=k.filter(c=>S.stat[c.id]===-1).length, n=k.filter(c=>S.stat[c.id]===0).length;
   return {t:k.length, g, u, n, neu:k.length-g-u-n};
 }
-const segHtml = s => `<div class="seg" role="img" aria-label="${s.g} von ${s.t} gewusst"><i class="g" style="width:${s.g/s.t*100}%"></i><i class="u" style="width:${s.u/s.t*100}%"></i><i class="n" style="width:${s.n/s.t*100}%"></i></div>`;
+const segHtml = s => `<div class="pseg" role="img" aria-label="${s.g} von ${s.t} gewusst"><i class="g" style="width:${s.g/s.t*100}%"></i><i class="u" style="width:${s.u/s.t*100}%"></i><i class="n" style="width:${s.n/s.t*100}%"></i></div>`;
 function vPruef(){
   const karten = PRUEF.map(p=>{
     const d=pDatum(p), n=tageBis(d), st=p.deck?deckStand(p.deck):null;
@@ -2441,7 +2609,7 @@ function vPruef(){
       <ul class="facts">${(p.fakt||[]).map(x=>`<li><span>${esc(x[0])}</span><b style="font-weight:500">${esc(x[1])}</b></li>`).join("")}</ul>
       ${p.stoff?`<details><summary>${esc(p.stoffT)}</summary><${p.ol?"ol":"ul"}>${p.stoff.map(x=>`<li>${esc(x)}</li>`).join("")}</${p.ol?"ol":"ul"}></details>`:""}
       ${p.extra?`<details><summary>${esc(p.extraT)}</summary><ol>${p.extra.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></details>`:""}
-      ${st?segHtml(st):""}
+      ${st?`<div class="ready"><span>Bereit für die Prüfung</span><b>${Math.round(st.g/st.t*100)} %</b></div>`+segHtml(st):""}
       ${p.deck||p.probe?`<div class="acts">${p.deck?`<button class="btn" type="button" data-deck="${p.deck}">Karten lernen · ${st.g}/${st.t}</button>`:""}${p.probe?`<button class="btn l" type="button" data-go="probe">Probeprüfung</button>`:""}</div>`:""}
     </article>`;
   }).join("");
@@ -2450,7 +2618,8 @@ function vPruef(){
   return `
   <div class="hero"><h1>Prüfungen und Transferarbeiten</h1><p>Was wann fällig ist, was verlangt wird und womit du dafür lernst.</p></div>
   <div class="pgrid">${karten}</div>
-  <h2 class="sech">Lernen auf die Prüfung<small>Karteikarten mit Bewertung, wie bei Quizlet</small></h2>
+  <h2 class="sech">Lernen auf die Prüfung<small>Karten bewerten, XP sammeln, Serie halten</small></h2>
+  ${gameCard()}
   <div class="pgrid">${stapel}</div>`;
 }
 
@@ -2460,7 +2629,7 @@ function trStart(key, opt){
   const o=Object.assign({tag:"Alle", nur:false, mix:false}, opt||{});
   let k=d.k.filter(c=>(o.tag==="Alle"||c.t===o.tag) && (!o.nur || S.stat[c.id]!==1));
   if(o.mix){ k=k.slice(); for(let i=k.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [k[i],k[j]]=[k[j],k[i]]; } }
-  S.tr={deck:key, tag:o.tag, nur:o.nur, mix:o.mix, q:k.map(c=>c.id), i:0, runde:{g:0,u:0,n:0}};
+  S.tr={deck:key, tag:o.tag, nur:o.nur, mix:o.mix, q:k.map(c=>c.id), i:0, combo:0, runde:{g:0,u:0,n:0,xp:0}};
 }
 function vTrainer(){
   const T=S.tr, d=DECKS[T.deck], st=deckStand(T.deck), tags=[...new Set(d.k.map(c=>c.t))];
@@ -2482,13 +2651,15 @@ function vTrainer(){
     const r=T.runde, offen=d.k.filter(c=>(T.tag==="Alle"||c.t===T.tag)&&S.stat[c.id]!==1).length;
     return `<div class="tr fc" style="${fcVar(d.f)}">${kopf}
       <div class="fertig" style="margin-top:18px">
+        ${T.q.length?`<div class="sterne" aria-label="${Math.round(r.g/T.q.length*3)} von 3 Sternen">${[1,2,3].map(i=>r.g/T.q.length*3>=i-.5?"⭐":"<s>⭐</s>").join("")}</div>`:""}
         <h2>${T.q.length? (offen? "Runde geschafft":"Alles gewusst") : "Keine Karten in dieser Auswahl"}</h2>
-        <p class="meta">${T.q.length?`Diese Runde: ${r.g} gewusst · ${r.u} unsicher · ${r.n} nochmal`:"Wähle ein anderes Thema oder schalte «Nur offene Karten» aus."}</p>
-        <div class="acts">${offen?`<button class="btn" type="button" data-qagain="offen">${offen} offene Karten nochmals</button>`:""}<button class="btn l" type="button" data-qagain="alle">Alle Karten nochmals</button></div>
+        <p class="meta">${T.q.length?`Diese Runde: ${r.g} gewusst · ${r.u} unsicher · ${r.n} nochmal · +${r.xp||0} XP`:"Wähle ein anderes Thema oder schalte «Nur offene Karten» aus."}</p>
+        <div class="acts">${offen?`<button class="btn" type="button" data-qagain="offen">${offen===1?"1 offene Karte":offen+" offene Karten"} nochmals</button>`:""}<button class="btn l" type="button" data-qagain="alle">Alle Karten nochmals</button></div>
       </div></div>`;
   }
   const c=d.k.find(x=>x.id===T.q[T.i]);
   return `<div class="tr fc" style="${fcVar(d.f)}">${kopf}
+    ${hudHtml()}
     <div class="trbar"><span>Karte ${T.i+1} von ${T.q.length}</span><span><button class="lnk" type="button" data-qnav="-1">← zurück</button> · <button class="lnk" type="button" data-qnav="1">überspringen →</button></span></div>
     <div class="qcard" id="qcard" tabindex="0" role="button" aria-label="Karte umdrehen">
       <div class="qin">
@@ -2512,8 +2683,10 @@ function qDreh(){
 }
 function qBewerte(v){
   const T=S.tr, id=T.q[T.i]; if(!id) return;
-  S.stat[id]=v; store.saveLern(S.stat);
-  T.runde[v===1?"g":v===-1?"u":"n"]++; T.i++; render();
+  const war=S.stat[id]===1;
+  S.stat[id]=v; T.runde[v===1?"g":v===-1?"u":"n"]++; T.i++;
+  const txt=gBewerte(v, war, T.i>=T.q.length);
+  store.saveLern(S.stat); render(); xpPop(txt);
 }
 function qNav(n){ const T=S.tr; T.i=Math.max(0, Math.min(T.q.length-1, T.i+n)); render(); }
 
@@ -2522,7 +2695,7 @@ function vProbe(){
   const tot=PROBE.reduce((a,q)=>a+q.p,0);
   return `<div class="fc" style="${fcVar("INFW")}">
   <button class="back" type="button" data-go="pruefungen">← Prüfungen</button>
-  <div class="hero"><h1>Probeprüfung INFW</h1><p>Die sechs Aufgaben der Probeprüfung vom 20.11.2026, total ${tot} Punkte. Erst selbst beantworten, dann aufklappen.</p></div>
+  <div class="hero"><h1>Probeprüfung INFW</h1><p>Die sechs Aufgaben der Probeprüfung vom 20.11.2026, total ${tot} Punkte, und elf weitere mögliche Fragen. Erst selbst beantworten, dann aufklappen.</p></div>
   <div class="acts" style="margin:0 0 22px"><button class="btn" type="button" data-deck="infw">Karteikarten dazu lernen</button></div>
   <h2 class="sech" style="margin-top:0">Eselsbrücken</h2>
   <div class="bridges">${BRUECKEN.map(b=>`<div class="bridge"><h4>${esc(b[0])}</h4><div class="satz">${b[1]}</div><p>${esc(b[2])}</p></div>`).join("")}</div>
@@ -2530,6 +2703,10 @@ function vProbe(){
   ${PROBE.map((q,i)=>`<details class="qa-d"><summary><i>${i+1}</i>${esc(q.n)}<span>${q.p} Punkte</span></summary>
     <div class="qa-b"><p class="frage">${esc(q.frage)}</p><div class="kern">${esc(q.kern)}</div>
     <div class="model">${q.a}</div><h5>So gibt es die Punkte</h5><ul>${q.r.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div></details>`).join("")}
+  <h2 class="sech">Weitere mögliche Fragen<small>an der Prüfung kommen wohl andere Fragen als in der Probeprüfung</small></h2>
+  <p class="meta" style="margin:-6px 0 4px">Gleiche Machart wie die Probeprüfung: Theorie aus den Folien von Block 1 bis 6, verbunden mit deinem Unternehmen. Die Auswahl ist eine Vermutung, keine Vorgabe des Dozenten.</p>
+  ${WEITERE.map((q,i)=>`<details class="qa-d"><summary><i>${String.fromCharCode(65+i)}</i>${esc(q.n)}<span>mögliche Frage</span></summary>
+    <div class="qa-b"><p class="frage">${esc(q.frage)}</p><div class="kern">${esc(q.kern)}</div><div class="model">${q.a}</div></div></details>`).join("")}
   <p class="meta" style="margin-top:18px">Die Musterantworten sind eigene Formulierungen mit Beispielen aus dem Betrieb, nicht vom Dozenten korrigiert.</p>
   </div>`;
 }
@@ -2571,8 +2748,104 @@ document.addEventListener("keydown", ev=>{
   else if(ev.key==="ArrowLeft") qNav(-1);
 });
 
+/* ====================== SPIELSTAND: XP, LEVEL, SERIE, ABZEICHEN ====================== */
+const ZIEL = 20;
+const STUFEN = ["Starter","Lernling","Durchstarter","Könner","Profi","Champion","Legende"];
+function gData(){
+  let g = S.stat._g;
+  if(!g || typeof g!=="object"){ g = {xp:0, tage:{}, best:0, total:0, abz:[], combo:0}; S.stat._g = g; }
+  if(!g.tage) g.tage = {}; if(!g.abz) g.abz = [];
+  return g;
+}
+const lvlVon = xp => Math.floor(Math.sqrt(xp/100))+1;
+const lvlStart = l => 100*(l-1)*(l-1);
+const stufe = l => STUFEN[Math.min(l, STUFEN.length)-1];
+function serie(g){
+  let n=0; const d=tag0(new Date());
+  if(!g.tage[iso(d)]) d.setDate(d.getDate()-1);
+  while(g.tage[iso(d)]){ n++; d.setDate(d.getDate()-1); }
+  return n;
+}
+const ABZEICHEN = [
+  {id:"start", e:"🚀", n:"Erste Karte", d:"Die erste Karte bewertet", ok:g=>g.total>=1},
+  {id:"ziel", e:"🎯", n:"Tagesziel", d:ZIEL+" Karten an einem Tag", ok:g=>Object.values(g.tage).some(x=>x>=ZIEL)},
+  {id:"s3", e:"🔥", n:"3 Tage in Serie", d:"Drei Tage hintereinander gelernt", ok:g=>g.best>=3},
+  {id:"s7", e:"⚡", n:"Wochenserie", d:"Sieben Tage hintereinander gelernt", ok:g=>g.best>=7},
+  {id:"c5", e:"🎳", n:"5er-Combo", d:"Fünfmal hintereinander gewusst", ok:g=>g.combo>=5},
+  {id:"c10", e:"💎", n:"10er-Combo", d:"Zehnmal hintereinander gewusst", ok:g=>g.combo>=10},
+  {id:"h100", e:"💯", n:"100 Karten", d:"100 Karten bewertet", ok:g=>g.total>=100},
+  {id:"halb", e:"🌗", n:"Halbzeit", d:"Einen Stapel zur Hälfte gewusst", ok:()=>Object.keys(DECKS).some(k=>{ const s=deckStand(k); return s.g*2>=s.t; })},
+  {id:"infw", e:"🧠", n:"INFW gemeistert", d:"Alle INFW-Karten gewusst", ok:()=>{ const s=deckStand("infw"); return s.g===s.t; }},
+  {id:"lead", e:"🧭", n:"Leadership gemeistert", d:"Alle Leadership-Karten gewusst", ok:()=>{ const s=deckStand("lead"); return s.g===s.t; }},
+  {id:"cm", e:"🦋", n:"Change gemeistert", d:"Alle Change-Karten gewusst", ok:()=>{ const s=deckStand("cm"); return s.g===s.t; }}
+];
+function gRing(anteil, gross, klein){
+  const r=45, u=2*Math.PI*r;
+  return `<div class="g-ring"><svg viewBox="0 0 104 104" aria-hidden="true"><circle class="bg" cx="52" cy="52" r="${r}"/><circle class="fg" cx="52" cy="52" r="${r}" stroke-dasharray="${u.toFixed(1)}" stroke-dashoffset="${(u*(1-Math.max(0,Math.min(1,anteil)))).toFixed(1)}"/></svg><div><small>${klein}</small><b>${gross}</b></div></div>`;
+}
+function gameCard(){
+  const g=gData(), l=lvlVon(g.xp), a=lvlStart(l), b=lvlStart(l+1), ant=(g.xp-a)/(b-a), heute=g.tage[iso(new Date())]||0, s=serie(g);
+  return `<section class="game" aria-label="Spielstand">
+    ${gRing(ant, l, "Level")}
+    <div class="g-main"><h2>${esc(stufe(l))}</h2><p>${g.xp} XP · noch ${b-g.xp} XP bis Level ${l+1}</p><div class="xpbar"><i style="width:${Math.round(ant*100)}%"></i></div></div>
+    <div class="g-stats">
+      <div class="g-stat"><b>🔥 ${s}</b><span>${s===1?"Tag":"Tage"} in Serie</span></div>
+      <div class="g-stat"><b>${Math.min(heute,ZIEL)}/${ZIEL}</b><span>Tagesziel${heute>=ZIEL?" erreicht":""}</span><div class="xpbar"><i style="width:${Math.min(100,heute/ZIEL*100)}%"></i></div></div>
+      <div class="g-stat"><b>${g.total}</b><span>Karten bewertet</span></div>
+      <div class="g-stat"><b>×${g.combo||0}</b><span>beste Combo</span></div>
+    </div>
+    <div class="badges">${ABZEICHEN.map(z=>{ const hat=g.abz.includes(z.id); return `<span class="badge${hat?"":" zu"}" title="${esc(z.d)}"><i>${z.e}</i>${esc(z.n)}</span>`; }).join("")}</div>
+  </section>`;
+}
+function hudHtml(){
+  const g=gData(), T=S.tr, heute=g.tage[iso(new Date())]||0;
+  return `<div class="hud"><span>Level ${lvlVon(g.xp)} · ${g.xp} XP</span><span>🔥 ${serie(g)}</span><span>🎯 ${Math.min(heute,ZIEL)}/${ZIEL} heute</span>${T&&T.combo>=2?`<span class="combo">Combo ×${T.combo}</span>`:""}</div>`;
+}
+function lvlChip(){
+  const el=document.getElementById("lvl"); if(!el) return;
+  const g=gData(), l=lvlVon(g.xp);
+  el.innerHTML=`<b>${l}</b><span>${g.xp} XP</span>`; el.setAttribute("aria-label","Level "+l+", "+g.xp+" XP. Zum Spielstand");
+}
+function xpPop(txt){
+  const el=document.createElement("div"); el.className="xp-pop"; el.textContent=txt; document.body.appendChild(el); setTimeout(()=>el.remove(), 1000);
+}
+function konfetti(menge){
+  if(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  let c=document.getElementById("konfetti");
+  if(!c){ c=document.createElement("canvas"); c.id="konfetti"; document.body.appendChild(c); }
+  const x=c.getContext("2d"), W=c.width=innerWidth, H=c.height=innerHeight, F=["#0A84FF","#AF52DE","#FF2D55","#FF9F0A","#30D158","#FFD60A","#64D2FF"];
+  const P=Array.from({length:menge||130},()=>({x:W/2+(Math.random()-.5)*W*.3, y:H*.42, vx:(Math.random()-.5)*15, vy:-Math.random()*15-5, g:.36+Math.random()*.16, s:6+Math.random()*7, r:Math.random()*6.3, vr:(Math.random()-.5)*.4, f:F[Math.floor(Math.random()*F.length)], k:Math.random()<.5}));
+  const t0=performance.now(); cancelAnimationFrame(konfetti.raf);
+  (function zeichne(t){
+    const d=t-t0; x.clearRect(0,0,W,H);
+    P.forEach(p=>{ p.vy+=p.g; p.x+=p.vx; p.y+=p.vy; p.vx*=.99; p.r+=p.vr;
+      x.save(); x.translate(p.x,p.y); x.rotate(p.r); x.globalAlpha=Math.max(0,1-d/2300); x.fillStyle=p.f;
+      if(p.k){ x.beginPath(); x.arc(0,0,p.s/2,0,6.3); x.fill(); } else x.fillRect(-p.s/2,-p.s/3,p.s,p.s*.66);
+      x.restore(); });
+    if(d<2300) konfetti.raf=requestAnimationFrame(zeichne); else x.clearRect(0,0,W,H);
+  })(t0);
+}
+/* Punkte für eine bewertete Karte. Gibt den Text für die Einblendung zurück. */
+function gBewerte(v, warSchonGewusst, rundeFertig){
+  const g=gData(), T=S.tr, vorher=lvlVon(g.xp), h=iso(new Date());
+  T.combo = v===1 ? (T.combo||0)+1 : 0;
+  let xp = v===1?10 : v===-1?5 : 2;
+  if(v===1){ xp += Math.min(T.combo-1,5)*2; if(!warSchonGewusst) xp += 5; }
+  if(rundeFertig) xp += 25;
+  g.xp += xp; g.total++; g.tage[h]=(g.tage[h]||0)+1; g.combo=Math.max(g.combo||0, T.combo); g.best=Math.max(g.best||0, serie(g));
+  T.runde.xp=(T.runde.xp||0)+xp;
+  const neu=ABZEICHEN.filter(z=>!g.abz.includes(z.id) && z.ok(g)); neu.forEach(z=>g.abz.push(z.id));
+  const nachher=lvlVon(g.xp);
+  if(nachher>vorher){ konfetti(170); hinweis("Level "+nachher+" erreicht: "+stufe(nachher)); }
+  else if(neu.length){ konfetti(110); hinweis("Abzeichen freigeschaltet: "+neu.map(z=>z.e+" "+z.n).join(", ")); }
+  else if(rundeFertig) konfetti(120);
+  else if((g.tage[h]||0)===ZIEL){ konfetti(110); hinweis("Tagesziel erreicht: "+ZIEL+" Karten"); }
+  return "+"+xp+" XP"+(v===1&&T.combo>=3?" · Combo ×"+T.combo:"");
+}
+
 /* ====================== RENDER ====================== */
 function render(){
+  lvlChip();
   const v = view();
   v.classList.toggle("wide", S.v==="netz" && S.q.trim().length<2);
   if(S.q.trim().length>1){ v.innerHTML = vSuche(); return; }
@@ -2619,7 +2892,7 @@ document.addEventListener("click", ev=>{
   if(b.id==="flip"){ S.auf=true; render(); return; }
   if(b.id==="reset"){ if(confirm("Lernfortschritt der Methodenkarten zurücksetzen?")){ Object.keys(S.stat).forEach(k=>{ if(/^(t|m)-/.test(k)) delete S.stat[k]; }); store.saveLern(S.stat); render(); } return; }
   if(b.id==="themeBtn"){
-    const dunkelJetzt = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim().toLowerCase()==="#0f1416";
+    const dunkelJetzt = getComputedStyle(document.documentElement).getPropertyValue("--mode").trim()==="dark";
     const neu = dunkelJetzt ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", neu);
     try{ localStorage.setItem("hfwi-theme", neu); }catch(e){}
