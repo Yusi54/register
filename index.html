@@ -533,6 +533,36 @@ h1,h2,h3,h4{letter-spacing:-0.022em}
 .bitem .st{margin-left:auto; font-size:12.5px; font-weight:700; color:var(--fci); white-space:nowrap}
 .tcard .tt .bdg.go{cursor:pointer; border:0; font:inherit; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase}
 @media (max-width:640px){ .bhero{padding:22px 20px 20px; border-radius:24px} .bsec{padding:18px} }
+
+/* ====================== RUHIGER LOOK ====================== */
+body{background:var(--bg)}
+.hero h1{background:none; -webkit-background-clip:border-box; background-clip:border-box; color:var(--ink)}
+.logo span{background:none; color:var(--acc)}
+.nums div{background:var(--card); color:var(--ink); box-shadow:var(--sh)}
+.nums div b{color:var(--b)} .nums div span{color:var(--soft)}
+:root{--n1:#0A84FF; --n2:#8E3BD0; --n3:#E07A00; --n4:#1F9D4D}
+.nums div:nth-child(1){--b:var(--n1)} .nums div:nth-child(2){--b:var(--n2)} .nums div:nth-child(3){--b:var(--n3)} .nums div:nth-child(4){--b:var(--n4)}
+.an{display:grid; grid-template-columns:1.15fr 1fr; gap:14px; margin-bottom:26px; align-items:start}
+.an-fokus,.an-liste{background:var(--card); border-radius:22px; box-shadow:var(--sh); padding:22px 24px}
+.an-fokus{border-top:5px solid var(--fc)}
+.an-fokus h2{font-size:24px; font-weight:800; margin:8px 0 4px}
+.an-fokus h2 span{color:var(--fci); font-weight:700}
+.an-m{font-weight:600; font-variant-numeric:tabular-nums; color:var(--soft)}
+.an-fokus .pseg{margin-top:6px}
+.an-liste h3{font-size:16px; font-weight:700; margin-bottom:8px}
+.an-row{display:flex; align-items:center; gap:14px; width:100%; text-align:left; background:none; border:0; border-top:1px solid var(--line); padding:10px 0; cursor:pointer}
+.an-row:first-of-type{border-top:0}
+.an-d{flex:none; width:46px; height:46px; border-radius:13px; background:var(--fct); color:var(--fci); display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:11px; line-height:1.1; text-transform:uppercase; letter-spacing:.04em}
+.an-d b{font-size:17px; font-weight:800}
+.an-t{flex:1; min-width:0} .an-t b{display:block; font-size:15px} .an-t small{color:var(--soft)}
+.an-n{font-size:13.5px; font-weight:700; color:var(--fci); white-space:nowrap; font-variant-numeric:tabular-nums}
+.an-row:hover .an-t b{color:var(--fci)}
+.bhero{background:var(--card); color:var(--ink); border-top:6px solid var(--fc); box-shadow:var(--sh)}
+.bhero::after{display:none}
+.bhero .kicker{color:var(--fci)}
+.bhero .pills span{background:var(--fct); color:var(--fci)}
+.bitem .bi{background:var(--fct); color:var(--fci)}
+@media (max-width:860px){ .an{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -540,7 +570,6 @@ h1,h2,h3,h4{letter-spacing:-0.022em}
   <button class="logo" type="button" data-go="uebersicht">Register<span>.</span></button>
   <nav class="tabs" id="nav"></nav>
   <div class="tools-r">
-    <button class="lvl" id="lvl" type="button" data-go="pruefungen"></button>
     <input type="search" class="srch" id="q" placeholder="Suchen" autocomplete="off" aria-label="Suchen">
     <button class="icon" id="themeBtn" type="button" aria-label="Hell oder dunkel">◐</button>
   </div>
@@ -1943,7 +1972,7 @@ function vUebersicht(){
     <p>Dein Studium an einem Ort. Tipp ein Modul an, um die Methoden daraus zu sehen.</p>
   </div>
   ${nowCard(true)}
-  ${gameCard()}
+  ${anstehend()}
   <div class="nums">
     <div><b>${MODULE.length}</b><span>Module</span></div>
     <div><b>${WERKZEUGE.length}</b><span>Methoden</span></div>
@@ -2667,8 +2696,7 @@ function vPruef(){
   return `
   <div class="hero"><h1>Prüfungen und Transferarbeiten</h1><p>Was wann fällig ist, was verlangt wird und womit du dafür lernst.</p></div>
   <div class="pgrid">${karten}</div>
-  <h2 class="sech">Lernen auf die Prüfung<small>Karten bewerten, XP sammeln, Serie halten</small></h2>
-  ${gameCard()}
+  <h2 class="sech">Lernen auf die Prüfung<small>Karteikarten zum Umdrehen und Bewerten</small></h2>
   <div class="pgrid">${stapel}</div>`;
 }
 
@@ -2702,13 +2730,12 @@ function vTrainer(){
       <div class="fertig" style="margin-top:18px">
         ${T.q.length?`<div class="sterne" aria-label="${Math.round(r.g/T.q.length*3)} von 3 Sternen">${[1,2,3].map(i=>r.g/T.q.length*3>=i-.5?"⭐":"<s>⭐</s>").join("")}</div>`:""}
         <h2>${T.q.length? (offen? "Runde geschafft":"Alles gewusst") : "Keine Karten in dieser Auswahl"}</h2>
-        <p class="meta">${T.q.length?`Diese Runde: ${r.g} gewusst · ${r.u} unsicher · ${r.n} nochmal · +${r.xp||0} XP`:"Wähle ein anderes Thema oder schalte «Nur offene Karten» aus."}</p>
+        <p class="meta">${T.q.length?`Diese Runde: ${r.g} gewusst · ${r.u} unsicher · ${r.n} nochmal`:"Wähle ein anderes Thema oder schalte «Nur offene Karten» aus."}</p>
         <div class="acts">${offen?`<button class="btn" type="button" data-qagain="offen">${offen===1?"1 offene Karte":offen+" offene Karten"} nochmals</button>`:""}<button class="btn l" type="button" data-qagain="alle">Alle Karten nochmals</button></div>
       </div></div>`;
   }
   const c=d.k.find(x=>x.id===T.q[T.i]);
   return `<div class="tr fc" style="${fcVar(d.f)}">${kopf}
-    ${hudHtml()}
     <div class="trbar"><span>Karte ${T.i+1} von ${T.q.length}</span><span><button class="lnk" type="button" data-qnav="-1">← zurück</button> · <button class="lnk" type="button" data-qnav="1">überspringen →</button></span></div>
     <div class="qcard" id="qcard" tabindex="0" role="button" aria-label="Karte umdrehen">
       <div class="qin">
@@ -2732,10 +2759,8 @@ function qDreh(){
 }
 function qBewerte(v){
   const T=S.tr, id=T.q[T.i]; if(!id) return;
-  const war=S.stat[id]===1;
   S.stat[id]=v; T.runde[v===1?"g":v===-1?"u":"n"]++; T.i++;
-  const txt=gBewerte(v, war, T.i>=T.q.length);
-  store.saveLern(S.stat); render(); xpPop(txt);
+  store.saveLern(S.stat); render();
 }
 function qNav(n){ const T=S.tr; T.i=Math.max(0, Math.min(T.q.length-1, T.i+n)); render(); }
 
@@ -2799,100 +2824,34 @@ document.addEventListener("keydown", ev=>{
   else if(ev.key==="ArrowLeft") qNav(-1);
 });
 
-/* ====================== SPIELSTAND: XP, LEVEL, SERIE, ABZEICHEN ====================== */
-const ZIEL = 20;
-const STUFEN = ["Starter","Lernling","Durchstarter","Könner","Profi","Champion","Legende"];
+/* ====================== WAS ANSTEHT ====================== */
 function gData(){
   let g = S.stat._g;
-  if(!g || typeof g!=="object"){ g = {xp:0, tage:{}, best:0, total:0, abz:[], combo:0}; S.stat._g = g; }
-  if(!g.tage) g.tage = {}; if(!g.abz) g.abz = [];
+  if(!g || typeof g!=="object"){ g = {}; S.stat._g = g; }
   return g;
 }
-const lvlVon = xp => Math.floor(Math.sqrt(xp/100))+1;
-const lvlStart = l => 100*(l-1)*(l-1);
-const stufe = l => STUFEN[Math.min(l, STUFEN.length)-1];
-function serie(g){
-  let n=0; const d=tag0(new Date());
-  if(!g.tage[iso(d)]) d.setDate(d.getDate()-1);
-  while(g.tage[iso(d)]){ n++; d.setDate(d.getDate()-1); }
-  return n;
-}
-const ABZEICHEN = [
-  {id:"start", e:"🚀", n:"Erste Karte", d:"Die erste Karte bewertet", ok:g=>g.total>=1},
-  {id:"ziel", e:"🎯", n:"Tagesziel", d:ZIEL+" Karten an einem Tag", ok:g=>Object.values(g.tage).some(x=>x>=ZIEL)},
-  {id:"s3", e:"🔥", n:"3 Tage in Serie", d:"Drei Tage hintereinander gelernt", ok:g=>g.best>=3},
-  {id:"s7", e:"⚡", n:"Wochenserie", d:"Sieben Tage hintereinander gelernt", ok:g=>g.best>=7},
-  {id:"c5", e:"🎳", n:"5er-Combo", d:"Fünfmal hintereinander gewusst", ok:g=>g.combo>=5},
-  {id:"c10", e:"💎", n:"10er-Combo", d:"Zehnmal hintereinander gewusst", ok:g=>g.combo>=10},
-  {id:"h100", e:"💯", n:"100 Karten", d:"100 Karten bewertet", ok:g=>g.total>=100},
-  {id:"halb", e:"🌗", n:"Halbzeit", d:"Einen Stapel zur Hälfte gewusst", ok:()=>Object.keys(DECKS).some(k=>{ const s=deckStand(k); return s.g*2>=s.t; })},
-  {id:"infw", e:"🧠", n:"INFW gemeistert", d:"Alle INFW-Karten gewusst", ok:()=>{ const s=deckStand("infw"); return s.g===s.t; }},
-  {id:"lead", e:"🧭", n:"Leadership gemeistert", d:"Alle Leadership-Karten gewusst", ok:()=>{ const s=deckStand("lead"); return s.g===s.t; }},
-  {id:"brief", e:"📚", n:"Gut vorbereitet", d:"Drei Briefings vor der Lektion gelesen", ok:g=>(g.gelesen||[]).length>=3},
-  {id:"cm", e:"🦋", n:"Change gemeistert", d:"Alle Change-Karten gewusst", ok:()=>{ const s=deckStand("cm"); return s.g===s.t; }}
-];
-function gRing(anteil, gross, klein){
-  const r=45, u=2*Math.PI*r;
-  return `<div class="g-ring"><svg viewBox="0 0 104 104" aria-hidden="true"><circle class="bg" cx="52" cy="52" r="${r}"/><circle class="fg" cx="52" cy="52" r="${r}" stroke-dasharray="${u.toFixed(1)}" stroke-dashoffset="${(u*(1-Math.max(0,Math.min(1,anteil)))).toFixed(1)}"/></svg><div><small>${klein}</small><b>${gross}</b></div></div>`;
-}
-function gameCard(){
-  const g=gData(), l=lvlVon(g.xp), a=lvlStart(l), b=lvlStart(l+1), ant=(g.xp-a)/(b-a), heute=g.tage[iso(new Date())]||0, s=serie(g);
-  return `<section class="game" aria-label="Spielstand">
-    ${gRing(ant, l, "Level")}
-    <div class="g-main"><h2>${esc(stufe(l))}</h2><p>${g.xp} XP · noch ${b-g.xp} XP bis Level ${l+1}</p><div class="xpbar"><i style="width:${Math.round(ant*100)}%"></i></div></div>
-    <div class="g-stats">
-      <div class="g-stat"><b>🔥 ${s}</b><span>${s===1?"Tag":"Tage"} in Serie</span></div>
-      <div class="g-stat"><b>${Math.min(heute,ZIEL)}/${ZIEL}</b><span>Tagesziel${heute>=ZIEL?" erreicht":""}</span><div class="xpbar"><i style="width:${Math.min(100,heute/ZIEL*100)}%"></i></div></div>
-      <div class="g-stat"><b>${g.total}</b><span>Karten bewertet</span></div>
-      <div class="g-stat"><b>×${g.combo||0}</b><span>beste Combo</span></div>
-    </div>
-    <div class="badges">${ABZEICHEN.map(z=>{ const hat=g.abz.includes(z.id); return `<span class="badge${hat?"":" zu"}" title="${esc(z.d)}"><i>${z.e}</i>${esc(z.n)}</span>`; }).join("")}</div>
-  </section>`;
-}
-function hudHtml(){
-  const g=gData(), T=S.tr, heute=g.tage[iso(new Date())]||0;
-  return `<div class="hud"><span>Level ${lvlVon(g.xp)} · ${g.xp} XP</span><span>🔥 ${serie(g)}</span><span>🎯 ${Math.min(heute,ZIEL)}/${ZIEL} heute</span>${T&&T.combo>=2?`<span class="combo">Combo ×${T.combo}</span>`:""}</div>`;
-}
-function lvlChip(){
-  const el=document.getElementById("lvl"); if(!el) return;
-  const g=gData(), l=lvlVon(g.xp);
-  el.innerHTML=`<b>${l}</b><span>${g.xp} XP</span>`; el.setAttribute("aria-label","Level "+l+", "+g.xp+" XP. Zum Spielstand");
-}
-function xpPop(txt){
-  const el=document.createElement("div"); el.className="xp-pop"; el.textContent=txt; document.body.appendChild(el); setTimeout(()=>el.remove(), 1000);
-}
-function konfetti(menge){
-  if(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  let c=document.getElementById("konfetti");
-  if(!c){ c=document.createElement("canvas"); c.id="konfetti"; document.body.appendChild(c); }
-  const x=c.getContext("2d"), W=c.width=innerWidth, H=c.height=innerHeight, F=["#0A84FF","#AF52DE","#FF2D55","#FF9F0A","#30D158","#FFD60A","#64D2FF"];
-  const P=Array.from({length:menge||130},()=>({x:W/2+(Math.random()-.5)*W*.3, y:H*.42, vx:(Math.random()-.5)*15, vy:-Math.random()*15-5, g:.36+Math.random()*.16, s:6+Math.random()*7, r:Math.random()*6.3, vr:(Math.random()-.5)*.4, f:F[Math.floor(Math.random()*F.length)], k:Math.random()<.5}));
-  const t0=performance.now(); cancelAnimationFrame(konfetti.raf);
-  (function zeichne(t){
-    const d=t-t0; x.clearRect(0,0,W,H);
-    P.forEach(p=>{ p.vy+=p.g; p.x+=p.vx; p.y+=p.vy; p.vx*=.99; p.r+=p.vr;
-      x.save(); x.translate(p.x,p.y); x.rotate(p.r); x.globalAlpha=Math.max(0,1-d/2300); x.fillStyle=p.f;
-      if(p.k){ x.beginPath(); x.arc(0,0,p.s/2,0,6.3); x.fill(); } else x.fillRect(-p.s/2,-p.s/3,p.s,p.s*.66);
-      x.restore(); });
-    if(d<2300) konfetti.raf=requestAnimationFrame(zeichne); else x.clearRect(0,0,W,H);
-  })(t0);
-}
-/* Punkte für eine bewertete Karte. Gibt den Text für die Einblendung zurück. */
-function gBewerte(v, warSchonGewusst, rundeFertig){
-  const g=gData(), T=S.tr, vorher=lvlVon(g.xp), h=iso(new Date());
-  T.combo = v===1 ? (T.combo||0)+1 : 0;
-  let xp = v===1?10 : v===-1?5 : 2;
-  if(v===1){ xp += Math.min(T.combo-1,5)*2; if(!warSchonGewusst) xp += 5; }
-  if(rundeFertig) xp += 25;
-  g.xp += xp; g.total++; g.tage[h]=(g.tage[h]||0)+1; g.combo=Math.max(g.combo||0, T.combo); g.best=Math.max(g.best||0, serie(g));
-  T.runde.xp=(T.runde.xp||0)+xp;
-  const neu=ABZEICHEN.filter(z=>!g.abz.includes(z.id) && z.ok(g)); neu.forEach(z=>g.abz.push(z.id));
-  const nachher=lvlVon(g.xp);
-  if(nachher>vorher){ konfetti(170); hinweis("Level "+nachher+" erreicht: "+stufe(nachher)); }
-  else if(neu.length){ konfetti(110); hinweis("Abzeichen freigeschaltet: "+neu.map(z=>z.e+" "+z.n).join(", ")); }
-  else if(rundeFertig) konfetti(120);
-  else if((g.tage[h]||0)===ZIEL){ konfetti(110); hinweis("Tagesziel erreicht: "+ZIEL+" Karten"); }
-  return "+"+xp+" XP"+(v===1&&T.combo>=3?" · Combo ×"+T.combo:"");
+/* Übersicht: nächste Prüfung mit Lernstand und die kommenden Prüfungen und Abgaben */
+function anstehend(){
+  const j=tag0(new Date()), kommend=PRUEF.filter(p=>tag0(pDatum(p))>=j);
+  if(!kommend.length) return "";
+  const lern=kommend.find(p=>p.deck), st=lern?deckStand(lern.deck):null;
+  const fokus = lern ? `
+    <div class="an-fokus fc" style="${fcVar(lern.f)}">
+      <div class="kicker">Für die nächste Prüfung lernen</div>
+      <h2>${esc(lern.n)} <span>${esc(fName(lern.f,true))}</span></h2>
+      <div class="an-m">${fmtD(pDatum(lern),true)} · ${relTage(tageBis(pDatum(lern)))}</div>
+      <div class="ready" style="margin-top:14px"><span>${st.g} von ${st.t} Karten gewusst</span><b>${Math.round(st.g/st.t*100)} %</b></div>
+      ${segHtml(st)}
+      <div class="acts"><button class="btn" type="button" data-deck="${lern.deck}">Karten lernen</button>${lern.probe?`<button class="btn l" type="button" data-go="probe">Probeprüfung</button>`:""}</div>
+    </div>` : "";
+  const liste = kommend.slice(0,5).map(p=>{ const n=tageBis(pDatum(p));
+    return `<button class="an-row fc" type="button" data-go="pruefungen" style="${fcVar(p.f)}">
+      <span class="an-d"><b>${pDatum(p).getDate()}</b>${MON[pDatum(p).getMonth()]}</span>
+      <span class="an-t"><b>${esc(p.n)}</b><small>${esc(p.art)} · ${esc(fName(p.f,true))}</small></span>
+      <span class="an-n">${n===0?"heute":n===1?"morgen":n+" Tage"}</span></button>`; }).join("");
+  return `<section class="an">${fokus}
+    <div class="an-liste"><h3>Prüfungen und Transferarbeiten</h3>${liste}
+      <button class="lnk" type="button" data-go="pruefungen" style="margin-top:10px">Alle anzeigen</button></div></section>`;
 }
 
 /*BRIEFING-START*/
@@ -2932,7 +2891,7 @@ function vBriefing(){
     ${(b.vorbereiten||[]).length?`<div class="bsec"><h2>Vorher erledigen</h2><ul>${b.vorbereiten.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:""}
     ${(b.mitreden||[]).length?`<div class="bsec"><h2>Zum Mitreden</h2>${b.mitreden.map(x=>`<div class="say">${esc(x)}</div>`).join("")}</div>`:""}
     <div class="acts">
-      <button class="btn" type="button" data-gelesen="${briefKey(b)}" ${briefGelesen(b)?"disabled style=\"opacity:.6\"":""}>${briefGelesen(b)?"✓ Gelesen":"Gelesen · +15 XP"}</button>
+      <button class="btn" type="button" data-gelesen="${briefKey(b)}" ${briefGelesen(b)?"disabled style=\"opacity:.6\"":""}>${briefGelesen(b)?"✓ Gelesen":"Als gelesen markieren"}</button>
       ${deck?`<button class="btn l" type="button" data-deck="${deck}">Karten zu ${esc(fName(b.f,true))} lernen</button>`:""}
     </div>
     <p class="bfoot">Automatisch aus den Unterlagen auf OpenOLAT zusammengefasst. Die Abschnitte «Zum Mitreden» sind Vorschläge, keine Aussagen des Dozenten.</p>
@@ -2940,17 +2899,12 @@ function vBriefing(){
 }
 function briefGelesenSetzen(key){
   const g=gData(); if(!g.gelesen) g.gelesen=[];
-  if(g.gelesen.includes(key)) return;
-  const vorher=lvlVon(g.xp); g.gelesen.push(key); g.xp+=15;
-  const neu=ABZEICHEN.filter(z=>!g.abz.includes(z.id) && z.ok(g)); neu.forEach(z=>g.abz.push(z.id));
-  store.saveLern(S.stat); render(); xpPop("+15 XP");
-  if(lvlVon(g.xp)>vorher){ konfetti(170); hinweis("Level "+lvlVon(g.xp)+" erreicht: "+stufe(lvlVon(g.xp))); }
-  else if(neu.length){ konfetti(110); hinweis("Abzeichen freigeschaltet: "+neu.map(z=>z.e+" "+z.n).join(", ")); }
+  if(!g.gelesen.includes(key)){ g.gelesen.push(key); store.saveLern(S.stat); }
+  render();
 }
 
 /* ====================== RENDER ====================== */
 function render(){
-  lvlChip();
   const v = view();
   v.classList.toggle("wide", S.v==="netz" && S.q.trim().length<2);
   if(S.q.trim().length>1){ v.innerHTML = vSuche(); return; }
