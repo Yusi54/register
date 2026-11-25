@@ -563,6 +563,23 @@ body{background:var(--bg)}
 .bhero .pills span{background:var(--fct); color:var(--fci)}
 .bitem .bi{background:var(--fct); color:var(--fci)}
 @media (max-width:860px){ .an{grid-template-columns:1fr} }
+
+/* ====================== LESBARKEIT ====================== */
+:root{--fmix:52%; --soft:#55555B; --line:#DADAE0}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--fmix:74%; --soft:#A1A1A6; --line:#2E2E32} }
+:root[data-theme="dark"]{--fmix:74%; --soft:#A1A1A6; --line:#2E2E32}
+.fc{--fci:color-mix(in srgb,var(--fc) var(--fmix),var(--ink))}
+.now{background:var(--card); border:0; border-top:5px solid var(--fc); box-shadow:var(--sh)}
+.now::after{display:none}
+.now h2 span{color:var(--fci)}
+.now p{color:var(--soft)}
+.now-ex{background:var(--bg); border:1px solid var(--line); box-shadow:none; -webkit-backdrop-filter:none; backdrop-filter:none}
+.now-ex small{color:var(--soft)}
+.ring .bg{stroke:color-mix(in srgb,var(--fc) 22%,var(--line))}
+.ring span{color:var(--soft)}
+.face,.face.qb{background:var(--card)}
+.tcard{background:color-mix(in srgb,var(--fc) 9%,var(--card))}
+.tcard.ex{background:color-mix(in srgb,var(--fc) 16%,var(--card))}
 </style>
 </head>
 <body>
