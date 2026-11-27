@@ -287,8 +287,8 @@ DTSTART;TZID=Europe/Zurich:20261127T171500
 DTEND;TZID=Europe/Zurich:20261127T203000
 SUMMARY:Info- & Wissensmanagement · Block 07
 LOCATION:BZBS Buchs\, Zimmer A503
-DESCRIPTION:«Der Kunde» · Unternehmenskommunikation · Communities of Prac
- tice
+DESCRIPTION:Der Kunde: Kundenwissen\, Communities of Practice\, Praxisauf
+ gabe mit Pitch
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-12-02-BUSI-u-1815@register-hfwi
@@ -316,8 +316,8 @@ DTEND;TZID=Europe/Zurich:20261204T203000
 SUMMARY:PRÜFUNG Info- & Wissensmanagement · Block 08 · Theorieprüfung (20
   %)
 LOCATION:BZBS Buchs\, Zimmer A503
-DESCRIPTION:Prüfungsstoff: Blöcke 01 bis 06 · danach Wissensmanagementsys
- teme
+DESCRIPTION:Prüfung 17:15 bis 18:00\, handschriftlich\, Closed-Book · Sto
+ ff: Blöcke 01 bis 06 · danach Wissensmanagementsysteme
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:PRÜFUNG Info- & Wissensmanagement
